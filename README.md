@@ -1,4 +1,4 @@
-# DUT - My Delphi Utilities  
+# DUT - LightSaber Delphi Utilities  
 
 A set of tools that help you with your Delphi code:  
 * Upgrade code from 32 to 64 bit (invalid pointer casts, etc).  

@@ -5,7 +5,7 @@ INTERFACE
 
 USES
   Windows, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ccCore, cGraphUtil, ExtCtrls;
+  StdCtrls, ccCore, cGraphUtil, ExtCtrls, Vcl.Mask;
 
 TYPE
   TfrmClrPick = class(TForm)

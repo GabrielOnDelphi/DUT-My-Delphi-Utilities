@@ -3,52 +3,46 @@
 interface
 
 uses
-  System.SysUtils, System.Classes,
-  Vcl.Controls, Vcl.Forms, Vcl.StdCtrls;
+  System.SysUtils, System.Classes, Vcl.Controls, Vcl.Forms, Vcl.StdCtrls;
 
 type
   TfrmExclude = class(TForm)
-    btnOK: TButton;
     mmoExclude: TMemo;
+    Label1: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+  private
+    function excludedFiles: String;
   end;
 
-
-procedure LoadExcludedList(ExcludedFolders: TStrings);
-function ExcludedFile: string;
+var
+   frmExclude: TfrmExclude;
 
 
 implementation {$R *.dfm}
 
 uses
-   ccAppData, ccINIFileVcl;
+   cbAppData, cbIniFile;
 
+
+function TfrmExclude.excludedFiles: string;
+begin
+  Result:= AppData.AppDataFolder(True)+ 'ExcludedFiles.txt'
+end;
 
 procedure TfrmExclude.FormCreate(Sender: TObject);
 begin
   LoadForm(Self);
-  LoadExcludedList(mmoExclude.Lines);
+  if FileExists(excludedFiles)
+  then mmoExclude.Lines.LoadFromFile(excludedFiles);;
 end;
 
 
 procedure TfrmExclude.FormDestroy(Sender: TObject);
 begin
   SaveForm(Self);
-  mmoExclude.Lines.SaveToFile(ExcludedFile);
+  mmoExclude.Lines.SaveToFile(excludedFiles);
 end;
 
-
-procedure LoadExcludedList(ExcludedFolders: TStrings);
-begin
-  if FileExists(ExcludedFile)
-  then ExcludedFolders.LoadFromFile(ExcludedFile);
-end;
-
-
-function ExcludedFile: string;
-begin
-  Result:= AppData.AppDataFolder(True)+ 'ExcludedFiles.txt'
-end;
 
 end.

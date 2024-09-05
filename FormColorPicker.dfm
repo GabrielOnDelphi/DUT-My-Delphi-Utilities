@@ -19,13 +19,11 @@ object frmClrPick: TfrmClrPick
   GlassFrame.Right = 2
   GlassFrame.Bottom = 2
   GlassFrame.SheetOfGlass = True
-  OldCreateOrder = True
   Position = poDesigned
   ScreenSnap = True
   ShowHint = True
   SnapBuffer = 3
   OnCreate = FormCreate
-  PixelsPerInch = 96
   TextHeight = 17
   object Label1: TLabel
     Left = 20

@@ -12,14 +12,14 @@ uses
   FormEditor in 'FormEditor.pas' {frmEditor},
   FormExplorer in 'FormExplorer.pas',
   FormOptions in 'FormOptions.pas' {frmOptions},
-  dutBase in '..\..\Packages\LightSaber\dutBase.pas',
-  dutCodeUtils in '..\..\Packages\LightSaber\dutCodeUtils.pas',
-  dutUpgradeCode in '..\..\Packages\LightSaber\dutUpgradeCode.pas',
-  dutWin64 in '..\..\Packages\LightSaber\dutWin64.pas',
-  cmPascal in '..\..\Packages\LightSaber\cmPascal.pas',
-  cmSearchResult in '..\..\Packages\LightSaber\cmSearchResult.pas',
-  cbAppData in '..\..\Packages\LightSaber\cbAppData.pas',
-  cmUTF8 in '..\..\Packages\LightSaber\cmUTF8.pas';
+  dutBase in '..\..\LightSaber\dutBase.pas',
+  dutCodeUtils in '..\..\LightSaber\dutCodeUtils.pas',
+  dutUpgradeCode in '..\..\LightSaber\dutUpgradeCode.pas',
+  dutWin64 in '..\..\LightSaber\dutWin64.pas',
+  cmPascal in '..\..\LightSaber\cmPascal.pas',
+  cmSearchResult in '..\..\LightSaber\cmSearchResult.pas',
+  cbAppData in '..\..\LightSaber\cbAppData.pas',
+  cmUTF8 in '..\..\LightSaber\cmUTF8.pas';
 
 {$R *.res}
 

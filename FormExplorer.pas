@@ -24,7 +24,7 @@ var
 implementation {$R *.dfm}
 
 USES
-   ccIO, cbIniFile, cmINIFileQuick, FormExclude, FormResults;
+   ccIO, ccTextFile, cbIniFile, cmINIFileQuick, FormExclude, FormResults;
 
 
 procedure TfrmExplorer.FormDestroy(Sender: TObject);

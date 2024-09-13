@@ -132,7 +132,7 @@ VAR
 implementation {$R *.dfm}
 
 USES
-   ccIO,
+   ccIO, ccTextFile,
    cmIO,
    csExecuteShell,
    csSystem,

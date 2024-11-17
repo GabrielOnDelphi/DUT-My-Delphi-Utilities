@@ -22,7 +22,7 @@ var
 implementation {$R *.dfm}
 
 uses
-   cbAppData, cbIniFile;
+   cbAppData, cvINIFile;
 
 
 function TfrmExclude.excludedFiles: string;

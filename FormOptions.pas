@@ -22,7 +22,7 @@ var
 implementation {$R *.dfm}
 
 uses
-   cbAppData, cbIniFile;
+   cbAppData, cvINIFile;
 
 
 procedure TfrmOptions.FormCreate(Sender: TObject);

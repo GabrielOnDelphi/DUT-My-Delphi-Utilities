@@ -44,7 +44,7 @@ var
 implementation {$R *.dfm}
 
 USES
-   ccCore, ccIO, ccTextFile, cbAppData, cbIniFile, csSystem, csExecuteShell,
+   ccCore, ccIO, ccTextFile, cbAppData, cvINIFile, csSystem, csExecuteShell,
    FormOTA, FormEditor, FormOptions, FormExplorer, MainForm;
 
 

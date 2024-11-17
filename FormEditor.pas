@@ -57,7 +57,7 @@ var
 implementation {$R *.dfm}
 
 USES
-   cbIniFile, ccIO, ccTextFile, FormOTA, FormResults, cmPascal, formExplorer;
+   cvINIFile, ccIO, ccTextFile, FormOTA, FormResults, cmPascal, formExplorer;
 
 
 

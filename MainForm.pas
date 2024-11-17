@@ -137,7 +137,7 @@ USES
    csExecuteShell,
    csSystem,
    dutWin64,
-   cbIniFile,
+   cvINIFile,
    cbDialogs,
    FormColorPicker,
    FormOptions,
@@ -163,7 +163,7 @@ begin
 
   // FORM: Color picker
   VAR frmClrPick: TfrmClrPick;
-  AppData.CreateForm(TfrmClrPick, frmClrPick, FALSE, flPositionOnly, crdUtils);
+  AppData.CreateForm(TfrmClrPick, frmClrPick, FALSE, flPosOnly, crdUtils);
   //frmClrPick.Parent:= crdUtils;
   frmClrPick.Visible:= True;
   frmClrPick.Align:= alClient;

@@ -131,7 +131,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 773
+            Width = 212
             Height = 17
             Align = alTop
             Caption = 'Finds all try/except lines. See details.'
@@ -192,7 +192,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 773
+            Width = 507
             Height = 17
             Align = alTop
             Caption = 
@@ -279,7 +279,7 @@ object frmMain: TfrmMain
       object pgWin64: TPageControl
         AlignWithMargins = True
         Left = 3
-        Top = 32
+        Top = 29
         Width = 787
         Height = 237
         Margins.Bottom = 17
@@ -294,7 +294,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 767
+            Width = 97
             Height = 17
             Align = alTop
             Caption = 'Extended issues'
@@ -309,7 +309,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 26
-            Width = 767
+            Width = 628
             Height = 85
             Align = alTop
             Caption = 
@@ -353,7 +353,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 773
+            Width = 208
             Height = 17
             Align = alTop
             Caption = 'Extended issues in packed records'
@@ -368,7 +368,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 26
-            Width = 773
+            Width = 772
             Height = 136
             Align = alTop
             Caption = 
@@ -419,7 +419,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 26
-            Width = 773
+            Width = 538
             Height = 85
             Align = alTop
             Caption = 
@@ -432,7 +432,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 773
+            Width = 139
             Height = 17
             Align = alTop
             Caption = 'Pointer typecast issues'
@@ -514,7 +514,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 26
-            Width = 773
+            Width = 436
             Height = 68
             Align = alTop
             Caption = 
@@ -526,7 +526,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 773
+            Width = 139
             Height = 17
             Align = alTop
             Caption = 'Pointer typecast issues'
@@ -569,7 +569,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 26
-            Width = 773
+            Width = 470
             Height = 119
             Align = alTop
             Caption = 
@@ -582,7 +582,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 773
+            Width = 83
             Height = 17
             Align = alTop
             Caption = 'Winapi Issues'
@@ -650,7 +650,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 773
+            Width = 83
             Height = 17
             Align = alTop
             Caption = 'Winapi Issues'
@@ -665,7 +665,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 26
-            Width = 773
+            Width = 497
             Height = 136
             Align = alTop
             Caption = 
@@ -704,7 +704,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 773
+            Width = 83
             Height = 17
             Align = alTop
             Caption = 'Winapi Issues'
@@ -719,7 +719,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 26
-            Width = 773
+            Width = 651
             Height = 34
             Align = alTop
             Caption = 
@@ -785,7 +785,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 773
+            Width = 218
             Height = 17
             ParentCustomHint = False
             Align = alTop
@@ -847,7 +847,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 773
+            Width = 154
             Height = 17
             ParentCustomHint = False
             Align = alTop
@@ -881,7 +881,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 773
+            Width = 528
             Height = 34
             Align = alTop
             Caption = 

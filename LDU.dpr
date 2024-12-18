@@ -1,6 +1,7 @@
 ﻿program LDU;
 
 uses
+  FastMM4,
   Vcl.Forms,
   Vcl.Themes,
   Vcl.Styles,
@@ -18,20 +19,12 @@ uses
   dutWin64 in '..\..\LightSaber\dutWin64.pas',
   cmPascal in '..\..\LightSaber\cmPascal.pas',
   cmSearchResult in '..\..\LightSaber\cmSearchResult.pas',
-  cbAppData in '..\..\LightSaber\cbAppData.pas',
-  cmUTF8 in '..\..\LightSaber\cmUTF8.pas';
+  cbAppData in '..\..\LightSaber\cbAppData.pas';
 
 {$R *.res}
 
 begin
-  AppData:= TAppData.Create('DUT_2');
+  AppData:= TAppData.Create('LightSaber LDU');
   AppData.CreateMainForm(TfrmMain, frmMain, true);
   Application.Run;
 end.
-
-
-
-
-
-
-

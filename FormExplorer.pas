@@ -24,13 +24,13 @@ var
 implementation {$R *.dfm}
 
 USES
-   ccIO, ccTextFile, cvINIFile, cmINIFileQuick, FormExclude, FormResults;
+   ccIO, ccTextFile, ccINIFile, cbINIFile, cvINIFile, cmINIFileQuick, FormExclude, FormResults;
 
 
 procedure TfrmExplorer.FormDestroy(Sender: TObject);
 begin
   WriteString('Path', edtPath.Text);  { Save GUI }
-  SaveForm(Self, flLoad);
+  SaveForm(Self, flFull);
 end;
 
 

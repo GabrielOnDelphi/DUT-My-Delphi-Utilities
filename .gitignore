@@ -11,3 +11,6 @@ free icon (CC4).url
 *.identcache
 *.~dsk
 *.local
+*.map
+*.tvsconfig
+*.mes

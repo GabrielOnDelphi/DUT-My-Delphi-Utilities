@@ -136,6 +136,7 @@ USES
    cmIO,
    csExecuteShell,
    csSystem,
+   ccINIFile,
    dutWin64,
    cvINIFile,
    cbDialogs,
@@ -163,7 +164,7 @@ begin
 
   // FORM: Color picker
   VAR frmClrPick: TfrmClrPick;
-  AppData.CreateForm(TfrmClrPick, frmClrPick, FALSE, flPosOnly, crdUtils);
+  AppData.CreateForm(TfrmClrPick, frmClrPick, FALSE, flPosOnly, crdUtils, TRUE);
   //frmClrPick.Parent:= crdUtils;
   frmClrPick.Visible:= True;
   frmClrPick.Align:= alClient;
@@ -173,7 +174,7 @@ begin
   AppData.CreateFormHidden(TfrmEditor  , frmEditor);
   AppData.CreateFormHidden(TfrmOptions , frmOptions);
   AppData.CreateFormHidden(TfrmResults , frmResults);
-  AppData.CreateFormHidden(TfrmExplorer, frmExplorer, flLoad); // Requires frmResults
+  AppData.CreateFormHidden(TfrmExplorer, frmExplorer, flFull); // Requires frmResults
   AppData.CreateFormHidden(TfrmExclude , frmExclude);
   frmExplorer.Container.Parent:= Self;
   AppData.Initializing:= False;

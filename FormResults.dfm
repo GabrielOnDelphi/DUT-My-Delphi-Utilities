@@ -1,7 +1,7 @@
 object frmResults: TfrmResults
   Left = 0
   Top = 0
-  Caption = '@Runtime'
+  Caption = 'Search results'
   ClientHeight = 548
   ClientWidth = 935
   Color = clBtnFace

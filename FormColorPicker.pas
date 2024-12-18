@@ -79,7 +79,7 @@ end;
 
 procedure TfrmClrPick.FormCreate(Sender: TObject);
 begin
- Application.ProcessMessages;
+// Application.ProcessMessages;
  edtEnterClrChange(Sender);
 end;
 

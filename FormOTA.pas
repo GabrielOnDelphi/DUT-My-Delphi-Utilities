@@ -24,7 +24,7 @@ procedure OpenFileInIDE(SearchRes: TSearchResult; CurPos: Integer);  overload;
 implementation {$R *.dfm}
 
 USES
-   cmIO, cbDialogs, ccCore;
+   ccIO, ccTextFile, cmIO, cmIO.Win, ccCore, csSystem, cbDialogs;
 
 
 {-------------------------------------------------------------------------------------------------------------
@@ -32,7 +32,7 @@ USES
 --------------------------------------------------------------------------------------------------------------
    The string structure mus be like this:
 
-   Filename=c:\My projects\Packages\CubicCommonControls\ccRegistry.pas
+   Filename=c:\My projects\Packages\CubicCommonControls\cbRegistry.pas
    Line=8
    Col=12
    Comment=(* some comment *)

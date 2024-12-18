@@ -5,3 +5,9 @@
 /__history
 free icon (CC4).url
 *.dsk
+*.dcu
+/__recovery
+*.cbk
+*.identcache
+*.~dsk
+*.local

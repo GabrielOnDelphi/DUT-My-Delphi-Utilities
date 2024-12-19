@@ -25,7 +25,7 @@ object frmMain: TfrmMain
     Width = 795
     Height = 300
     Align = alClient
-    ActiveCard = crdUtils
+    ActiveCard = crdUpgradeCode
     Caption = 'CardPanel'
     TabOrder = 0
     object crdSearch: TCard
@@ -122,7 +122,7 @@ object frmMain: TfrmMain
         Top = 3
         Width = 787
         Height = 193
-        ActivePage = tabTryExcept
+        ActivePage = tabSetFocus
         Align = alTop
         TabOrder = 0
         object tabTryExcept: TTabSheet
@@ -308,7 +308,7 @@ object frmMain: TfrmMain
           object Label8: TLabel
             AlignWithMargins = True
             Left = 3
-            Top = 26
+            Top = 23
             Width = 628
             Height = 85
             Align = alTop
@@ -367,7 +367,7 @@ object frmMain: TfrmMain
           object Label13: TLabel
             AlignWithMargins = True
             Left = 3
-            Top = 26
+            Top = 23
             Width = 772
             Height = 136
             Align = alTop
@@ -418,7 +418,7 @@ object frmMain: TfrmMain
           object Label10: TLabel
             AlignWithMargins = True
             Left = 3
-            Top = 26
+            Top = 23
             Width = 538
             Height = 85
             Align = alTop
@@ -513,7 +513,7 @@ object frmMain: TfrmMain
           object Label18: TLabel
             AlignWithMargins = True
             Left = 3
-            Top = 26
+            Top = 23
             Width = 436
             Height = 68
             Align = alTop
@@ -568,7 +568,7 @@ object frmMain: TfrmMain
           object Label2: TLabel
             AlignWithMargins = True
             Left = 3
-            Top = 26
+            Top = 23
             Width = 470
             Height = 119
             Align = alTop
@@ -664,7 +664,7 @@ object frmMain: TfrmMain
           object Label16: TLabel
             AlignWithMargins = True
             Left = 3
-            Top = 26
+            Top = 23
             Width = 497
             Height = 136
             Align = alTop
@@ -718,7 +718,7 @@ object frmMain: TfrmMain
           object Label15: TLabel
             AlignWithMargins = True
             Left = 3
-            Top = 26
+            Top = 23
             Width = 651
             Height = 34
             Align = alTop
@@ -950,7 +950,7 @@ object frmMain: TfrmMain
         298)
       object lblDynamicalyCreated: TLabel
         Left = 363
-        Top = 150
+        Top = 151
         Width = 113
         Height = 17
         Anchors = []

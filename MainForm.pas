@@ -1,9 +1,7 @@
 UNIT MainForm;
 
 {-------------------------------------------------------------------------------------------------------------
-   Description here: https://gabrielmoraru.com/xxxxxxxxxxxxxxxxx
-
-   Issue: Does not work with some PAS files that have no BOM. The bug is in System.IOUtils.TFile.ReadAllText
+   Description here: https://github.com/GabrielOnDelphi/DUT-My-Delphi-Utilities
 
    Features:
      Ignores lines that start with a comment symbol:   // { (*
@@ -154,8 +152,6 @@ USES
 
 procedure TfrmMain.LateInitialize;
 begin
-  //LoadForm(Self);
-
   if AppData.RunningFirstTime
   then ExecuteURL('https://GabrielMoraru.com');
 
@@ -165,10 +161,8 @@ begin
   // FORM: Color picker
   VAR frmClrPick: TfrmClrPick;
   AppData.CreateForm(TfrmClrPick, frmClrPick, FALSE, flPosOnly, crdUtils, TRUE);
-  //frmClrPick.Parent:= crdUtils;
   frmClrPick.Visible:= True;
   frmClrPick.Align:= alClient;
-  //CenterChild(frmClrPick, crdUtils);
 
   // FORM: Results
   AppData.CreateFormHidden(TfrmEditor  , frmEditor);
@@ -179,9 +173,8 @@ begin
   frmExplorer.Container.Parent:= Self;
   AppData.Initializing:= False;
 
-
   Refresh;                         // Refresh the main form so the frmExplorer is shown in the correct position
-  frmExplorer.edtPathChange(nil);  // Read files in folder. This could take a while for large folders
+  frmExplorer.edtPathChange(NIL);  // Read files in folder. This could take a while for large folders
   frmResults.Caption:= 'Files in '+ frmExplorer.edtPath.Text;
   //frmResults.ShowResultsForm;
 end;
@@ -332,8 +325,8 @@ begin
     begin
       //pgMain.Update;
       PasParser.SearchResults.Clear;
-      //frmResults.HideEditor; del
       frmResults.Reset;
+
       // Show it only if docked
       if NOT frmOptions.chkNewWnd.Checked
       then frmResults.Container.Parent:= CardPanel.ActiveCard;

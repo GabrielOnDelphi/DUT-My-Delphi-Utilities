@@ -10,11 +10,12 @@ UNIT MainForm;
 INTERFACE
 
 USES
-  Winapi.Messages, System.SysUtils, System.Classes, Vcl.Controls, Vcl.Forms, Vcl.ComCtrls, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Menus, Vcl.Mask,
-  cmSearchResult, ccCore, cbAppData, dutCodeUtils, Vcl.WinXPanels, Vcl.CategoryButtons, InternetLabel;
+  Winapi.Messages, System.SysUtils, System.Classes,
+  Vcl.Controls, Vcl.Forms, Vcl.ComCtrls, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Menus, Vcl.Mask,
+  cmSearchResult, ccCore, cbAppData, dutCodeUtils, Vcl.WinXPanels, Vcl.CategoryButtons, InternetLabel, cbAppDataForm;
 
 TYPE
-  TfrmMain = class(TForm)
+  TfrmMain = class(TLightForm)
     CardPanel            : TCardPanel;
     crdSearch            : TCard;
     pnlMethod            : TPanel;
@@ -121,7 +122,7 @@ TYPE
     procedure Button3Click      (Sender: TObject);
   private
     PasParser: TDutUtils;
-    procedure lateInitialize(VAR message: TMessage); message MSG_LateFormInit;
+    procedure lateInitialize; override;
   end;
 
 VAR
@@ -152,6 +153,8 @@ USES
 
 procedure TfrmMain.LateInitialize;
 begin
+  inherited LateInitialize;
+
   if AppData.RunningFirstTime
   then ExecuteURL('https://GabrielMoraru.com');
 

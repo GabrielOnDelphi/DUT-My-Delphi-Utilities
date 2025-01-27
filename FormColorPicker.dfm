@@ -7,20 +7,13 @@ object frmClrPick: TfrmClrPick
   ClientHeight = 337
   ClientWidth = 613
   Color = clBtnFace
-  CustomTitleBar.Height = 2
   DoubleBuffered = True
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
   Font.Height = -13
   Font.Name = 'Segoe UI'
   Font.Style = []
-  GlassFrame.Left = 2
-  GlassFrame.Top = 2
-  GlassFrame.Right = 2
-  GlassFrame.Bottom = 2
-  GlassFrame.SheetOfGlass = True
   Position = poDesigned
-  ScreenSnap = True
   ShowHint = True
   SnapBuffer = 3
   OnCreate = FormCreate
@@ -73,7 +66,7 @@ object frmClrPick: TfrmClrPick
   object btnChooseClr: TButton
     Left = 20
     Top = 230
-    Width = 95
+    Width = 121
     Height = 41
     Caption = 'Choose color'
     TabOrder = 0

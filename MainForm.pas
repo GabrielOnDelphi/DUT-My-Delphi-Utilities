@@ -17,7 +17,7 @@ USES
 TYPE
   TfrmMain = class(TLightForm)
     CardPanel            : TCardPanel;
-    crdSearch            : TCard;
+    crdIntfImplementor: TCard;
     pnlMethod            : TPanel;
     Label6               : TLabel;
     edtMethod            : TLabeledEdit;
@@ -27,7 +27,7 @@ TYPE
     crdUpgradeCode       : TCard;
     crdWin64             : TCard;
     crdFileFormat        : TCard;
-    crdUtils             : TCard;
+    crdColorPicker: TCard;
     Label1               : TLabel;
     pgWin64              : TPageControl;
     tabExtended          : TTabSheet;
@@ -76,9 +76,9 @@ TYPE
     tabSetFocus          : TTabSheet;
     Label5               : TLabel;
     Panel13              : TPanel;
-    Button5              : TButton;
-    Button6              : TButton;
-    Button7              : TButton;
+    btnUtf2Ansi: TButton;
+    btnHasBom: TButton;
+    btnAnsi2Utf: TButton;
     TabSheet8            : TTabSheet;
     lblBomInfo           : TLabel;
     Panel10              : TPanel;
@@ -89,12 +89,12 @@ TYPE
     tabUTF               : TTabSheet;
     Label3               : TLabel;
     Panel2               : TPanel;
-    Button1              : TButton;
-    btnReplace           : TButton;
+    btnTryExcept: TButton;
+    btnTryExcept2: TButton;
     btnHelp1             : TButton;
     Label4               : TLabel;
     Panel3               : TPanel;
-    btnReplaceFocus      : TButton;
+    btnSetFocus2: TButton;
     btnSetFocus          : TButton;
     btnHelp2             : TButton;
     Label15              : TLabel;
@@ -104,25 +104,31 @@ TYPE
     Panel4               : TPanel;
     Button11             : TButton;
     Label12              : TLabel;
-    Button3              : TButton;
+    btnShowResults: TButton;
     tabExtendedRec: TTabSheet;
     Label11: TLabel;
     Label13: TLabel;
     Panel9: TPanel;
     btnExtendedRec: TButton;
     lblHomePage: TInternetLabel;
+    tabFreeAndNil: TTabSheet;
+    Label14: TLabel;
+    Panel12: TPanel;
+    btnFreeAndNil2: TButton;
+    btnFreeAndNil: TButton;
     procedure FormDestroy       (Sender: TObject);
-    procedure StartSearch2      (Sender: TObject);
+    procedure StartTask      (Sender: TObject);
     procedure btnHelp1Click     (Sender: TObject);
     procedure btnHelp2Click     (Sender: TObject);
-    procedure pgMainChange      (Sender: TObject);
+//    procedure pgMainChange      (Sender: TObject);
     procedure btnFixEntersClick (Sender: TObject);
     procedure btnSettingsClick  (Sender: TObject);
     procedure SwitchCard        (Sender: TObject);
-    procedure Button3Click      (Sender: TObject);
+    procedure btnShowResultsClick      (Sender: TObject);
   private
     PasParser: TDutUtils;
-    procedure lateInitialize; override;
+  public
+    procedure LateInitialize; override;
   end;
 
 VAR
@@ -163,8 +169,8 @@ begin
 
   // FORM: Color picker
   VAR frmClrPick: TfrmClrPick;
-  AppData.CreateForm(TfrmClrPick, frmClrPick, FALSE, flPosOnly, crdUtils, TRUE);
-  frmClrPick.Visible:= True;
+  AppData.CreateForm(TfrmClrPick, frmClrPick, FALSE, flPosOnly, crdColorPicker, TRUE);
+  frmClrPick.Visible:= TRUE;
   frmClrPick.Align:= alClient;
 
   // FORM: Results
@@ -192,25 +198,59 @@ end;
 
 
 
+{-------------------------------------------------------------------------------------------------------------
+   SWITCH GUI
+-------------------------------------------------------------------------------------------------------------}
+procedure TfrmMain.SwitchCard(Sender: TObject);
+begin
+  case (Sender as TButton).Tag of
+    1: CardPanel.ActiveCard:= crdIntfImplementor;
+    2: CardPanel.ActiveCard:= crdWin64;
+    3: CardPanel.ActiveCard:= crdUpgradeCode;
+    4: CardPanel.ActiveCard:= crdFileFormat;
+    5: CardPanel.ActiveCard:= crdColorPicker;
+    else MesajError('Invalid category tag!');
+  end;
+
+  {crdColorPicker.Update;
+  crdColorPicker.Refresh;
+  crdColorPicker.Repaint;
+  crdColorPicker.Top:= crdColorPicker.Top+1; }
+  crdColorPicker.AlignWithMargins:= TRUE;
+end;
+
+
+{
+procedure TfrmMain.pgMainChange(Sender: TObject);
+begin
+  if AppData.Initializing then Exit;
+
+  if (frmResults.Container.Parent <> CardPanel.ActiveCard)
+  AND ((CardPanel.ActiveCard = crdIntfImplementor)
+    or (CardPanel.ActiveCard = crdUpgradeCode)
+    or (CardPanel.ActiveCard = crdWin64)
+    or (CardPanel.ActiveCard = crdUtils) )
+  then
+    begin
+      //pgMain.Update;
+      PasParser.SearchResults.Clear;
+      frmResults.Reset;
+
+      // Show it only if docked
+      if NOT frmOptions.chkNewWnd.Checked then
+       begin
+        frmResults.Container.Parent:= CardPanel.ActiveCard;
+        CardPanel.Update;
+       end;
+    end;
+end; }
+
+
 
 {-------------------------------------------------------------------------------------------------------------
    SEARCH
 -------------------------------------------------------------------------------------------------------------}
-
-procedure TfrmMain.SwitchCard(Sender: TObject);
-begin
-  case (Sender as TButton).Tag of
-    1: CardPanel.ActiveCard:= crdSearch;
-    2: CardPanel.ActiveCard:= crdWin64;
-    3: CardPanel.ActiveCard:= crdUpgradeCode;
-    4: CardPanel.ActiveCard:= crdFileFormat;
-    5: CardPanel.ActiveCard:= crdUtils;
-    else MesajError('Invalid category tag!');
-  end;
-end;
-
-
-procedure TfrmMain.StartSearch2(Sender: TObject);
+procedure TfrmMain.StartTask(Sender: TObject);
 var
    IntfName, TextFile: string;
    FoundFiles, FoundLines: Integer;
@@ -258,6 +298,10 @@ begin
            7: PasParser.ConvertToUTF(TRUE);
            8: PasParser.ConvertToAnsi;
            9: PasParser.HasBOM;
+
+           // FreeAndNil
+           10: PasParser.ReplaceFree(False);
+           11: PasParser.ReplaceFree(True);
 
            // WinAPI
            50: PasParser.FindSendPostMessage;        { Search for invalid typecasts in .Perform(), SendMessage(), PostMessage(). }
@@ -312,32 +356,6 @@ begin
 end;
 
 
-{-------------------------------------------------------------------------------------------------------------
-   GUI
--------------------------------------------------------------------------------------------------------------}
-procedure TfrmMain.pgMainChange(Sender: TObject);
-begin
-  if AppData.Initializing then Exit;
-
-  if (frmResults.Container.Parent <> CardPanel.ActiveCard)
-  AND ((CardPanel.ActiveCard = crdSearch)
-    or (CardPanel.ActiveCard = crdUpgradeCode)
-    or (CardPanel.ActiveCard = crdWin64)
-    or (CardPanel.ActiveCard = crdUtils) )
-  then
-    begin
-      //pgMain.Update;
-      PasParser.SearchResults.Clear;
-      frmResults.Reset;
-
-      // Show it only if docked
-      if NOT frmOptions.chkNewWnd.Checked
-      then frmResults.Container.Parent:= CardPanel.ActiveCard;
-    end;
-end;
-
-
-
 
 {-------------------------------------------------------------------------------------------------------------
    HELP & OTHER TOOLS
@@ -378,7 +396,7 @@ begin
 end;
 
 
-procedure TfrmMain.Button3Click(Sender: TObject);
+procedure TfrmMain.btnShowResultsClick(Sender: TObject);
 begin
   frmResults.ShowResultsForm;
 end;

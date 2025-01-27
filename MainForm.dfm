@@ -4,7 +4,7 @@ object frmMain: TfrmMain
   AlphaBlend = True
   AlphaBlendValue = 250
   Caption = 'LDU (Light Delphi Utilities) - Gabriel Moraru 2022'
-  ClientHeight = 300
+  ClientHeight = 303
   ClientWidth = 980
   Color = clBtnFace
   DoubleBuffered = True
@@ -23,17 +23,17 @@ object frmMain: TfrmMain
     Left = 185
     Top = 0
     Width = 795
-    Height = 300
+    Height = 303
     Align = alClient
     ActiveCard = crdUpgradeCode
     Caption = 'CardPanel'
     TabOrder = 0
-    object crdSearch: TCard
+    object crdIntfImplementor: TCard
       Left = 1
       Top = 1
       Width = 793
-      Height = 298
-      Caption = 'Search'
+      Height = 301
+      Caption = 'Find interface implementor'
       CardIndex = 0
       TabOrder = 0
       object pnlMethod: TPanel
@@ -85,7 +85,7 @@ object frmMain: TfrmMain
           Anchors = [akRight, akBottom]
           Caption = 'Search'
           TabOrder = 1
-          OnClick = StartSearch2
+          OnClick = StartTask
         end
         object chkIntfName: TCheckBox
           AlignWithMargins = True
@@ -112,7 +112,7 @@ object frmMain: TfrmMain
       Left = 1
       Top = 1
       Width = 793
-      Height = 298
+      Height = 301
       Caption = 'Upgrade code'
       CardIndex = 1
       TabOrder = 1
@@ -122,7 +122,7 @@ object frmMain: TfrmMain
         Top = 3
         Width = 787
         Height = 193
-        ActivePage = tabSetFocus
+        ActivePage = tabFreeAndNil
         Align = alTop
         TabOrder = 0
         object tabTryExcept: TTabSheet
@@ -131,7 +131,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 212
+            Width = 773
             Height = 17
             Align = alTop
             Caption = 'Finds all try/except lines. See details.'
@@ -146,7 +146,7 @@ object frmMain: TfrmMain
             BevelOuter = bvNone
             ShowCaption = False
             TabOrder = 0
-            object Button1: TButton
+            object btnTryExcept: TButton
               Tag = 3
               AlignWithMargins = True
               Left = 3
@@ -157,9 +157,9 @@ object frmMain: TfrmMain
               Align = alLeft
               Caption = 'Search'
               TabOrder = 0
-              OnClick = StartSearch2
+              OnClick = StartTask
             end
-            object btnReplace: TButton
+            object btnTryExcept2: TButton
               Tag = 4
               AlignWithMargins = True
               Left = 134
@@ -170,7 +170,7 @@ object frmMain: TfrmMain
               Align = alLeft
               Caption = 'Replace'
               TabOrder = 1
-              OnClick = StartSearch2
+              OnClick = StartTask
             end
             object btnHelp1: TButton
               AlignWithMargins = True
@@ -192,7 +192,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 507
+            Width = 773
             Height = 17
             Align = alTop
             Caption = 
@@ -209,7 +209,7 @@ object frmMain: TfrmMain
             BevelOuter = bvNone
             ShowCaption = False
             TabOrder = 0
-            object btnReplaceFocus: TButton
+            object btnSetFocus2: TButton
               Tag = 6
               AlignWithMargins = True
               Left = 134
@@ -222,7 +222,7 @@ object frmMain: TfrmMain
               Align = alLeft
               Caption = 'Replace'
               TabOrder = 0
-              OnClick = StartSearch2
+              OnClick = StartTask
             end
             object btnSetFocus: TButton
               Tag = 5
@@ -235,7 +235,7 @@ object frmMain: TfrmMain
               Align = alLeft
               Caption = 'Search'
               TabOrder = 1
-              OnClick = StartSearch2
+              OnClick = StartTask
             end
             object btnHelp2: TButton
               AlignWithMargins = True
@@ -250,13 +250,65 @@ object frmMain: TfrmMain
             end
           end
         end
+        object tabFreeAndNil: TTabSheet
+          Caption = 'FreeAndNil()'
+          ImageIndex = 2
+          object Label14: TLabel
+            AlignWithMargins = True
+            Left = 3
+            Top = 3
+            Width = 773
+            Height = 17
+            Align = alTop
+            Caption = 'Replaces Object.Free with FreeAndNil(Object) which is safer.'
+            WordWrap = True
+          end
+          object Panel12: TPanel
+            Left = 0
+            Top = 126
+            Width = 779
+            Height = 35
+            Align = alBottom
+            BevelOuter = bvNone
+            ShowCaption = False
+            TabOrder = 0
+            object btnFreeAndNil2: TButton
+              Tag = 11
+              AlignWithMargins = True
+              Left = 134
+              Top = 3
+              Width = 125
+              Height = 29
+              Hint = 
+                'Replace "SetFocus" in all files (according to the filter) in the' +
+                ' specified folder.'
+              Align = alLeft
+              Caption = 'Replace'
+              TabOrder = 0
+              OnClick = StartTask
+            end
+            object btnFreeAndNil: TButton
+              Tag = 10
+              AlignWithMargins = True
+              Left = 3
+              Top = 3
+              Width = 125
+              Height = 29
+              Hint = 'This will not change the files'
+              Align = alLeft
+              Caption = 'Search'
+              TabOrder = 1
+              OnClick = StartTask
+            end
+          end
+        end
       end
     end
     object crdWin64: TCard
       Left = 1
       Top = 1
       Width = 793
-      Height = 298
+      Height = 301
       Caption = 'Win64'
       CardIndex = 2
       TabOrder = 2
@@ -283,7 +335,7 @@ object frmMain: TfrmMain
         Width = 787
         Height = 237
         Margins.Bottom = 17
-        ActivePage = tabPointerInteger
+        ActivePage = tabExtended
         Align = alTop
         TabOrder = 0
         object tabExtended: TTabSheet
@@ -294,7 +346,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 97
+            Width = 767
             Height = 17
             Align = alTop
             Caption = 'Extended issues'
@@ -309,7 +361,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 23
-            Width = 628
+            Width = 767
             Height = 85
             Align = alTop
             Caption = 
@@ -342,7 +394,7 @@ object frmMain: TfrmMain
               Caption = 'Find Extended'
               TabOrder = 0
               WordWrap = True
-              OnClick = StartSearch2
+              OnClick = StartTask
             end
           end
         end
@@ -353,7 +405,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 208
+            Width = 773
             Height = 17
             Align = alTop
             Caption = 'Extended issues in packed records'
@@ -368,7 +420,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 23
-            Width = 772
+            Width = 773
             Height = 136
             Align = alTop
             Caption = 
@@ -408,7 +460,7 @@ object frmMain: TfrmMain
               Caption = 'Find Extended in Packed Records'
               TabOrder = 0
               WordWrap = True
-              OnClick = StartSearch2
+              OnClick = StartTask
             end
           end
         end
@@ -419,7 +471,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 23
-            Width = 538
+            Width = 773
             Height = 85
             Align = alTop
             Caption = 
@@ -432,7 +484,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 139
+            Width = 773
             Height = 17
             Align = alTop
             Caption = 'Pointer typecast issues'
@@ -472,7 +524,7 @@ object frmMain: TfrmMain
                 Align = alLeft
                 Caption = 'Replace'
                 TabOrder = 0
-                OnClick = StartSearch2
+                OnClick = StartTask
               end
               object btnPointer2: TButton
                 Tag = 62
@@ -489,7 +541,7 @@ object frmMain: TfrmMain
                 Align = alRight
                 Caption = 'Search (relaxed)'
                 TabOrder = 1
-                OnClick = StartSearch2
+                OnClick = StartTask
               end
               object btnPointer1: TButton
                 Tag = 60
@@ -502,7 +554,7 @@ object frmMain: TfrmMain
                 Align = alLeft
                 Caption = 'Search pointer casts'
                 TabOrder = 2
-                OnClick = StartSearch2
+                OnClick = StartTask
               end
             end
           end
@@ -514,7 +566,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 23
-            Width = 436
+            Width = 773
             Height = 68
             Align = alTop
             Caption = 
@@ -526,7 +578,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 139
+            Width = 773
             Height = 17
             Align = alTop
             Caption = 'Pointer typecast issues'
@@ -559,7 +611,7 @@ object frmMain: TfrmMain
               Align = alLeft
               Caption = 'Search LongInt casts'
               TabOrder = 0
-              OnClick = StartSearch2
+              OnClick = StartTask
             end
           end
         end
@@ -569,7 +621,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 23
-            Width = 470
+            Width = 773
             Height = 119
             Align = alTop
             Caption = 
@@ -582,7 +634,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 83
+            Width = 773
             Height = 17
             Align = alTop
             Caption = 'Winapi Issues'
@@ -619,7 +671,7 @@ object frmMain: TfrmMain
               Align = alLeft
               Caption = 'Search (global)'
               TabOrder = 0
-              OnClick = StartSearch2
+              OnClick = StartTask
             end
             object btnSendMsgTypeCst: TButton
               Tag = 50
@@ -639,7 +691,7 @@ object frmMain: TfrmMain
               Caption = 'Search'
               TabOrder = 1
               WordWrap = True
-              OnClick = StartSearch2
+              OnClick = StartTask
             end
           end
         end
@@ -650,7 +702,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 83
+            Width = 773
             Height = 17
             Align = alTop
             Caption = 'Winapi Issues'
@@ -665,7 +717,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 23
-            Width = 497
+            Width = 773
             Height = 136
             Align = alTop
             Caption = 
@@ -693,7 +745,7 @@ object frmMain: TfrmMain
               Align = alLeft
               Caption = 'Search TComponent.Perform'
               TabOrder = 0
-              OnClick = StartSearch2
+              OnClick = StartTask
             end
           end
         end
@@ -704,7 +756,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 83
+            Width = 773
             Height = 17
             Align = alTop
             Caption = 'Winapi Issues'
@@ -719,7 +771,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 23
-            Width = 651
+            Width = 773
             Height = 34
             Align = alTop
             Caption = 
@@ -755,7 +807,7 @@ object frmMain: TfrmMain
               Caption = 'Find SetWindowLong'
               TabOrder = 0
               WordWrap = True
-              OnClick = StartSearch2
+              OnClick = StartTask
             end
           end
         end
@@ -765,7 +817,7 @@ object frmMain: TfrmMain
       Left = 1
       Top = 1
       Width = 793
-      Height = 298
+      Height = 301
       Caption = 'File Format'
       CardIndex = 3
       TabOrder = 3
@@ -785,7 +837,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 218
+            Width = 773
             Height = 17
             ParentCustomHint = False
             Align = alTop
@@ -800,7 +852,7 @@ object frmMain: TfrmMain
             BevelOuter = bvNone
             ShowCaption = False
             TabOrder = 0
-            object Button5: TButton
+            object btnUtf2Ansi: TButton
               Tag = 8
               AlignWithMargins = True
               Left = 289
@@ -810,9 +862,9 @@ object frmMain: TfrmMain
               Align = alLeft
               Caption = 'Convert UTF8 to ANSI'
               TabOrder = 0
-              OnClick = StartSearch2
+              OnClick = StartTask
             end
-            object Button6: TButton
+            object btnHasBom: TButton
               Tag = 9
               AlignWithMargins = True
               Left = 3
@@ -823,9 +875,9 @@ object frmMain: TfrmMain
               Align = alLeft
               Caption = 'Has BOM?'
               TabOrder = 1
-              OnClick = StartSearch2
+              OnClick = StartTask
             end
-            object Button7: TButton
+            object btnAnsi2Utf: TButton
               Tag = 7
               AlignWithMargins = True
               Left = 139
@@ -836,7 +888,7 @@ object frmMain: TfrmMain
               Align = alLeft
               Caption = 'Convert ANSI to UTF8'
               TabOrder = 2
-              OnClick = StartSearch2
+              OnClick = StartTask
             end
           end
         end
@@ -847,7 +899,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 154
+            Width = 773
             Height = 17
             ParentCustomHint = False
             Align = alTop
@@ -881,7 +933,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 528
+            Width = 773
             Height = 34
             Align = alTop
             Caption = 
@@ -909,7 +961,7 @@ object frmMain: TfrmMain
               Align = alLeft
               Caption = 'Start'
               TabOrder = 0
-              OnClick = StartSearch2
+              OnClick = StartTask
             end
           end
         end
@@ -919,38 +971,38 @@ object frmMain: TfrmMain
       Left = 1
       Top = 1
       Width = 793
-      Height = 298
+      Height = 301
       Caption = 'SpellCheck'
       CardIndex = 4
       TabOrder = 4
       DesignSize = (
         793
-        298)
+        301)
       object Label9: TLabel
-        Left = 346
-        Top = 142
+        Left = 344
+        Top = 144
         Width = 92
         Height = 17
         Anchors = []
         Caption = 'To come soon...'
       end
     end
-    object crdUtils: TCard
+    object crdColorPicker: TCard
       Left = 1
       Top = 1
       Width = 793
-      Height = 298
-      Caption = 'Utils'
+      Height = 301
+      Caption = 'Color Picker'
       CardIndex = 5
-      DoubleBuffered = False
+      DoubleBuffered = True
       ParentDoubleBuffered = False
       TabOrder = 5
       DesignSize = (
         793
-        298)
+        301)
       object lblDynamicalyCreated: TLabel
-        Left = 363
-        Top = 151
+        Left = 361
+        Top = 153
         Width = 113
         Height = 17
         Anchors = []
@@ -963,14 +1015,14 @@ object frmMain: TfrmMain
     Left = 0
     Top = 0
     Width = 185
-    Height = 300
+    Height = 303
     Align = alLeft
     BevelOuter = bvNone
     TabOrder = 1
     object lblHomePage: TInternetLabel
       AlignWithMargins = True
       Left = 3
-      Top = 282
+      Top = 285
       Width = 179
       Height = 15
       Cursor = crHandPoint
@@ -1045,6 +1097,7 @@ object frmMain: TfrmMain
           Top = 32
           Width = 167
           Height = 23
+          Hint = 'Tools for 64 bit migration'
           Align = alTop
           Caption = 'Upgrade to Win64'
           TabOrder = 2
@@ -1057,6 +1110,10 @@ object frmMain: TfrmMain
           Top = 61
           Width = 167
           Height = 23
+          Hint = 
+            '1. Replaces TControl.SetFocus with a my better alternative.'#13#10'2. ' +
+            'Finds all try/except lines. '#13#10'3. Replaces .Free with FreeAndNil(' +
+            ')'
           Align = alTop
           Caption = 'Improve code'
           TabOrder = 3
@@ -1070,7 +1127,7 @@ object frmMain: TfrmMain
           Width = 167
           Height = 23
           Align = alTop
-          Caption = 'Utils'
+          Caption = 'Color picker'
           TabOrder = 4
           OnClick = SwitchCard
         end
@@ -1080,7 +1137,7 @@ object frmMain: TfrmMain
       Tag = 3
       AlignWithMargins = True
       Left = 3
-      Top = 248
+      Top = 251
       Width = 179
       Height = 28
       Align = alBottom
@@ -1088,18 +1145,18 @@ object frmMain: TfrmMain
       TabOrder = 1
       OnClick = btnSettingsClick
     end
-    object Button3: TButton
+    object btnShowResults: TButton
       Tag = 3
       AlignWithMargins = True
       Left = 3
-      Top = 214
+      Top = 217
       Width = 179
       Height = 28
       Align = alBottom
       Caption = 'Show results'
       TabOrder = 2
       Visible = False
-      OnClick = Button3Click
+      OnClick = btnShowResultsClick
     end
   end
 end

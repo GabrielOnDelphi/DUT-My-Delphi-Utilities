@@ -9,15 +9,16 @@ USES
 
 TYPE
   TfrmClrPick = class(TForm)
-    ColorDialog: TColorDialog;
-    Label1: TLabel;
-    Label2: TLabel;
-    lblDelphiHex: TLabel;
+    Container: TPanel;
     Label4: TLabel;
-    btnChooseClr: TButton;
-    lblHTML: TLabel;
     Panel1: TPanel;
+    lblHTML: TLabel;
+    lblDelphiHex: TLabel;
+    Label2: TLabel;
+    Label1: TLabel;
     edtEnterClr: TLabeledEdit;
+    ColorDialog: TColorDialog;
+    btnChooseClr: TButton;
     procedure FormCreate(Sender: TObject);
     procedure btnChooseClrClick(Sender: TObject);
     procedure lblHTMLClick(Sender: TObject);

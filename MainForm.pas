@@ -169,9 +169,8 @@ begin
 
   // FORM: Color picker
   VAR frmClrPick: TfrmClrPick;
-  AppData.CreateForm(TfrmClrPick, frmClrPick, FALSE, flPosOnly, crdColorPicker, TRUE);
-  frmClrPick.Visible:= TRUE;
-  frmClrPick.Align:= alClient;
+  AppData.CreateForm(TfrmClrPick, frmClrPick, FALSE, flPosOnly);
+  frmClrPick.Container.Parent:= crdColorPicker;
 
   // FORM: Results
   AppData.CreateFormHidden(TfrmEditor  , frmEditor);
@@ -211,20 +210,12 @@ begin
     5: CardPanel.ActiveCard:= crdColorPicker;
     else MesajError('Invalid category tag!');
   end;
-
-  {crdColorPicker.Update;
-  crdColorPicker.Refresh;
-  crdColorPicker.Repaint;
-  crdColorPicker.Top:= crdColorPicker.Top+1; }
-  crdColorPicker.AlignWithMargins:= TRUE;
 end;
 
 
 {
 procedure TfrmMain.pgMainChange(Sender: TObject);
 begin
-  if AppData.Initializing then Exit;
-
   if (frmResults.Container.Parent <> CardPanel.ActiveCard)
   AND ((CardPanel.ActiveCard = crdIntfImplementor)
     or (CardPanel.ActiveCard = crdUpgradeCode)

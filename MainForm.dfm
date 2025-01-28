@@ -4,7 +4,7 @@ object frmMain: TfrmMain
   AlphaBlend = True
   AlphaBlendValue = 250
   Caption = 'LDU (Light Delphi Utilities) - Gabriel Moraru 2022'
-  ClientHeight = 303
+  ClientHeight = 379
   ClientWidth = 980
   Color = clBtnFace
   DoubleBuffered = True
@@ -23,16 +23,16 @@ object frmMain: TfrmMain
     Left = 185
     Top = 0
     Width = 795
-    Height = 303
+    Height = 379
     Align = alClient
-    ActiveCard = crdUpgradeCode
+    ActiveCard = crdExtractCode
     Caption = 'CardPanel'
     TabOrder = 0
     object crdIntfImplementor: TCard
       Left = 1
       Top = 1
       Width = 793
-      Height = 301
+      Height = 377
       Caption = 'Find interface implementor'
       CardIndex = 0
       TabOrder = 0
@@ -112,7 +112,7 @@ object frmMain: TfrmMain
       Left = 1
       Top = 1
       Width = 793
-      Height = 301
+      Height = 377
       Caption = 'Upgrade code'
       CardIndex = 1
       TabOrder = 1
@@ -308,7 +308,7 @@ object frmMain: TfrmMain
       Left = 1
       Top = 1
       Width = 793
-      Height = 301
+      Height = 377
       Caption = 'Win64'
       CardIndex = 2
       TabOrder = 2
@@ -817,7 +817,7 @@ object frmMain: TfrmMain
       Left = 1
       Top = 1
       Width = 793
-      Height = 301
+      Height = 377
       Caption = 'File Format'
       CardIndex = 3
       TabOrder = 3
@@ -971,16 +971,16 @@ object frmMain: TfrmMain
       Left = 1
       Top = 1
       Width = 793
-      Height = 301
+      Height = 377
       Caption = 'SpellCheck'
       CardIndex = 4
       TabOrder = 4
       DesignSize = (
         793
-        301)
+        377)
       object Label9: TLabel
         Left = 344
-        Top = 144
+        Top = 182
         Width = 92
         Height = 17
         Anchors = []
@@ -991,7 +991,7 @@ object frmMain: TfrmMain
       Left = 1
       Top = 1
       Width = 793
-      Height = 301
+      Height = 377
       Caption = 'Color Picker'
       CardIndex = 5
       DoubleBuffered = True
@@ -999,10 +999,10 @@ object frmMain: TfrmMain
       TabOrder = 5
       DesignSize = (
         793
-        301)
+        377)
       object lblDynamicalyCreated: TLabel
         Left = 361
-        Top = 153
+        Top = 194
         Width = 113
         Height = 17
         Anchors = []
@@ -1010,19 +1010,80 @@ object frmMain: TfrmMain
         Visible = False
       end
     end
+    object crdExtractCode: TCard
+      Left = 1
+      Top = 1
+      Width = 793
+      Height = 377
+      Caption = 'crdExtractCode'
+      CardIndex = 6
+      TabOrder = 6
+      object Panel14: TPanel
+        AlignWithMargins = True
+        Left = 3
+        Top = 3
+        Width = 787
+        Height = 150
+        Align = alTop
+        TabOrder = 0
+        DesignSize = (
+          787
+          150)
+        object Label17: TLabel
+          AlignWithMargins = True
+          Left = 4
+          Top = 4
+          Width = 779
+          Height = 17
+          Align = alTop
+          Caption = 
+            'Search all files for the specified line of code and returns the ' +
+            'collected results'
+        end
+        object LabeledEdit1: TLabeledEdit
+          Left = 11
+          Top = 69
+          Width = 533
+          Height = 25
+          Hint = 'Search for'
+          Anchors = [akLeft, akBottom]
+          EditLabel.Width = 60
+          EditLabel.Height = 17
+          EditLabel.Caption = 'Search for'
+          TabOrder = 0
+          Text = ''
+          TextHint = '{$IFDEF'
+        end
+        object btnSearchCode: TButton
+          Tag = 13
+          AlignWithMargins = True
+          Left = 644
+          Top = 106
+          Width = 125
+          Height = 32
+          Hint = 
+            'Search in all files for the class that implements the specified ' +
+            'interface.'
+          Anchors = [akRight, akBottom]
+          Caption = 'Search'
+          TabOrder = 1
+          OnClick = StartTask
+        end
+      end
+    end
   end
   object pnlLeft: TPanel
     Left = 0
     Top = 0
     Width = 185
-    Height = 303
+    Height = 379
     Align = alLeft
     BevelOuter = bvNone
     TabOrder = 1
     object lblHomePage: TInternetLabel
       AlignWithMargins = True
       Left = 3
-      Top = 285
+      Top = 361
       Width = 179
       Height = 15
       Cursor = crHandPoint
@@ -1047,7 +1108,7 @@ object frmMain: TfrmMain
       Left = 3
       Top = 3
       Width = 179
-      Height = 180
+      Height = 208
       VertScrollBar.Tracking = True
       Align = alTop
       BevelInner = bvNone
@@ -1062,7 +1123,7 @@ object frmMain: TfrmMain
       TabOrder = 0
       object cpMain: TCategoryPanel
         Top = 0
-        Height = 176
+        Height = 201
         Caption = 'Tools'
         TabOrder = 0
         object btnFileFormat: TButton
@@ -1119,7 +1180,19 @@ object frmMain: TfrmMain
           TabOrder = 3
           OnClick = SwitchCard
         end
-        object btnUtils: TButton
+        object btnColorPick: TButton
+          Tag = 5
+          AlignWithMargins = True
+          Left = 3
+          Top = 148
+          Width = 167
+          Height = 23
+          Align = alTop
+          Caption = 'Color picker'
+          TabOrder = 4
+          OnClick = SwitchCard
+        end
+        object btnExtractCode: TButton
           Tag = 5
           AlignWithMargins = True
           Left = 3
@@ -1127,8 +1200,8 @@ object frmMain: TfrmMain
           Width = 167
           Height = 23
           Align = alTop
-          Caption = 'Color picker'
-          TabOrder = 4
+          Caption = 'Extract code'
+          TabOrder = 5
           OnClick = SwitchCard
         end
       end
@@ -1137,7 +1210,7 @@ object frmMain: TfrmMain
       Tag = 3
       AlignWithMargins = True
       Left = 3
-      Top = 251
+      Top = 327
       Width = 179
       Height = 28
       Align = alBottom
@@ -1149,14 +1222,12 @@ object frmMain: TfrmMain
       Tag = 3
       AlignWithMargins = True
       Left = 3
-      Top = 217
+      Top = 293
       Width = 179
       Height = 28
       Align = alBottom
       Caption = 'Show results'
       TabOrder = 2
-      Visible = False
-      OnClick = btnShowResultsClick
     end
   end
 end

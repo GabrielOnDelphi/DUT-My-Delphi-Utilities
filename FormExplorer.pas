@@ -43,7 +43,7 @@ begin
    begin
      var Files:= ListFilesOf(edtPath.Text, edtFilter.Text, True, True);
      try
-       frmResults.lbxResults.Items.Assign(Files);
+       ///frmResults.lbxResults.Items.Assign(Files);
      finally
        FreeAndNil(files);
      end;

@@ -4,8 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes,
-  Vcl.Controls, Vcl.Forms, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls,
-  cmSearchResult, ccCore, System.Actions, Vcl.ActnList;
+  Vcl.Controls, Vcl.Forms, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls, System.Actions, Vcl.ActnList,
+  cmSearchResult, ccCore, FormResults;
 
 type
   TfrmEditor = class(TForm)
@@ -45,6 +45,7 @@ type
     procedure scrollToPos(Pos: Integer);   { We need it for the 'Next' button }
     function GetSelectedSearch: TSearchResult;
   public
+    frmResults: TfrmResults;
     SearchRecPos: Integer;                          { Current position in the PAS file, shown to the user. Increased or decreased every time we click Next/Prev }
     procedure ResetViewer;
     procedure LoadSearchRes(FileRec: TSearchResult);
@@ -57,7 +58,7 @@ var
 implementation {$R *.dfm}
 
 USES
-   cvINIFile, ccIO, ccTextFile, FormOTA, FormResults, cmPascal, formExplorer;
+   cvINIFile, ccIO, ccTextFile, FormOTA, cmPascal, formExplorer;
 
 
 

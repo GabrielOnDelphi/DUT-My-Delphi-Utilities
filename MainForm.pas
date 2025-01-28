@@ -68,7 +68,7 @@ TYPE
     btnSearch            : TButton;
     btnMigrate           : TButton;
     btnUpgrade           : TButton;
-    btnUtils             : TButton;
+    btnColorPick: TButton;
     PageControl2         : TPageControl;
     tabFormatCode        : TTabSheet;
     PageControl3         : TPageControl;
@@ -116,6 +116,12 @@ TYPE
     Panel12: TPanel;
     btnFreeAndNil2: TButton;
     btnFreeAndNil: TButton;
+    btnExtractCode: TButton;
+    crdExtractCode: TCard;
+    Panel14: TPanel;
+    Label17: TLabel;
+    LabeledEdit1: TLabeledEdit;
+    btnSearchCode: TButton;
     procedure FormDestroy       (Sender: TObject);
     procedure StartTask      (Sender: TObject);
     procedure btnHelp1Click     (Sender: TObject);
@@ -124,9 +130,7 @@ TYPE
     procedure btnFixEntersClick (Sender: TObject);
     procedure btnSettingsClick  (Sender: TObject);
     procedure SwitchCard        (Sender: TObject);
-    procedure btnShowResultsClick      (Sender: TObject);
   private
-    PasParser: TDutUtils;
   public
     procedure LateInitialize; override;
   end;
@@ -137,6 +141,7 @@ VAR
 implementation {$R *.dfm}
 
 USES
+   dutBase,
    ccIO, ccTextFile,
    cmIO,
    csExecuteShell,
@@ -164,9 +169,6 @@ begin
   if AppData.RunningFirstTime
   then ExecuteURL('https://GabrielMoraru.com');
 
-  PasParser:= TDutUtils.Create;
-  PasParser.BackupFile:= True;
-
   // FORM: Color picker
   VAR frmClrPick: TfrmClrPick;
   AppData.CreateForm(TfrmClrPick, frmClrPick, FALSE, flPosOnly);
@@ -175,7 +177,6 @@ begin
   // FORM: Results
   AppData.CreateFormHidden(TfrmEditor  , frmEditor);
   AppData.CreateFormHidden(TfrmOptions , frmOptions);
-  AppData.CreateFormHidden(TfrmResults , frmResults);
   AppData.CreateFormHidden(TfrmExplorer, frmExplorer, flFull); // Requires frmResults
   AppData.CreateFormHidden(TfrmExclude , frmExclude);
   frmExplorer.Container.Parent:= Self;
@@ -183,14 +184,11 @@ begin
 
   Refresh;                         // Refresh the main form so the frmExplorer is shown in the correct position
   frmExplorer.edtPathChange(NIL);  // Read files in folder. This could take a while for large folders
-  frmResults.Caption:= 'Files in '+ frmExplorer.edtPath.Text;
-  //frmResults.ShowResultsForm;
 end;
 
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
-  FreeAndNil(PasParser);
   SaveForm(Self);
 end;
 
@@ -213,137 +211,22 @@ begin
 end;
 
 
-{
-procedure TfrmMain.pgMainChange(Sender: TObject);
-begin
-  if (frmResults.Container.Parent <> CardPanel.ActiveCard)
-  AND ((CardPanel.ActiveCard = crdIntfImplementor)
-    or (CardPanel.ActiveCard = crdUpgradeCode)
-    or (CardPanel.ActiveCard = crdWin64)
-    or (CardPanel.ActiveCard = crdUtils) )
-  then
-    begin
-      //pgMain.Update;
-      PasParser.SearchResults.Clear;
-      frmResults.Reset;
-
-      // Show it only if docked
-      if NOT frmOptions.chkNewWnd.Checked then
-       begin
-        frmResults.Container.Parent:= CardPanel.ActiveCard;
-        CardPanel.Update;
-       end;
-    end;
-end; }
-
-
 
 {-------------------------------------------------------------------------------------------------------------
    SEARCH
 -------------------------------------------------------------------------------------------------------------}
 procedure TfrmMain.StartTask(Sender: TObject);
-var
-   IntfName, TextFile: string;
-   FoundFiles, FoundLines: Integer;
-   FileList: TStringList;
+VAR
+  frmResults: TfrmResults;
 begin
-  FoundLines:= 0;
-  FoundFiles:= 0;
   if NOT DirectoryExistMsg(frmExplorer.edtPath.Text) then Exit;
   Assert((Sender as TButton).Tag > 0, 'Unknown tag!');
 
-  frmResults.Reset;
+  AppData.CreateFormHidden(TfrmResults , frmResults);
+  frmResults.Caption:= 'Files in '+ frmExplorer.edtPath.Text;
   frmResults.ShowResultsForm;
 
-  Screen.Cursor:= crHourGlass;
-
-  FileList:= ListFilesOf(frmExplorer.edtPath.Text, frmExplorer.edtFilter.Text, True, True, frmExclude.mmoExclude.Lines);
-  Try
-    PasParser.SearchResults.Clear;
-
-    for TextFile in FileList do
-       begin
-         // Instructs the parser that we start parsing a new file. It wil create a new TSearchResult record for it.
-         PasParser.NewFile(TextFile);
-
-         // Execute
-         case (Sender as TButton).Tag of
-
-           // Find interface implementation
-           1: begin
-                if chkIntfName.Checked
-                then IntfName:= edtIntfName.Text
-                else IntfName:= '';
-                PasParser.FindImplementation(edtMethod.Text, IntfName);
-              end;
-
-           // Try/Except
-           3: PasParser.FindTryExcept(False);
-           4: PasParser.FindTryExcept(true);
-
-           // SetFocus
-           5: PasParser.FindSetFocus(False);
-           6: PasParser.FindSetFocus(True);
-
-           // BOM
-           7: PasParser.ConvertToUTF(TRUE);
-           8: PasParser.ConvertToAnsi;
-           9: PasParser.HasBOM;
-
-           // FreeAndNil
-           10: PasParser.ReplaceFree(False);
-           11: PasParser.ReplaceFree(True);
-
-           // WinAPI
-           50: PasParser.FindSendPostMessage;        { Search for invalid typecasts in .Perform(), SendMessage(), PostMessage(). }
-           51: PasParser.FindPerform;
-           52: PasParser.FindSetWindowLong;          { Search for SetWindowLong and GetWindowLong. }
-
-           // Pointer(Integer & Pointer(LongInt
-           60: PasParser.FindPointer(False);         { Search for 'Pointer(Integer(' . We cannot assume anymorethat SizeOf(Pointer)=SizeOf(Integer/Cardinal/Longint). }
-           61: PasParser.FindPointer(True);  //ToDo: Ask before replace
-           62: PasParser.FindPointerRelax;
-           63: PasParser.FindLongIntCast;            { Search for possible LongInt/PLongInt typecasts. On Windows, LongInt is always 32bit! }
-
-           // Extended
-           72: PasParser.FindExtended;               { Search for occurrences of the Extended type and reports them. }
-           73: PasParser.FindPackedExtended;
-
-           // Format code
-           80: PasParser.FormatCodeTight({TRUE});
-         else
-           MesajError('Invalid button tag!');
-         end;
-
-         if PasParser.SearchResults.Last.Found
-         then
-           begin
-             Inc(FoundFiles);
-             Inc(FoundLines, PasParser.SearchResults.Last.Count);
-
-             //ToDo 3: truncate file name if too long
-             frmResults.lbxResults.AddItem(PasParser.SearchResults.Last.FileName + TAB+ ' Found at: '+ PasParser.SearchResults.Last.PositionsAsString, PasParser.SearchResults.Last);
-             frmResults.lbxResults.Refresh;
-           end
-         else
-           // Show files that do not contain the result
-           if frmOptions.chkShowAllFiles.Checked
-           then frmResults.lbxResults.Items.Add('[0x] '+ TextFile);
-       end;
-
-      Caption:= 'Done. Searched '+ IntToStr(FileList.Count)+ ' files. Found in  '+ IntToStr(FoundFiles)+ ' files.';
-
-      // Show global statistics
-      frmResults.mmoStats.Text:= '';
-      frmResults.mmoStats.Lines.Add('Searched ' + IntToStr(FileList.Count)+ ' files.');
-      frmResults.mmoStats.Lines.Add('Found in ' + IntToStr(FoundFiles)+ ' files.');
-      frmResults.mmoStats.Lines.Add('Total positions: '+ IntToStr(FoundLines));
-      // Load first result
-      frmResults.LoadFirstResult;
-  FINALLY
-    Screen.Cursor:= crDefault;
-    FreeAndNil(FileList);
-  END;
+  frmResults.StartTask((Sender as TButton).Tag);
 end;
 
 
@@ -386,10 +269,5 @@ begin
   frmOptions.Show;
 end;
 
-
-procedure TfrmMain.btnShowResultsClick(Sender: TObject);
-begin
-  frmResults.ShowResultsForm;
-end;
 
 end.

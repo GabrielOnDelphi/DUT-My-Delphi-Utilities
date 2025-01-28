@@ -4,8 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes,
-  Vcl.Controls, Vcl.Forms, Vcl.StdCtrls, Vcl.ExtCtrls,
-  cmSearchResult, Vcl.Menus;
+  Vcl.Controls, Vcl.Forms, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Menus,
+  cmSearchResult, dutCodeUtils;
 
 type
   TfrmResults = class(TForm)
@@ -31,21 +31,20 @@ type
     procedure SaveStatistics;
     procedure LoadCurFile;
   public
+    PasParser: TDutUtils;
     procedure Reset;
     procedure LoadFirstResult;
     function  GetSelectedSearch: TSearchResult;
     procedure ShowResultsForm;
     procedure HideEditor;
+    procedure StartTask(ID: Integer);
   end;
-
-var
-  frmResults: TfrmResults;
 
 implementation {$R *.dfm}
 
 USES
-   ccCore, ccIO, ccTextFile, cbAppData, cvINIFile, csSystem, csExecuteShell,
-   FormOTA, FormEditor, FormOptions, FormExplorer, MainForm;
+   cbDialogs, cmIO, ccCore, ccIO, ccTextFile, cbAppData, cvINIFile, csSystem, csExecuteShell,
+   FormOTA, FormEditor, FormOptions, FormExplorer, MainForm, FormExclude;
 
 
 
@@ -67,6 +66,122 @@ end;
 {-------------------------------------------------------------------------------------------------------------
    FORM
 -------------------------------------------------------------------------------------------------------------}
+procedure TfrmResults.StartTask(ID: Integer);
+var
+   IntfName, TextFile: string;
+   FileList: TStringList;
+   FoundFiles, FoundLines: Integer;
+   PasParser: TDutUtils;
+begin
+  FoundLines:= 0;
+  FoundFiles:= 0;
+  if NOT DirectoryExistMsg(frmExplorer.edtPath.Text) then Exit;
+  Assert(ID > 0, 'Unknown tag!');
+
+  frmEditor.frmResults:= Self;
+
+  Reset;
+
+  Screen.Cursor:= crHourGlass;
+
+  FileList:= ListFilesOf(frmExplorer.edtPath.Text, frmExplorer.edtFilter.Text, True, True, frmExclude.mmoExclude.Lines);
+  PasParser:= TDutUtils.Create;
+  Try
+    PasParser.BackupFile:= TRUE;
+    PasParser.SearchResults.Clear;
+
+    for TextFile in FileList do
+       begin
+         // Instructs the parser that we start parsing a new file. It wil create a new TSearchResult record for it.
+         PasParser.NewFile(TextFile);
+
+         // Execute
+         case ID of
+
+           // Find interface implementation
+           1: begin
+                {if chkIntfName.Checked
+                then IntfName:= edtIntfName.Text
+                else IntfName:= '';}
+               // PasParser.FindImplementation(edtMethod.Text, IntfName);
+              end;
+
+           // Try/Except
+           3: PasParser.FindTryExcept(False);
+           4: PasParser.FindTryExcept(true);
+
+           // SetFocus
+           5: PasParser.FindSetFocus(False);
+           6: PasParser.FindSetFocus(True);
+
+           // BOM
+           7: PasParser.ConvertToUTF(TRUE);
+           8: PasParser.ConvertToAnsi;
+           9: PasParser.HasBOM;
+
+           // FreeAndNil
+           10: PasParser.ReplaceFree(False);
+           11: PasParser.ReplaceFree(True);
+
+           // Search
+           //20: PasParser.ExtractCode;
+
+           // WinAPI
+           50: PasParser.FindSendPostMessage;        { Search for invalid typecasts in .Perform(), SendMessage(), PostMessage(). }
+           51: PasParser.FindPerform;
+           52: PasParser.FindSetWindowLong;          { Search for SetWindowLong and GetWindowLong. }
+
+           // Pointer(Integer & Pointer(LongInt
+           60: PasParser.FindPointer(False);         { Search for 'Pointer(Integer(' . We cannot assume anymorethat SizeOf(Pointer)=SizeOf(Integer/Cardinal/Longint). }
+           61: PasParser.FindPointer(True);  //ToDo: Ask before replace
+           62: PasParser.FindPointerRelax;
+           63: PasParser.FindLongIntCast;            { Search for possible LongInt/PLongInt typecasts. On Windows, LongInt is always 32bit! }
+
+           // Extended
+           72: PasParser.FindExtended;               { Search for occurrences of the Extended type and reports them. }
+           73: PasParser.FindPackedExtended;
+
+           // Format code
+           80: PasParser.FormatCodeTight({TRUE});
+         else
+           MesajError('Invalid button tag!');
+         end;
+
+         if PasParser.SearchResults.Last.Found
+         then
+           begin
+             Inc(FoundFiles);
+             Inc(FoundLines, PasParser.SearchResults.Last.Count);
+
+             //ToDo 3: truncate file name if too long
+             lbxResults.AddItem(PasParser.SearchResults.Last.FileName + TAB+ ' Found at: '+ PasParser.SearchResults.Last.PositionsAsString, PasParser.SearchResults.Last);
+             lbxResults.Refresh;
+           end
+         else
+           // Show files that do not contain the result
+           if frmOptions.chkShowAllFiles.Checked
+           then lbxResults.Items.Add('[0x] '+ TextFile);
+       end;
+
+      Caption:= 'Done. Searched '+ IntToStr(FileList.Count)+ ' files. Found in  '+ IntToStr(FoundFiles)+ ' files.';
+
+      // Show global statistics
+      mmoStats.Text:= '';
+      mmoStats.Lines.Add('Searched ' + IntToStr(FileList.Count)+ ' files.');
+      mmoStats.Lines.Add('Found in ' + IntToStr(FoundFiles)+ ' files.');
+      mmoStats.Lines.Add('Total positions: '+ IntToStr(FoundLines));
+      // Load first result
+      LoadFirstResult;
+
+      Caption:= 'Done. Searched '+ IntToStr(FileList.Count)+ ' files. Found in  '+ IntToStr(FoundFiles)+ ' files.';
+  FINALLY
+    Screen.Cursor:= crDefault;
+    FreeAndNil(PasParser);
+    FreeAndNil(FileList);
+  END;
+end;
+
+
 procedure TfrmResults.Reset;
 begin
   lbxResults.Clear;
@@ -141,7 +256,7 @@ begin
     begin
       var sOutput:= 'Results for the batch processing:'+ CRLF;
       //ToDo: don't overwrite, just append at the end (add datetime)
-      for VAR s in frmResults.lbxResults.Items DO
+      for VAR s in lbxResults.Items DO
          sOutput:= sOutput+ s+ CRLF;
       StringToFile(Trail(frmExplorer.edtPath.Text)+ 'Tool Output.txt', sOutput);
     end;
@@ -156,7 +271,7 @@ end;
 { Returns the object selected by the user }
 function TfrmResults.GetSelectedSearch: TSearchResult;
 begin
-  Result:= lbxResults.Items.Objects[frmResults.lbxResults.ItemIndex] as TSearchResult;
+  Result:= lbxResults.Items.Objects[lbxResults.ItemIndex] as TSearchResult;
 end;
 
 

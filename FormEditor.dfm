@@ -2,8 +2,8 @@ object frmEditor: TfrmEditor
   Left = 0
   Top = 0
   Caption = 'File Editor'
-  ClientHeight = 466
-  ClientWidth = 796
+  ClientHeight = 463
+  ClientWidth = 784
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,8 +20,8 @@ object frmEditor: TfrmEditor
   object Container: TPanel
     Left = 0
     Top = 0
-    Width = 796
-    Height = 466
+    Width = 784
+    Height = 463
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
@@ -29,7 +29,7 @@ object frmEditor: TfrmEditor
       AlignWithMargins = True
       Left = 3
       Top = 3
-      Width = 790
+      Width = 62
       Height = 15
       Align = alTop
       Caption = 'Current file:'
@@ -37,8 +37,8 @@ object frmEditor: TfrmEditor
     object lblDetails: TLabel
       AlignWithMargins = True
       Left = 3
-      Top = 24
-      Width = 790
+      Top = 21
+      Width = 42
       Height = 17
       Align = alTop
       Caption = 'Details:'
@@ -55,9 +55,9 @@ object frmEditor: TfrmEditor
     object mmoView: TMemo
       AlignWithMargins = True
       Left = 3
-      Top = 47
+      Top = 41
       Width = 790
-      Height = 377
+      Height = 383
       Align = alClient
       Color = clBlack
       Font.Charset = ANSI_CHARSET

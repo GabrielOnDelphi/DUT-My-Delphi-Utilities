@@ -3,10 +3,10 @@
 interface
 
 uses
-  System.SysUtils, System.Classes, Vcl.Controls, Vcl.Forms, Vcl.StdCtrls;
+  System.SysUtils, System.Classes, Vcl.Controls, Vcl.Forms, cbAppDataForm, Vcl.StdCtrls;
 
 type
-  TfrmOptions = class(TForm)
+  TfrmOptions = class(TLightForm)
     chkShowAllFiles: TCheckBox;
     chkBackup: TCheckBox;
     chkNewWnd: TCheckBox;
@@ -27,13 +27,13 @@ uses
 
 procedure TfrmOptions.FormCreate(Sender: TObject);
 begin
-  LoadForm(Self);
+  //LoadForm(Self);
 end;
 
 
 procedure TfrmOptions.FormDestroy(Sender: TObject);
 begin
-  SaveForm(Self);
+  //SaveForm(Self);
 end;
 
 end.

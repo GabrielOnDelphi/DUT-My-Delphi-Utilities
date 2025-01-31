@@ -8,7 +8,7 @@
 interface
 
 uses
-  System.SysUtils, System.Classes, System.Math, cmSearchResult, dutUpgradeCode;
+  System.SysUtils, System.Classes, System.Math, cmSearchResult, dutUpgradeCode, dutBase;
 
 type
   TDutUtils= class(TDutUpgrade)
@@ -21,6 +21,14 @@ type
      // Utils
      procedure FormatCodeTight;
      procedure FindImplementation(const MethodToFind, IntfName: String);
+  end;
+
+
+  TAgent_FindText = class(TBaseAgent)
+  public
+    procedure Execute(const FileName: string); override;
+    class function Description: string; override;
+    class function CanReplace: Boolean; override;
   end;
 
 
@@ -74,7 +82,6 @@ end;
 { Finds the class(es) that implement the specified method }
 procedure TDutUtils.FindImplementation(CONST MethodToFind, IntfName: String);
 var
-   TextBody: TStringList;
    sLine: string;
    iColumn, iLine: Integer;
 
@@ -140,7 +147,6 @@ end;
 { Returns the line(s) where the text was found }
 procedure TDutUtils.FormatCodeTight; //(Replace: Boolean);
 var
-   TextBody: TStringList;
    Front: string;
    Comments, sLine: string;
    iPos, i: Integer;
@@ -165,7 +171,7 @@ begin
          end; *)
 
        // Then extract comments (//) for lines that are mixed, and process only the actual code. At the end put the comment back
-       SepparateComments(sLine, Comments);
+       SeparateComments(sLine, Comments);
 
        //Fix:
        //ToDo: problem on lines like this: property ImageList: IList<TGUID> read FImageList;   <-------- the space after > will be removed! ToDo: add a check for "read"
@@ -223,6 +229,52 @@ begin
    FreeAndNil(TextBody);
  end;
 end;
+
+
+
+
+
+
+
+
+
+
+{ TAgent_FindText }
+
+//ToDo: add support to search multiple strings sepparated by [OR] as in google.
+procedure TAgent_FindText.Execute(const FileName: string);
+var
+   sLine: string;
+   iLine: Integer;
+begin
+  inherited Execute(FileName);
+  if NOT CaseSensitive
+  then Needle:= LowerCase(Needle);
+
+  for iLine:= 0 to TextBody.Count-1 do
+    begin
+      sLine:= LowerCase(TextBody[iLine]);
+      var iColumn:= Pos(Needle, sLine);
+      if iColumn > 0
+      then SearchResults.Last.AddNewPos(iLine, iColumn, sLine);
+    end;
+
+  Finalize; // Increment counters
+end;
+
+
+class function TAgent_FindText.Description: string;
+begin
+  Result:= 'Find all files containing the specified text.'+ CRLF+
+           ' and outputs the lines to screen.';
+end;
+
+
+class function TAgent_FindText.CanReplace: Boolean;
+begin
+  Result:= FALSE;
+end;
+
 
 
 end.

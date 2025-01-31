@@ -8,10 +8,10 @@
 INTERFACE
 
 USES
-  System.SysUtils, System.Classes, cmSearchResult, dutWin64;
+  System.SysUtils, System.Classes, cmSearchResult, dutBase;
 
 type
-  TDutUpgrade= class(TDutWin64)
+  TDutUpgrade= class(TBaseAgent)
    private
     Counter: Integer;          { Incremented each time a Try/Except is found. }
     Const LogUnit= 'uMyLog';
@@ -34,7 +34,6 @@ var
   sLine: string;
   Found: Boolean;
   ObjName: string;
-  TextBody: TStringList;
 begin
   Found := FALSE;
 
@@ -71,9 +70,7 @@ begin
     if Found AND Replace then
     begin
       AddUnitToUses(TextBody, 'System.SysUtils'); // Ensure FreeAndNil is available
-      if BackupFile then
-        BackupFileBak(SearchResults.Last.FileName);
-      StringToFile(SearchResults.Last.FileName, TextBody.Text, woOverwrite, wpAuto);
+      ///if Found then DoSave;
     end;
   finally
     FreeAndNil(TextBody);
@@ -83,7 +80,6 @@ end;
 
 procedure TDutUpgrade.FindTryExcept(Replace: Boolean);
 var
-   TextBody: TStringList;
    Front: string;
    sPrev, sCurrLine, NextLine, sWarnings: string;
    Found: Boolean;
@@ -165,9 +161,7 @@ begin
    if Found and Replace then
      begin
        AddUnitToUses(TextBody, LogUnit);
-       if BackupFile
-       then BackupFileBak(SearchResults.Last.FileName);
-       StringToFile(SearchResults.Last.FileName, TextBody.Text, woOverwrite, wpAuto);
+       ///if Found then DoSave;
        StringToFile(ForceExtension(SearchResults.Last.FileName, '.txt'), sWarnings, woOverwrite);
      end;
 
@@ -184,7 +178,6 @@ end;
   If Replace is True, the bad code will be automatically fixed. }
 procedure TDutUpgrade.FindSetFocus;
 var
-   TextBody: TStringList;
    Front: string;
    sLine: string;
    Found: Boolean;
@@ -223,9 +216,7 @@ begin
    if Found and Replace then
      begin
        AddUnitToUses(TextBody, 'uUtilsFocus, ');
-       if BackupFile
-       then BackupFileBak(SearchResults.Last.FileName);
-       StringToFile(SearchResults.Last.FileName, TextBody.Text, woOverwrite, wpAuto);
+       ///if Found then DoSave;
      end;
 
  finally

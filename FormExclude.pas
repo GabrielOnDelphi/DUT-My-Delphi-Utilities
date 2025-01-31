@@ -3,10 +3,10 @@
 interface
 
 uses
-  System.SysUtils, System.Classes, Vcl.Controls, Vcl.Forms, Vcl.StdCtrls;
+  System.SysUtils, System.Classes, Vcl.Controls, Vcl.Forms, cbAppDataForm,Vcl.StdCtrls;
 
 type
-  TfrmExclude = class(TForm)
+  TfrmExclude = class(TLightForm)
     mmoExclude: TMemo;
     Label1: TLabel;
     procedure FormCreate(Sender: TObject);
@@ -32,7 +32,7 @@ end;
 
 procedure TfrmExclude.FormCreate(Sender: TObject);
 begin
-  LoadForm(Self);
+  //LoadForm(Self);
   if FileExists(excludedFiles)
   then mmoExclude.Lines.LoadFromFile(excludedFiles);;
 end;
@@ -40,7 +40,7 @@ end;
 
 procedure TfrmExclude.FormDestroy(Sender: TObject);
 begin
-  SaveForm(Self);
+  //SaveForm(Self);
   mmoExclude.Lines.SaveToFile(excludedFiles);
 end;
 

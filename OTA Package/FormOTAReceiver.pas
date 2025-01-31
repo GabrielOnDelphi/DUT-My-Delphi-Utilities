@@ -11,11 +11,11 @@
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Vcl.Forms, cbAppDataForm,
   Dialogs, StdCtrls, ExtCtrls, ToolsAPI;
 
 type
-  TfrmOTAReceiver = class(TForm)  // Note: if you change the name of the class, you need to update also the sender (of the message)
+  TfrmOTAReceiver = class(TLightForm)  // Note: if you change the name of the class, you need to update also the sender (of the message)
     mmo: TMemo;
   private
     EdLine: Integer;

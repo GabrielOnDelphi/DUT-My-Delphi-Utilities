@@ -10,53 +10,16 @@ UNIT MainForm;
 INTERFACE
 
 USES
-  Winapi.Messages, System.SysUtils, System.Classes,
+  System.SysUtils, System.Classes,
   Vcl.Controls, Vcl.Forms, Vcl.ComCtrls, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Menus, Vcl.Mask,
-  cmSearchResult, ccCore, cbAppData, dutCodeUtils, Vcl.WinXPanels, Vcl.CategoryButtons, InternetLabel, cbAppDataForm;
+  ccCore, cbAppData, Vcl.WinXPanels, Vcl.CategoryButtons, InternetLabel, cbAppDataForm, Vcl.AppEvnts;
 
 TYPE
   TfrmMain = class(TLightForm)
     CardPanel            : TCardPanel;
-    crdIntfImplementor: TCard;
-    pnlMethod            : TPanel;
-    Label6               : TLabel;
-    edtMethod            : TLabeledEdit;
-    Button4              : TButton;
-    chkIntfName          : TCheckBox;
-    edtIntfName          : TEdit;
     crdUpgradeCode       : TCard;
-    crdWin64             : TCard;
     crdFileFormat        : TCard;
     crdColorPicker: TCard;
-    Label1               : TLabel;
-    pgWin64              : TPageControl;
-    tabExtended          : TTabSheet;
-    Label7               : TLabel;
-    Label8               : TLabel;
-    Panel7               : TPanel;
-    btnExtended          : TButton;
-    tabPointerInteger    : TTabSheet;
-    Label10              : TLabel;
-    lblPtrIssues         : TLabel;
-    Panel6               : TPanel;
-    Panel1               : TPanel;
-    Button2              : TButton;
-    btnPointer2          : TButton;
-    btnPointer1          : TButton;
-    TabSheet1            : TTabSheet;
-    Label2               : TLabel;
-    lblWinApiIssues      : TLabel;
-    pnlButtons           : TPanel;
-    btnSendMsgGlobal     : TButton;
-    btnSendMsgTypeCst    : TButton;
-    TabSheet3            : TTabSheet;
-    lblWinApiIssues2     : TLabel;
-    Panel5               : TPanel;
-    btnPerform           : TButton;
-    tabSetWinLong        : TTabSheet;
-    lblWinApiIssues3     : TLabel;
-    Panel8               : TPanel;
-    btnWinLong           : TButton;
     lblDynamicalyCreated : TLabel;
     crdSpellCheck        : TCard;
     Label9               : TLabel;
@@ -65,9 +28,7 @@ TYPE
     btnSettings          : TButton;
     cpMain               : TCategoryPanel;
     btnFileFormat        : TButton;
-    btnSearch            : TButton;
-    btnMigrate           : TButton;
-    btnUpgrade           : TButton;
+    btnAgUpgrade: TButton;
     btnColorPick: TButton;
     PageControl2         : TPageControl;
     tabFormatCode        : TTabSheet;
@@ -97,19 +58,6 @@ TYPE
     btnSetFocus2: TButton;
     btnSetFocus          : TButton;
     btnHelp2             : TButton;
-    Label15              : TLabel;
-    Label16              : TLabel;
-    tabPointerLongInt    : TTabSheet;
-    Label18              : TLabel;
-    Panel4               : TPanel;
-    Button11             : TButton;
-    Label12              : TLabel;
-    btnShowResults: TButton;
-    tabExtendedRec: TTabSheet;
-    Label11: TLabel;
-    Label13: TLabel;
-    Panel9: TPanel;
-    btnExtendedRec: TButton;
     lblHomePage: TInternetLabel;
     tabFreeAndNil: TTabSheet;
     Label14: TLabel;
@@ -122,6 +70,24 @@ TYPE
     Label17: TLabel;
     LabeledEdit1: TLabeledEdit;
     btnSearchCode: TButton;
+    lblDescription: TLabel;
+    pnl64bit: TCategoryPanel;
+    btnAgExtended: TButton;
+    btnAgExtendedRec: TButton;
+    btnAgPointer: TButton;
+    btnAgLongInt: TButton;
+    btnAgSendMsgTypeCst: TButton;
+    btnAgPerform: TButton;
+    btnAgWinLong: TButton;
+    AppEvents: TApplicationEvents;
+    CategoryPanel1: TCategoryPanel;
+    btnAgIntfImpl: TButton;
+    pnlMethod: TPanel;
+    Label6: TLabel;
+    edtMethod: TLabeledEdit;
+    chkIntfName: TCheckBox;
+    edtIntfName: TEdit;
+    btnAgFindCode: TButton;
     procedure FormDestroy       (Sender: TObject);
     procedure StartTask      (Sender: TObject);
     procedure btnHelp1Click     (Sender: TObject);
@@ -130,9 +96,10 @@ TYPE
     procedure btnFixEntersClick (Sender: TObject);
     procedure btnSettingsClick  (Sender: TObject);
     procedure SwitchCard        (Sender: TObject);
+    procedure btnMouseEnter(Sender: TObject);
   private
   public
-    procedure LateInitialize; override;
+    procedure FormInitialize; {don't forget inherited LateInitialize!} override;
   end;
 
 VAR
@@ -141,20 +108,17 @@ VAR
 implementation {$R *.dfm}
 
 USES
-   dutBase,
-   ccIO, ccTextFile,
    cmIO,
    csExecuteShell,
-   csSystem,
    ccINIFile,
-   dutWin64,
    cvINIFile,
+   dutAgentFactory,
    cbDialogs,
    FormColorPicker,
    FormOptions,
    FormExclude,
-   FormExplorer,
-   FormResults, FormEditor;
+   FormAgent,
+   FormEditor;
 
 
 
@@ -162,34 +126,25 @@ USES
    CONSTRUCTOR
 -------------------------------------------------------------------------------------------------------------}
 
-procedure TfrmMain.LateInitialize;
+procedure TfrmMain.FormInitialize;
 begin
-  inherited LateInitialize;
+  inherited FormInitialize;
 
   if AppData.RunningFirstTime
   then ExecuteURL('https://GabrielMoraru.com');
 
   // FORM: Color picker
   VAR frmClrPick: TfrmClrPick;
-  AppData.CreateForm(TfrmClrPick, frmClrPick, FALSE, flPosOnly);
+  AppData.CreateForm(TfrmClrPick, frmClrPick, FALSE, asPosOnly);
   frmClrPick.Container.Parent:= crdColorPicker;
-
-  // FORM: Results
-  AppData.CreateFormHidden(TfrmEditor  , frmEditor);
   AppData.CreateFormHidden(TfrmOptions , frmOptions);
-  AppData.CreateFormHidden(TfrmExplorer, frmExplorer, flFull); // Requires frmResults
-  AppData.CreateFormHidden(TfrmExclude , frmExclude);
-  frmExplorer.Container.Parent:= Self;
-  AppData.Initializing:= False;
-
-  Refresh;                         // Refresh the main form so the frmExplorer is shown in the correct position
-  frmExplorer.edtPathChange(NIL);  // Read files in folder. This could take a while for large folders
+  AppData.Initializing:= FALSE;
 end;
 
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
-  SaveForm(Self);
+  //SaveForm(Self);
 end;
 
 
@@ -201,13 +156,13 @@ end;
 procedure TfrmMain.SwitchCard(Sender: TObject);
 begin
   case (Sender as TButton).Tag of
-    1: CardPanel.ActiveCard:= crdIntfImplementor;
-    2: CardPanel.ActiveCard:= crdWin64;
     3: CardPanel.ActiveCard:= crdUpgradeCode;
     4: CardPanel.ActiveCard:= crdFileFormat;
     5: CardPanel.ActiveCard:= crdColorPicker;
     else MesajError('Invalid category tag!');
   end;
+
+  lblDescription.Caption:= TDutAgentFactory.GetAgentDescription((Sender as TButton).Tag);
 end;
 
 
@@ -216,18 +171,20 @@ end;
    SEARCH
 -------------------------------------------------------------------------------------------------------------}
 procedure TfrmMain.StartTask(Sender: TObject);
-VAR
-  frmResults: TfrmResults;
 begin
-  if NOT DirectoryExistMsg(frmExplorer.edtPath.Text) then Exit;
   Assert((Sender as TButton).Tag > 0, 'Unknown tag!');
-
-  AppData.CreateFormHidden(TfrmResults , frmResults);
-  frmResults.Caption:= 'Files in '+ frmExplorer.edtPath.Text;
-  frmResults.ShowResultsForm;
-
-  frmResults.StartTask((Sender as TButton).Tag);
+  CreateAgentForm((Sender as TButton).Tag);
+  //Hide;
 end;
+
+
+procedure TfrmMain.btnMouseEnter(Sender: TObject);
+begin
+  VAR Tag:= (Sender as TButton).Tag;
+  if Tag > 0
+  then lblDescription.Caption:= TDutAgentFactory.GetAgentDescription(Tag);
+end;
+
 
 
 
@@ -268,6 +225,7 @@ procedure TfrmMain.btnSettingsClick(Sender: TObject);
 begin
   frmOptions.Show;
 end;
+
 
 
 end.

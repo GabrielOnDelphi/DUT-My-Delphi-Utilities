@@ -8,23 +8,27 @@ uses
   MainForm in 'MainForm.pas' {frmMain},
   FormExclude in 'FormExclude.pas' {frmExclude},
   FormColorPicker in 'FormColorPicker.pas',
-  FormResults in 'FormResults.pas' {frmResults},
+  FormAgent in 'FormAgent.pas' {frmAgentResults},
   FormOTA in 'FormOTA.pas' {frmOTA},
   FormEditor in 'FormEditor.pas' {frmEditor},
-  FormExplorer in 'FormExplorer.pas',
   FormOptions in 'FormOptions.pas' {frmOptions},
-  dutBase in '..\..\LightSaber\dutBase.pas',
-  dutCodeUtils in '..\..\LightSaber\dutCodeUtils.pas',
-  dutUpgradeCode in '..\..\LightSaber\dutUpgradeCode.pas',
-  dutWin64 in '..\..\LightSaber\dutWin64.pas',
   cmPascal in '..\..\LightSaber\cmPascal.pas',
   cmSearchResult in '..\..\LightSaber\cmSearchResult.pas',
-  cbAppData in '..\..\LightSaber\cbAppData.pas';
+  cbAppData in '..\..\LightSaber\cbAppData.pas',
+  dutBase in 'dutBase.pas',
+  dutCodeUtils in 'dutCodeUtils.pas',
+  dutUpgradeCode in 'dutUpgradeCode.pas',
+  dutWin64Extended in 'dutWin64Extended.pas',
+  dutAgentFactory in 'dutAgentFactory.pas',
+  dutWin64Api in 'dutWin64Api.pas',
+  dutWin64Pointer in 'dutWin64Pointer.pas',
+  dutCodeUtilsForm in 'dutCodeUtilsForm.pas' {frmIntfImpl};
 
 {$R *.res}
 
 begin
   AppData:= TAppData.Create('LightSaber LDU');
   AppData.CreateMainForm(TfrmMain, frmMain, true);
+  Application.CreateForm(TfrmIntfImpl, frmIntfImpl);
   Application.Run;
 end.

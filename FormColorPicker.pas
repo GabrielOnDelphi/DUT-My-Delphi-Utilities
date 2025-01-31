@@ -4,11 +4,11 @@
 INTERFACE
 
 USES
-  Windows, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  Windows, SysUtils, Classes, Graphics, Controls, Vcl.Forms, cbAppDataForm, Dialogs,
   StdCtrls, ccCore, cGraphUtil, ExtCtrls, Vcl.Mask;
 
 TYPE
-  TfrmClrPick = class(TForm)
+  TfrmClrPick = class(TLightForm)
     Container: TPanel;
     Label4: TLabel;
     Panel1: TPanel;

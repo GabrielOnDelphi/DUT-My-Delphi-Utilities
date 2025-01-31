@@ -3,11 +3,11 @@
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes, Vcl.Controls, Vcl.Forms, Vcl.StdCtrls,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes, Vcl.Controls, Vcl.Forms, cbAppDataForm,Vcl.StdCtrls,
   cmSearchResult;
 
 type
-  TfrmOTA = class(TForm)
+  TfrmOTA = class(TLightForm)
     mmoOTA: TMemo;
     btnTest: TButton;
     procedure btnTestClick(Sender: TObject);
@@ -24,7 +24,7 @@ procedure OpenFileInIDE(SearchRes: TSearchResult; CurPos: Integer);  overload;
 implementation {$R *.dfm}
 
 USES
-   ccIO, ccTextFile, cmIO, cmIO.Win, ccCore, csSystem, cbDialogs;
+   cmIO, ccCore, cbDialogs;
 
 
 {-------------------------------------------------------------------------------------------------------------

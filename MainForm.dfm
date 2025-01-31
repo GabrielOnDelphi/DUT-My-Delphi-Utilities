@@ -4,7 +4,7 @@ object frmMain: TfrmMain
   AlphaBlend = True
   AlphaBlendValue = 250
   Caption = 'LDU (Light Delphi Utilities) - Gabriel Moraru 2022'
-  ClientHeight = 379
+  ClientHeight = 611
   ClientWidth = 980
   Color = clBtnFace
   DoubleBuffered = True
@@ -19,108 +19,37 @@ object frmMain: TfrmMain
   SnapBuffer = 3
   OnDestroy = FormDestroy
   TextHeight = 17
+  object lblDescription: TLabel
+    AlignWithMargins = True
+    Left = 191
+    Top = 8
+    Width = 779
+    Height = 185
+    AutoSize = False
+    Caption = 'Agent description'
+    WordWrap = True
+  end
   object CardPanel: TCardPanel
-    Left = 185
-    Top = 0
-    Width = 795
-    Height = 379
-    Align = alClient
-    ActiveCard = crdExtractCode
+    Left = 195
+    Top = 213
+    Width = 776
+    Height = 362
+    ActiveCard = crdUpgradeCode
     Caption = 'CardPanel'
     TabOrder = 0
-    object crdIntfImplementor: TCard
-      Left = 1
-      Top = 1
-      Width = 793
-      Height = 377
-      Caption = 'Find interface implementor'
-      CardIndex = 0
-      TabOrder = 0
-      object pnlMethod: TPanel
-        AlignWithMargins = True
-        Left = 3
-        Top = 3
-        Width = 787
-        Height = 150
-        Align = alTop
-        TabOrder = 0
-        DesignSize = (
-          787
-          150)
-        object Label6: TLabel
-          AlignWithMargins = True
-          Left = 4
-          Top = 4
-          Width = 779
-          Height = 17
-          Align = alTop
-          Caption = 
-            'Search all selected files for the class that implements the inte' +
-            'rface below:'
-        end
-        object edtMethod: TLabeledEdit
-          Left = 60
-          Top = 78
-          Width = 166
-          Height = 25
-          Hint = 'Enter the name of the method that you are searching for'
-          Anchors = [akLeft, akBottom]
-          EditLabel.Width = 82
-          EditLabel.Height = 17
-          EditLabel.Caption = 'Method name'
-          TabOrder = 0
-          Text = ''
-          TextHint = 'MyMethod'
-        end
-        object Button4: TButton
-          Tag = 1
-          AlignWithMargins = True
-          Left = 644
-          Top = 106
-          Width = 125
-          Height = 32
-          Hint = 
-            'Search in all files for the class that implements the specified ' +
-            'interface.'
-          Anchors = [akRight, akBottom]
-          Caption = 'Search'
-          TabOrder = 1
-          OnClick = StartTask
-        end
-        object chkIntfName: TCheckBox
-          AlignWithMargins = True
-          Left = 60
-          Top = 117
-          Width = 193
-          Height = 17
-          Anchors = [akLeft, akBottom]
-          Caption = 'Class implements interface:'
-          TabOrder = 2
-        end
-        object edtIntfName: TEdit
-          Left = 245
-          Top = 112
-          Width = 121
-          Height = 25
-          Anchors = [akLeft, akBottom]
-          TabOrder = 3
-          TextHint = 'IMyInterface'
-        end
-      end
-    end
     object crdUpgradeCode: TCard
       Left = 1
       Top = 1
-      Width = 793
-      Height = 377
+      Width = 774
+      Height = 360
       Caption = 'Upgrade code'
-      CardIndex = 1
-      TabOrder = 1
+      CardIndex = 0
+      TabOrder = 0
       object PageControl3: TPageControl
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 787
+        Width = 768
         Height = 193
         ActivePage = tabFreeAndNil
         Align = alTop
@@ -131,7 +60,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 773
+            Width = 754
             Height = 17
             Align = alTop
             Caption = 'Finds all try/except lines. See details.'
@@ -140,7 +69,7 @@ object frmMain: TfrmMain
           object Panel2: TPanel
             Left = 0
             Top = 126
-            Width = 779
+            Width = 760
             Height = 35
             Align = alBottom
             BevelOuter = bvNone
@@ -174,7 +103,7 @@ object frmMain: TfrmMain
             end
             object btnHelp1: TButton
               AlignWithMargins = True
-              Left = 684
+              Left = 665
               Top = 3
               Width = 92
               Height = 29
@@ -192,7 +121,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 773
+            Width = 754
             Height = 17
             Align = alTop
             Caption = 
@@ -203,7 +132,7 @@ object frmMain: TfrmMain
           object Panel3: TPanel
             Left = 0
             Top = 126
-            Width = 779
+            Width = 760
             Height = 35
             Align = alBottom
             BevelOuter = bvNone
@@ -239,7 +168,7 @@ object frmMain: TfrmMain
             end
             object btnHelp2: TButton
               AlignWithMargins = True
-              Left = 689
+              Left = 670
               Top = 3
               Width = 87
               Height = 29
@@ -257,7 +186,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 773
+            Width = 754
             Height = 17
             Align = alTop
             Caption = 'Replaces Object.Free with FreeAndNil(Object) which is safer.'
@@ -266,7 +195,7 @@ object frmMain: TfrmMain
           object Panel12: TPanel
             Left = 0
             Top = 126
-            Width = 779
+            Width = 760
             Height = 35
             Align = alBottom
             BevelOuter = bvNone
@@ -304,528 +233,19 @@ object frmMain: TfrmMain
         end
       end
     end
-    object crdWin64: TCard
-      Left = 1
-      Top = 1
-      Width = 793
-      Height = 377
-      Caption = 'Win64'
-      CardIndex = 2
-      TabOrder = 2
-      object Label1: TLabel
-        AlignWithMargins = True
-        Left = 3
-        Top = 9
-        Width = 787
-        Height = 17
-        Margins.Top = 9
-        Align = alTop
-        Caption = 'Tools for 64 bit migration'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -13
-        Font.Name = 'Segoe UI'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object pgWin64: TPageControl
-        AlignWithMargins = True
-        Left = 3
-        Top = 29
-        Width = 787
-        Height = 237
-        Margins.Bottom = 17
-        ActivePage = tabExtended
-        Align = alTop
-        TabOrder = 0
-        object tabExtended: TTabSheet
-          AlignWithMargins = True
-          Caption = 'Extended'
-          ImageIndex = 5
-          object Label7: TLabel
-            AlignWithMargins = True
-            Left = 3
-            Top = 3
-            Width = 767
-            Height = 17
-            Align = alTop
-            Caption = 'Extended issues'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -13
-            Font.Name = 'Segoe UI Semibold'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object Label8: TLabel
-            AlignWithMargins = True
-            Left = 3
-            Top = 23
-            Width = 767
-            Height = 85
-            Align = alTop
-            Caption = 
-              #13#10'On Win32, the size of System.Extended type is 10 bytes. '#13#10'Howe' +
-              'ver, on Win64, the System.Extended type is an alias for System.D' +
-              'ouble, which is only 8 bytes! '#13#10'There is no 10-byte equivalent f' +
-              'or Extended on 64-bit. '#13#10'Under normal circumstances, this does n' +
-              'ot create huge problems, except for a sligly precision degradati' +
-              'on.'
-            WordWrap = True
-          end
-          object Panel7: TPanel
-            Left = 0
-            Top = 164
-            Width = 773
-            Height = 35
-            Align = alBottom
-            BevelOuter = bvNone
-            ShowCaption = False
-            TabOrder = 0
-            object btnExtended: TButton
-              Tag = 72
-              AlignWithMargins = True
-              Left = 3
-              Top = 3
-              Width = 228
-              Height = 29
-              Hint = 'It is recommended to replace Extended with Double.'
-              Align = alLeft
-              Caption = 'Find Extended'
-              TabOrder = 0
-              WordWrap = True
-              OnClick = StartTask
-            end
-          end
-        end
-        object tabExtendedRec: TTabSheet
-          Caption = 'Extended Rec'
-          ImageIndex = 6
-          object Label11: TLabel
-            AlignWithMargins = True
-            Left = 3
-            Top = 3
-            Width = 773
-            Height = 17
-            Align = alTop
-            Caption = 'Extended issues in packed records'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -13
-            Font.Name = 'Segoe UI Semibold'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object Label13: TLabel
-            AlignWithMargins = True
-            Left = 3
-            Top = 23
-            Width = 773
-            Height = 136
-            Align = alTop
-            Caption = 
-              #13#10'On Win32, the size of System.Extended type is 10 bytes. Howeve' +
-              'r, on Win64, the System.Extended type is an alias for System.Dou' +
-              'ble, which is only 8 bytes! There is no 10-byte equivalent for E' +
-              'xtended on 64-bit. Under normal circumstances, this does not cre' +
-              'ate huge problems.'#13#10#13#10'However, packed records are usually used w' +
-              'hen data is read or written from disk.'#13#10'If such a record has an ' +
-              'Extended in it, then data corruption is likely to occur because ' +
-              'under Win32 you will read 10 bytes, while under Win64 you will r' +
-              'ead 8 bytes.'
-            WordWrap = True
-          end
-          object Panel9: TPanel
-            Left = 0
-            Top = 170
-            Width = 779
-            Height = 35
-            Align = alBottom
-            BevelOuter = bvNone
-            ShowCaption = False
-            TabOrder = 0
-            object btnExtendedRec: TButton
-              Tag = 73
-              AlignWithMargins = True
-              Left = 3
-              Top = 3
-              Width = 228
-              Height = 29
-              Hint = 
-                'Find packed records that have an '#39'Extended'#39' fields.'#13#10'The "packed' +
-                '" keyword can indicate that the record might be saved to disk.'#13#10 +
-                'In this case we need to make sure that the size of the data rema' +
-                'ins the same, no matter if we are on Win32 or Win 64.'
-              Align = alLeft
-              Caption = 'Find Extended in Packed Records'
-              TabOrder = 0
-              WordWrap = True
-              OnClick = StartTask
-            end
-          end
-        end
-        object tabPointerInteger: TTabSheet
-          Caption = 'Find invalid typecasts'
-          ImageIndex = 5
-          object Label10: TLabel
-            AlignWithMargins = True
-            Left = 3
-            Top = 23
-            Width = 773
-            Height = 85
-            Align = alTop
-            Caption = 
-              #13#10'On Win64 we cannot assume anymore that SizeOf(Pointer)=SizeOf(' +
-              'Integer/Cardinal/Longint).'#13#10#13#10'This tool searches for invalid poi' +
-              'nter typecasts such as '#13#10'   Pointer(Integer,  Pointer(PInteger, ' +
-              ' Pointer(Cardinal,  etc, and recomends fixes.'
-          end
-          object lblPtrIssues: TLabel
-            AlignWithMargins = True
-            Left = 3
-            Top = 3
-            Width = 773
-            Height = 17
-            Align = alTop
-            Caption = 'Pointer typecast issues'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -13
-            Font.Name = 'Segoe UI Semibold'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object Panel6: TPanel
-            Left = 0
-            Top = 170
-            Width = 779
-            Height = 35
-            Align = alBottom
-            BevelOuter = bvNone
-            ShowCaption = False
-            TabOrder = 0
-            object Panel1: TPanel
-              Left = 0
-              Top = 0
-              Width = 779
-              Height = 35
-              Align = alBottom
-              BevelOuter = bvNone
-              ShowCaption = False
-              TabOrder = 0
-              object Button2: TButton
-                Tag = 61
-                AlignWithMargins = True
-                Left = 144
-                Top = 3
-                Width = 135
-                Height = 29
-                Hint = 'Replace "SetFocus" in all PAS files in the specified folder'
-                Align = alLeft
-                Caption = 'Replace'
-                TabOrder = 0
-                OnClick = StartTask
-              end
-              object btnPointer2: TButton
-                Tag = 62
-                AlignWithMargins = True
-                Left = 641
-                Top = 3
-                Width = 135
-                Height = 29
-                Hint = 
-                  'Lists all pointer typecasts execept the valid ones, such as "Poi' +
-                  'nter(NativeInt" or "Pointer(NativeUInt".'#13#10'Useful if you want to ' +
-                  'manually inspect ALL pointer typecasts in your code (which you s' +
-                  'hould do). '#13#10#13#10'Replace is not possible.'
-                Align = alRight
-                Caption = 'Search (relaxed)'
-                TabOrder = 1
-                OnClick = StartTask
-              end
-              object btnPointer1: TButton
-                Tag = 60
-                AlignWithMargins = True
-                Left = 3
-                Top = 3
-                Width = 135
-                Height = 29
-                Hint = 'Searches for "Pointer(Integer(" and similar issues.'
-                Align = alLeft
-                Caption = 'Search pointer casts'
-                TabOrder = 2
-                OnClick = StartTask
-              end
-            end
-          end
-        end
-        object tabPointerLongInt: TTabSheet
-          Caption = 'Find LongInt typecasts'
-          ImageIndex = 5
-          object Label18: TLabel
-            AlignWithMargins = True
-            Left = 3
-            Top = 23
-            Width = 773
-            Height = 68
-            Align = alTop
-            Caption = 
-              #13#10'On Windows, LongInt is always 32bit. We cannot use it in point' +
-              'er typecasts.'#13#10#13#10'This tool find invalid LongInt/PLongInt typecas' +
-              'ts.'
-          end
-          object Label12: TLabel
-            AlignWithMargins = True
-            Left = 3
-            Top = 3
-            Width = 773
-            Height = 17
-            Align = alTop
-            Caption = 'Pointer typecast issues'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -13
-            Font.Name = 'Segoe UI Semibold'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object Panel4: TPanel
-            Left = 0
-            Top = 170
-            Width = 779
-            Height = 35
-            Align = alBottom
-            BevelOuter = bvNone
-            ShowCaption = False
-            TabOrder = 0
-            object Button11: TButton
-              Tag = 63
-              AlignWithMargins = True
-              Left = 3
-              Top = 3
-              Width = 147
-              Height = 29
-              Hint = 
-                'Find possible LongInt/PLongInt typecasts.'#13#10'On Windows, LongInt i' +
-                's always 32bit!'
-              Align = alLeft
-              Caption = 'Search LongInt casts'
-              TabOrder = 0
-              OnClick = StartTask
-            end
-          end
-        end
-        object TabSheet1: TTabSheet
-          Caption = 'SendMessage'
-          object Label2: TLabel
-            AlignWithMargins = True
-            Left = 3
-            Top = 23
-            Width = 773
-            Height = 119
-            Align = alTop
-            Caption = 
-              #13#10'Searches invalid typecasts in the parameters of SendMessage(),' +
-              ' PostMessage()...'#13#10'This tool could give some false positive resu' +
-              'lts.'#13#10#13#10'Accepted code formatting:'#13#10'  SendMessage(x, 0, 0);'#13#10'  Se' +
-              'ndMessage(x,0,0);'
-          end
-          object lblWinApiIssues: TLabel
-            AlignWithMargins = True
-            Left = 3
-            Top = 3
-            Width = 773
-            Height = 17
-            Align = alTop
-            Caption = 'Winapi Issues'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -13
-            Font.Name = 'Segoe UI Semibold'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object pnlButtons: TPanel
-            Left = 0
-            Top = 170
-            Width = 779
-            Height = 35
-            Align = alBottom
-            BevelOuter = bvNone
-            ShowCaption = False
-            TabOrder = 0
-            object btnSendMsgGlobal: TButton
-              Tag = 51
-              AlignWithMargins = True
-              Left = 152
-              Top = 3
-              Width = 192
-              Height = 29
-              Hint = 
-                'Looks for files where we have SendMessage().'#13#10'  Returns the line' +
-                '(s) where the text was found.'#13#10'  If the line contains the "WPARA' +
-                'M" and "LPARAM" keywords, it is ignored (because it is valid).'#13#10 +
-                '  Same, if the parameters are 0,0.'#13#10#13#10'Global search (more relaxe' +
-                'd).  This could give lots of false positive results, but it is s' +
-                'till useful to search for possible invalid code.'
-              Align = alLeft
-              Caption = 'Search (global)'
-              TabOrder = 0
-              OnClick = StartTask
-            end
-            object btnSendMsgTypeCst: TButton
-              Tag = 50
-              AlignWithMargins = True
-              Left = 3
-              Top = 3
-              Width = 143
-              Height = 29
-              Hint = 
-                'A more restricted search (no fake positive results).'#13#10#13#10'Looks fo' +
-                'r files where we have SendMessage() and invalid typecasts are fo' +
-                'und.'#13#10'  We look especially for things like:'#13#10'     SendMessage(hW' +
-                'nd, WM_SETTEXT, 0, Integer(@MyCharArray));'#13#10'     SendMessage(hWn' +
-                'd, WM_SETTEXT, 0, LongInt(@MyCharArray));'#13#10#13#10'Search in all files' +
-                ' in the specified folder.'
-              Align = alLeft
-              Caption = 'Search'
-              TabOrder = 1
-              WordWrap = True
-              OnClick = StartTask
-            end
-          end
-        end
-        object TabSheet3: TTabSheet
-          Caption = 'TComponent.Perform'
-          ImageIndex = 5
-          object lblWinApiIssues2: TLabel
-            AlignWithMargins = True
-            Left = 3
-            Top = 3
-            Width = 773
-            Height = 17
-            Align = alTop
-            Caption = 'Winapi Issues'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -13
-            Font.Name = 'Segoe UI Semibold'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object Label16: TLabel
-            AlignWithMargins = True
-            Left = 3
-            Top = 23
-            Width = 773
-            Height = 136
-            Align = alTop
-            Caption = 
-              #13#10'Searches for invalid typecasts in the parameters of the TCompo' +
-              'nent.Perform method.'#13#10'This tool could give some false positive r' +
-              'esults.'#13#10#13#10'Accepted code formatting:'#13#10'  .Perform(x, 0, 0);'#13#10'  .P' +
-              'erform(x,0,0);'#13#10
-          end
-          object Panel5: TPanel
-            Left = 0
-            Top = 170
-            Width = 779
-            Height = 35
-            Align = alBottom
-            BevelOuter = bvNone
-            ShowCaption = False
-            TabOrder = 0
-            object btnPerform: TButton
-              Tag = 51
-              AlignWithMargins = True
-              Left = 3
-              Top = 3
-              Width = 192
-              Height = 29
-              Align = alLeft
-              Caption = 'Search TComponent.Perform'
-              TabOrder = 0
-              OnClick = StartTask
-            end
-          end
-        end
-        object tabSetWinLong: TTabSheet
-          Caption = 'SetWindowLong'
-          ImageIndex = 4
-          object lblWinApiIssues3: TLabel
-            AlignWithMargins = True
-            Left = 3
-            Top = 3
-            Width = 773
-            Height = 17
-            Align = alTop
-            Caption = 'Winapi Issues'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -13
-            Font.Name = 'Segoe UI Semibold'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object Label15: TLabel
-            AlignWithMargins = True
-            Left = 3
-            Top = 23
-            Width = 773
-            Height = 34
-            Align = alTop
-            Caption = 
-              #13#10'On Win64, SetWindowLong and GetWindowLong must be replaced wit' +
-              'h SetWindowLongPtr/GetWindowLongPtr.'
-          end
-          object Panel8: TPanel
-            Left = 0
-            Top = 170
-            Width = 779
-            Height = 35
-            Align = alBottom
-            BevelOuter = bvNone
-            ShowCaption = False
-            TabOrder = 0
-            object btnWinLong: TButton
-              Tag = 52
-              AlignWithMargins = True
-              Left = 3
-              Top = 3
-              Width = 143
-              Height = 29
-              Hint = 
-                'Search SetWindowLong/GetWindowLog .'#13#10#13#10'Replace SetWindowLong/Get' +
-                'WindowLog with SetWindowLongPtr/GetWindowLongPtr for GWLP_HINSTA' +
-                'NCE, GWLP_ID, GWLP_USERDATA, GWLP_HWNDPARENT and GWLP_WNDPROC as' +
-                ' they return pointers and handles. Pointers that are passed to S' +
-                'etWindowLongPtr should be type-casted to LONG_PTR and not to Int' +
-                'eger/Longint.'#13#10#13#10'    Wrong:'#13#10'        SetWindowLong(hWnd, GWL_WND' +
-                'PROC, Longint(@MyWindowProc));'#13#10#13#10'    Correct:'#13#10'        SetWindo' +
-                'wLongPtr(hWnd, GWLP_WNDPROC, LONG_PTR(@MyWindowProc));'#13#10
-              Align = alLeft
-              Caption = 'Find SetWindowLong'
-              TabOrder = 0
-              WordWrap = True
-              OnClick = StartTask
-            end
-          end
-        end
-      end
-    end
     object crdFileFormat: TCard
       Left = 1
       Top = 1
-      Width = 793
-      Height = 377
+      Width = 774
+      Height = 360
       Caption = 'File Format'
-      CardIndex = 3
-      TabOrder = 3
+      CardIndex = 1
+      TabOrder = 1
       object PageControl2: TPageControl
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 787
+        Width = 768
         Height = 193
         ActivePage = tabUTF
         Align = alTop
@@ -837,7 +257,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 773
+            Width = 754
             Height = 17
             ParentCustomHint = False
             Align = alTop
@@ -846,7 +266,7 @@ object frmMain: TfrmMain
           object Panel13: TPanel
             Left = 0
             Top = 126
-            Width = 779
+            Width = 760
             Height = 35
             Align = alBottom
             BevelOuter = bvNone
@@ -899,7 +319,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 773
+            Width = 754
             Height = 17
             ParentCustomHint = False
             Align = alTop
@@ -908,7 +328,7 @@ object frmMain: TfrmMain
           object Panel10: TPanel
             Left = 0
             Top = 126
-            Width = 779
+            Width = 760
             Height = 35
             Align = alBottom
             BevelOuter = bvNone
@@ -933,7 +353,7 @@ object frmMain: TfrmMain
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 773
+            Width = 754
             Height = 34
             Align = alTop
             Caption = 
@@ -945,7 +365,7 @@ object frmMain: TfrmMain
           object Panel11: TPanel
             Left = 0
             Top = 122
-            Width = 779
+            Width = 760
             Height = 39
             Align = alBottom
             BevelOuter = bvNone
@@ -970,17 +390,17 @@ object frmMain: TfrmMain
     object crdSpellCheck: TCard
       Left = 1
       Top = 1
-      Width = 793
-      Height = 377
+      Width = 774
+      Height = 360
       Caption = 'SpellCheck'
-      CardIndex = 4
-      TabOrder = 4
+      CardIndex = 2
+      TabOrder = 2
       DesignSize = (
-        793
-        377)
+        774
+        360)
       object Label9: TLabel
-        Left = 344
-        Top = 182
+        Left = 335
+        Top = 174
         Width = 92
         Height = 17
         Anchors = []
@@ -990,19 +410,19 @@ object frmMain: TfrmMain
     object crdColorPicker: TCard
       Left = 1
       Top = 1
-      Width = 793
-      Height = 377
+      Width = 774
+      Height = 360
       Caption = 'Color Picker'
-      CardIndex = 5
+      CardIndex = 3
       DoubleBuffered = True
       ParentDoubleBuffered = False
-      TabOrder = 5
+      TabOrder = 3
       DesignSize = (
-        793
-        377)
+        774
+        360)
       object lblDynamicalyCreated: TLabel
-        Left = 361
-        Top = 194
+        Left = 351
+        Top = 185
         Width = 113
         Height = 17
         Anchors = []
@@ -1013,27 +433,27 @@ object frmMain: TfrmMain
     object crdExtractCode: TCard
       Left = 1
       Top = 1
-      Width = 793
-      Height = 377
+      Width = 774
+      Height = 360
       Caption = 'crdExtractCode'
-      CardIndex = 6
-      TabOrder = 6
+      CardIndex = 4
+      TabOrder = 4
       object Panel14: TPanel
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 787
+        Width = 768
         Height = 150
         Align = alTop
         TabOrder = 0
         DesignSize = (
-          787
+          768
           150)
         object Label17: TLabel
           AlignWithMargins = True
           Left = 4
           Top = 4
-          Width = 779
+          Width = 760
           Height = 17
           Align = alTop
           Caption = 
@@ -1057,7 +477,7 @@ object frmMain: TfrmMain
         object btnSearchCode: TButton
           Tag = 13
           AlignWithMargins = True
-          Left = 644
+          Left = 625
           Top = 106
           Width = 125
           Height = 32
@@ -1076,14 +496,14 @@ object frmMain: TfrmMain
     Left = 0
     Top = 0
     Width = 185
-    Height = 379
+    Height = 611
     Align = alLeft
     BevelOuter = bvNone
     TabOrder = 1
     object lblHomePage: TInternetLabel
       AlignWithMargins = True
       Left = 3
-      Top = 361
+      Top = 593
       Width = 179
       Height = 15
       Cursor = crHandPoint
@@ -1108,9 +528,9 @@ object frmMain: TfrmMain
       Left = 3
       Top = 3
       Width = 179
-      Height = 208
+      Height = 550
       VertScrollBar.Tracking = True
-      Align = alTop
+      Align = alClient
       BevelInner = bvNone
       BevelOuter = bvNone
       HeaderFont.Charset = DEFAULT_CHARSET
@@ -1122,87 +542,246 @@ object frmMain: TfrmMain
       ParentColor = True
       TabOrder = 0
       object cpMain: TCategoryPanel
-        Top = 0
-        Height = 201
+        Top = 114
+        Height = 151
         Caption = 'Tools'
         TabOrder = 0
         object btnFileFormat: TButton
           Tag = 4
           AlignWithMargins = True
           Left = 3
-          Top = 90
+          Top = 32
           Width = 167
-          Height = 23
+          Height = 26
+          Margins.Top = 2
+          Margins.Bottom = 2
           Align = alTop
           Caption = 'Fix file format'
           TabOrder = 0
           OnClick = SwitchCard
         end
-        object btnSearch: TButton
-          Tag = 1
-          AlignWithMargins = True
-          Left = 3
-          Top = 3
-          Width = 167
-          Height = 23
-          Hint = 'Find which classes implements the specified interface'
-          Align = alTop
-          Caption = 'Interface implementation'
-          TabOrder = 1
-          OnClick = SwitchCard
-        end
-        object btnMigrate: TButton
-          Tag = 2
-          AlignWithMargins = True
-          Left = 3
-          Top = 32
-          Width = 167
-          Height = 23
-          Hint = 'Tools for 64 bit migration'
-          Align = alTop
-          Caption = 'Upgrade to Win64'
-          TabOrder = 2
-          OnClick = SwitchCard
-        end
-        object btnUpgrade: TButton
+        object btnAgUpgrade: TButton
           Tag = 3
           AlignWithMargins = True
           Left = 3
-          Top = 61
+          Top = 2
           Width = 167
-          Height = 23
+          Height = 26
           Hint = 
             '1. Replaces TControl.SetFocus with a my better alternative.'#13#10'2. ' +
             'Finds all try/except lines. '#13#10'3. Replaces .Free with FreeAndNil(' +
             ')'
+          Margins.Top = 2
+          Margins.Bottom = 2
           Align = alTop
           Caption = 'Improve code'
-          TabOrder = 3
+          TabOrder = 1
           OnClick = SwitchCard
         end
         object btnColorPick: TButton
           Tag = 5
           AlignWithMargins = True
           Left = 3
-          Top = 148
+          Top = 92
           Width = 167
-          Height = 23
+          Height = 26
+          Margins.Top = 2
+          Margins.Bottom = 2
           Align = alTop
           Caption = 'Color picker'
-          TabOrder = 4
+          TabOrder = 2
           OnClick = SwitchCard
         end
         object btnExtractCode: TButton
           Tag = 5
           AlignWithMargins = True
           Left = 3
-          Top = 119
+          Top = 62
           Width = 167
-          Height = 23
+          Height = 26
+          Margins.Top = 2
+          Margins.Bottom = 2
           Align = alTop
-          Caption = 'Extract code'
-          TabOrder = 5
+          Caption = 'Find code'
+          TabOrder = 3
           OnClick = SwitchCard
+        end
+      end
+      object pnl64bit: TCategoryPanel
+        Top = 265
+        Height = 240
+        Caption = '32 to 64-bit upgrade'
+        TabOrder = 1
+        object btnAgExtended: TButton
+          Tag = 70
+          AlignWithMargins = True
+          Left = 3
+          Top = 152
+          Width = 167
+          Height = 26
+          Hint = 'It is recommended to replace Extended with Double.'
+          Margins.Top = 2
+          Margins.Bottom = 2
+          Align = alTop
+          Caption = 'Extended'
+          TabOrder = 0
+          WordWrap = True
+          OnClick = StartTask
+          OnMouseEnter = btnMouseEnter
+        end
+        object btnAgExtendedRec: TButton
+          Tag = 71
+          AlignWithMargins = True
+          Left = 3
+          Top = 182
+          Width = 167
+          Height = 26
+          Hint = 
+            'Find packed records that have an '#39'Extended'#39' fields.'#13#10'The "packed' +
+            '" keyword can indicate that the record might be saved to disk.'#13#10 +
+            'In this case we need to make sure that the size of the data rema' +
+            'ins the same, no matter if we are on Win32 or Win 64.'
+          Margins.Top = 2
+          Margins.Bottom = 2
+          Align = alTop
+          Caption = 'Extended in Records'
+          TabOrder = 1
+          WordWrap = True
+          OnClick = StartTask
+          OnMouseEnter = btnMouseEnter
+        end
+        object btnAgPointer: TButton
+          Tag = 60
+          AlignWithMargins = True
+          Left = 3
+          Top = 92
+          Width = 167
+          Height = 26
+          Hint = 'Searches for "Pointer(Integer(" and similar issues.'
+          Margins.Top = 2
+          Margins.Bottom = 2
+          Align = alTop
+          Caption = 'Invalid pointer casts'
+          TabOrder = 2
+          OnClick = StartTask
+          OnMouseEnter = btnMouseEnter
+        end
+        object btnAgLongInt: TButton
+          Tag = 61
+          AlignWithMargins = True
+          Left = 3
+          Top = 122
+          Width = 167
+          Height = 26
+          Hint = 
+            'Find possible LongInt/PLongInt typecasts.'#13#10'On Windows, LongInt i' +
+            's always 32bit!'
+          Margins.Top = 2
+          Margins.Bottom = 2
+          Align = alTop
+          Caption = 'LongInt casts'
+          TabOrder = 3
+          OnClick = StartTask
+          OnMouseEnter = btnMouseEnter
+        end
+        object btnAgSendMsgTypeCst: TButton
+          Tag = 50
+          AlignWithMargins = True
+          Left = 3
+          Top = 2
+          Width = 167
+          Height = 26
+          Margins.Top = 2
+          Margins.Bottom = 2
+          Align = alTop
+          Caption = 'SendMessage'
+          TabOrder = 4
+          WordWrap = True
+          OnClick = StartTask
+          OnMouseEnter = btnMouseEnter
+        end
+        object btnAgPerform: TButton
+          Tag = 51
+          AlignWithMargins = True
+          Left = 3
+          Top = 32
+          Width = 167
+          Height = 26
+          Margins.Top = 2
+          Margins.Bottom = 2
+          Align = alTop
+          Caption = 'TComponent.Perform'
+          TabOrder = 5
+          OnClick = StartTask
+          OnMouseEnter = btnMouseEnter
+        end
+        object btnAgWinLong: TButton
+          Tag = 52
+          AlignWithMargins = True
+          Left = 3
+          Top = 62
+          Width = 167
+          Height = 26
+          Hint = 
+            'Search SetWindowLong/GetWindowLog .'#13#10#13#10'Replace SetWindowLong/Get' +
+            'WindowLog with SetWindowLongPtr/GetWindowLongPtr for GWLP_HINSTA' +
+            'NCE, GWLP_ID, GWLP_USERDATA, GWLP_HWNDPARENT and GWLP_WNDPROC as' +
+            ' they return pointers and handles. Pointers that are passed to S' +
+            'etWindowLongPtr should be type-casted to LONG_PTR and not to Int' +
+            'eger/Longint.'#13#10#13#10'    Wrong:'#13#10'        SetWindowLong(hWnd, GWL_WND' +
+            'PROC, Longint(@MyWindowProc));'#13#10#13#10'    Correct:'#13#10'        SetWindo' +
+            'wLongPtr(hWnd, GWLP_WNDPROC, LONG_PTR(@MyWindowProc));'#13#10
+          Margins.Top = 2
+          Margins.Bottom = 2
+          Align = alTop
+          Caption = 'SetWindowLong'
+          TabOrder = 6
+          WordWrap = True
+          OnClick = StartTask
+          OnMouseEnter = btnMouseEnter
+        end
+      end
+      object CategoryPanel1: TCategoryPanel
+        Top = 0
+        Height = 114
+        Caption = 'Search'
+        TabOrder = 2
+        object btnAgIntfImpl: TButton
+          Tag = 1
+          AlignWithMargins = True
+          Left = 3
+          Top = 2
+          Width = 167
+          Height = 26
+          Hint = 
+            'Search in all files for the class that implements the specified ' +
+            'interface.'
+          Margins.Top = 2
+          Margins.Bottom = 2
+          Align = alTop
+          Caption = 'Interface implementor'
+          TabOrder = 0
+          Visible = False
+          WordWrap = True
+          OnClick = StartTask
+          OnMouseEnter = btnMouseEnter
+        end
+        object btnAgFindCode: TButton
+          Tag = 999
+          AlignWithMargins = True
+          Left = 3
+          Top = 32
+          Width = 167
+          Height = 26
+          Hint = 'List all lines of code that contains the specified item'
+          Margins.Top = 2
+          Margins.Bottom = 2
+          Align = alTop
+          Caption = 'Find code'
+          TabOrder = 1
+          WordWrap = True
+          OnClick = StartTask
+          OnMouseEnter = btnMouseEnter
         end
       end
     end
@@ -1210,24 +789,72 @@ object frmMain: TfrmMain
       Tag = 3
       AlignWithMargins = True
       Left = 3
-      Top = 327
+      Top = 559
       Width = 179
       Height = 28
       Align = alBottom
-      Caption = 'Settings'
+      Caption = 'Global settings'
       TabOrder = 1
       OnClick = btnSettingsClick
     end
-    object btnShowResults: TButton
-      Tag = 3
+  end
+  object pnlMethod: TPanel
+    AlignWithMargins = True
+    Left = 512
+    Top = 371
+    Width = 427
+    Height = 129
+    TabOrder = 2
+    DesignSize = (
+      427
+      129)
+    object Label6: TLabel
       AlignWithMargins = True
-      Left = 3
-      Top = 293
-      Width = 179
-      Height = 28
-      Align = alBottom
-      Caption = 'Show results'
-      TabOrder = 2
+      Left = 4
+      Top = 4
+      Width = 419
+      Height = 17
+      Align = alTop
+      Caption = 
+        'Search all selected files for the class that implements the inte' +
+        'rface below:'
     end
+    object edtMethod: TLabeledEdit
+      Left = 60
+      Top = 57
+      Width = 166
+      Height = 25
+      Hint = 'Enter the name of the method that you are searching for'
+      Anchors = [akLeft, akBottom]
+      EditLabel.Width = 82
+      EditLabel.Height = 17
+      EditLabel.Caption = 'Method name'
+      TabOrder = 0
+      Text = ''
+      TextHint = 'MyMethod'
+    end
+    object chkIntfName: TCheckBox
+      AlignWithMargins = True
+      Left = 60
+      Top = 96
+      Width = 193
+      Height = 17
+      Anchors = [akLeft, akBottom]
+      Caption = 'Class implements interface:'
+      TabOrder = 1
+    end
+    object edtIntfName: TEdit
+      Left = 245
+      Top = 91
+      Width = 121
+      Height = 25
+      Anchors = [akLeft, akBottom]
+      TabOrder = 2
+      TextHint = 'IMyInterface'
+    end
+  end
+  object AppEvents: TApplicationEvents
+    Left = 312
+    Top = 272
   end
 end

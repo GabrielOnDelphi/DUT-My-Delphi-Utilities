@@ -47,8 +47,10 @@
         <DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
         <DCC_Namespace>Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;System;Xml;Data;Datasnap;Web;Soap;DUnitX.MemoryLeakMonitor;$(DCC_Namespace)</DCC_Namespace>
         <DCC_Optimize>false</DCC_Optimize>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=;CFBundleName=</VerInfo_Keys>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=3.0.0.0;InternalName=;LegalCopyright=Gabriel Moraru;LegalTrademarks=Gabriel Moraru;OriginalFilename=;ProductName=Light Delphi Utilities;ProductVersion=3.0.0.0;Comments=;CFBundleName=</VerInfo_Keys>
         <VerInfo_Locale>1031</VerInfo_Locale>
+        <VerInfo_MajorVer>3</VerInfo_MajorVer>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <AppDPIAwarenessMode>none</AppDPIAwarenessMode>
@@ -101,16 +103,20 @@
         <DCCReference Include="..\..\LightSaber\cmSearchResult.pas"/>
         <DCCReference Include="..\..\LightSaber\cbAppData.pas"/>
         <DCCReference Include="dutBase.pas"/>
-        <DCCReference Include="dutCodeUtils.pas"/>
+        <DCCReference Include="dutCodeFormat.pas"/>
         <DCCReference Include="dutUpgradeCode.pas"/>
         <DCCReference Include="dutWin64Extended.pas"/>
         <DCCReference Include="dutAgentFactory.pas"/>
         <DCCReference Include="dutWin64Api.pas"/>
         <DCCReference Include="dutWin64Pointer.pas"/>
-        <DCCReference Include="dutCodeUtilsForm.pas">
-            <Form>frmIntfImpl</Form>
+        <DCCReference Include="dutFindCode.pas">
+            <Form>frmSettingsFindCode</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="dutFindInterface.pas">
+            <Form>frmSettingsIntf</Form>
+        </DCCReference>
+        <DCCReference Include="dutBom.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -132,14 +138,8 @@
                     <Source Name="MainSource">LDU.dpr</Source>
                 </Source>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\DataExplorerFireDACPlugin280.bpl">FireDAC Data Explorer Integration</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclBindCompFireDAC280.bpl">LiveBinding Expression Components FireDac</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclFMXFireDAC280.bpl">Embarcadero FMX FireDAC Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclFireDACEnt280.bpl">Embarcadero FireDAC C\S Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclVclFireDAC280.bpl">Embarcadero VCL FireDAC Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k280.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dclofficexp280.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclsoapmidas280.bpl">Embarcadero SOAP Midas Components</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Platforms>

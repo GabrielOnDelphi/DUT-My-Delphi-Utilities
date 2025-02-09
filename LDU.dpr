@@ -16,19 +16,20 @@ uses
   cmSearchResult in '..\..\LightSaber\cmSearchResult.pas',
   cbAppData in '..\..\LightSaber\cbAppData.pas',
   dutBase in 'dutBase.pas',
-  dutCodeUtils in 'dutCodeUtils.pas',
+  dutCodeFormat in 'dutCodeFormat.pas',
   dutUpgradeCode in 'dutUpgradeCode.pas',
   dutWin64Extended in 'dutWin64Extended.pas',
   dutAgentFactory in 'dutAgentFactory.pas',
   dutWin64Api in 'dutWin64Api.pas',
   dutWin64Pointer in 'dutWin64Pointer.pas',
-  dutCodeUtilsForm in 'dutCodeUtilsForm.pas' {frmIntfImpl};
+  dutFindCode in 'dutFindCode.pas' {frmSettingsFindCode},
+  dutFindInterface in 'dutFindInterface.pas' {frmSettingsIntf},
+  dutBom in 'dutBom.pas';
 
 {$R *.res}
 
 begin
   AppData:= TAppData.Create('LightSaber LDU');
   AppData.CreateMainForm(TfrmMain, frmMain, true);
-  Application.CreateForm(TfrmIntfImpl, frmIntfImpl);
   Application.Run;
 end.

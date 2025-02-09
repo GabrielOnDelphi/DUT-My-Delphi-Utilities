@@ -1,5 +1,14 @@
 UNIT dutAgentFactory;
 
+{=============================================================================================================
+   Gabriel Moraru
+   2025
+   See Copyright.txt
+--------------------------------------------------------------------------------------------------------------
+   xxxxxxx
+-------------------------------------------------------------------------------------------------------------}
+
+
 INTERFACE
 
 USES
@@ -20,7 +29,7 @@ function IDToClassName(const ID: Integer): TAgentClass;
 IMPLEMENTATION
 
 USES
-  dutWin64Pointer, dutWin64Api, dutWin64Extended, dutCodeUtils;
+  dutWin64Pointer, dutUpgradeCode, dutWin64Api, dutFindInterface, dutBom, dutFindCode, dutWin64Extended, dutCodeFormat;
 
 
 
@@ -45,6 +54,22 @@ end;
 function IDToClassName(const ID: Integer): TAgentClass;
 begin
   case ID of
+    // Upgrade code
+    1: Result := TAgent_TryExcept;     // Try/Except
+    2: Result := TAgent_SetFocus;      // SetFocus
+    3: Result := TAgent_FreeAndNil;    // FreeAndNil
+
+    // Find code
+    10: Result := TAgent_FindInterface;
+    11: Result := TAgent_FindCode;
+
+    // BOM
+    20: Result := TAgent_BOM_AnsiToUtf;
+    21: Result := TAgent_BOM_Utf2Ansi;
+    22: Result := TAgent_BomExists;
+    23: Result := TAgent_CodeFormat;
+    // -1: Result := TAgent_FixCRLF; //it is an external exe now!
+
     // WinAPI
     50: Result := TAgent_APISendMessage;
     51: Result := TAgent_APIPerform;
@@ -58,47 +83,14 @@ begin
     70: Result := TAgent_Extended;        { Search for occurrences of the Extended type and reports them. }
     71: Result := TAgent_ExtendedPacked;
 
-    //Find code
-   999: Result := TAgent_FindText;
+    // Search
+    //20: PasParser.ExtractCode;
+
    else
       RAISE Exception.Create('Unknown agent ID:'+ IntToStr(ID));
   end;
 
-         (*
-           // Find interface implementation
-           1: begin
-                {if chkIntfName.Checked
-                then IntfName:= edtIntfName.Text
-                else IntfName:= '';}
-               // PasParser.FindImplementation(edtMethod.Text, IntfName);
-              end;
 
-           // Try/Except
-           3: Agent.FindTryExcept(False);
-           4: Agent.FindTryExcept(true);
-
-           // SetFocus
-           5: Agent.FindSetFocus(False);
-           6: Agent.FindSetFocus(True);
-
-           // BOM
-           7: Agent.ConvertToUTF(TRUE);
-           8: Agent.ConvertToAnsi;
-           9: Agent.HasBOM;
-
-           // FreeAndNil
-           10: Agent.ReplaceFree(False);
-           11: Agent.ReplaceFree(True);
-
-           // Search
-           //20: PasParser.ExtractCode;
-
-           // Format code
-           80: Agent.FormatCodeTight({TRUE});
-         else
-           MesajError('Invalid button tag!');
-         end;
-         *)
 
 end;
 

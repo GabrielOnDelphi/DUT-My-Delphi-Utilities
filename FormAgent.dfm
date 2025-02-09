@@ -16,7 +16,6 @@ object frmAgentResults: TfrmAgentResults
   ShowHint = True
   SnapBuffer = 3
   OnClose = FormClose
-  OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnKeyPress = FormKeyPress
   TextHeight = 17
@@ -75,7 +74,7 @@ object frmAgentResults: TfrmAgentResults
       end
     end
   end
-  object Panel1: TPanel
+  object pnlRight: TPanel
     AlignWithMargins = True
     Left = 664
     Top = 57
@@ -131,20 +130,6 @@ object frmAgentResults: TfrmAgentResults
       Caption = 'Relaxed search'
       TabOrder = 3
     end
-    object edtText: TLabeledEdit
-      AlignWithMargins = True
-      Left = 3
-      Top = 197
-      Width = 191
-      Height = 25
-      Margins.Top = 21
-      Align = alTop
-      EditLabel.Width = 60
-      EditLabel.Height = 17
-      EditLabel.Caption = 'Search for'
-      TabOrder = 4
-      Text = ''
-    end
     object btnSave: TButton
       Tag = 9
       AlignWithMargins = True
@@ -155,7 +140,7 @@ object frmAgentResults: TfrmAgentResults
       Hint = 'Save all lines of code where the input text was found'
       Align = alBottom
       Caption = 'Save lines'
-      TabOrder = 5
+      TabOrder = 4
       OnClick = btnSaveClick
     end
   end
@@ -172,7 +157,7 @@ object frmAgentResults: TfrmAgentResults
       858
       48)
     object edtFilter: TLabeledEdit
-      Left = 698
+      Left = 694
       Top = 17
       Width = 73
       Height = 25
@@ -185,7 +170,7 @@ object frmAgentResults: TfrmAgentResults
       Text = '*.pas;*.inc'
     end
     object btnExclude: TButton
-      Left = 778
+      Left = 774
       Top = 14
       Width = 75
       Height = 29

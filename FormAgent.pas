@@ -1,11 +1,11 @@
-﻿unit FormAgent;
+unit FormAgent;
 
 interface
 
 uses
   Winapi.Windows, System.SysUtils, System.Classes,
-  Vcl.Controls, Vcl.Forms, cbAppDataForm,Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Menus,
-  cmSearchResult, dutCodeUtils, dutBase, cvPathEdit, Vcl.Mask;
+  Vcl.Controls, Vcl.Forms, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Menus, Vcl.Mask,
+  cmSearchResult, dutCodeFormat, dutBase, cvPathEdit, cbAppDataForm;
 
 type
   TfrmAgentResults = class(TLightForm)
@@ -16,7 +16,7 @@ type
     mnuOpen     : TMenuItem;
     pnlFiles1   : TPanel;
     lbxResults  : TListBox;
-    Panel1      : TPanel;
+    pnlRight    : TPanel;
     btnSearch   : TButton;
     btnReplace  : TButton;
     mmoStats    : TMemo;
@@ -26,8 +26,7 @@ type
     edtFilter   : TLabeledEdit;
     btnExclude  : TButton;
     edtPath     : TCubicPathEdit;
-    edtText: TLabeledEdit;
-    btnSave: TButton;
+    btnSave     : TButton;
     procedure FormDestroy        (Sender: TObject);
     procedure lbxResultsClick    (Sender: TObject);
     procedure lbxResultsDblClick (Sender: TObject);
@@ -39,8 +38,7 @@ type
     procedure btnReplaceClick    (Sender: TObject);
     procedure edtPathPathChanged (Sender: TObject);
     procedure btnExcludeClick    (Sender: TObject);
-    procedure FormCreate(Sender: TObject);
-    procedure btnSaveClick(Sender: TObject);
+    procedure btnSaveClick       (Sender: TObject);
   private
     Searched: Boolean;
     procedure ShowEditor;
@@ -49,7 +47,6 @@ type
     procedure StartTask;
   public
     Agent: TBaseAgent;
-    PasParser: TDutUtils;
     procedure Reset;
     procedure LoadFirstResult;
     function  GetSelectedSearch: TSearchResult;
@@ -84,6 +81,7 @@ begin
   // GET AGENT
   AgentClass := IDToClassName(ID);
   frmAgResults.Agent:= TDutAgentFactory.CreateAgent(AgentClass, frmOptions.chkBackup.Checked);
+  (frmAgResults.Agent as AgentClass).DockSettingsForm(frmAgResults.pnlRight);
 
   // ENABLE CHECKBOXES
   frmAgResults.chkRelaxed.Enabled:= frmAgResults.Agent.CanRelax;
@@ -107,19 +105,13 @@ end;
 
 
 
-procedure TfrmAgentResults.FormCreate(Sender: TObject);
-begin
-  EmptyDummy;
-end;
-
-
 procedure TfrmAgentResults.FormInitialize;
 begin
   inherited;
   cvINIFile.LoadForm(Self);
 end;
 
-                                  //FormRelease FormClose  FormDestroy
+
 procedure TfrmAgentResults.FormRelease;
 begin
   cvINIFile.SaveForm(Self);
@@ -168,7 +160,7 @@ end;
 
 procedure TfrmAgentResults.StartTask;
 var
-   IntfName, CurFile: string;
+   CurFile: string;
    FileList: TStringList;
 begin
   Reset;
@@ -179,8 +171,7 @@ begin
   TRY
     for CurFile in FileList do
        begin
-         Agent.SearchResults.Clear;   //
-         Agent.Needle:= edtText.Text; //
+         Agent.SearchResults.Clear;
          Agent.Execute(CurFile);      // Instructs the parser that we start parsing a new file. It wil create a new TSearchResult record for it.
 
          if Agent.SearchResults.Last.Found
@@ -231,6 +222,7 @@ begin
   if frmOptions.chkSaveStats.Checked then
     begin
       var sOutput:= 'Results for the batch processing:'+ CRLF;
+
       //ToDo: don't overwrite, just append at the end (add datetime)
       for VAR s in lbxResults.Items DO
          sOutput:= sOutput+ s+ CRLF;
@@ -289,6 +281,7 @@ begin
         Caption:= lbxResults.Items[lbxResults.ItemIndex];
       end
 end;
+
 
 procedure TfrmAgentResults.lbxResultsClick(Sender: TObject);
 begin
@@ -372,6 +365,7 @@ begin
   StringToClipboard(GetSelectedSearch.FileName);
 end;
 
+
 procedure TfrmAgentResults.mnuOpenClick(Sender: TObject);
 begin
   ExecuteShell(GetSelectedSearch.FileName)
@@ -399,7 +393,6 @@ procedure TfrmAgentResults.btnExcludeClick(Sender: TObject);
 begin
   frmExclude.show;
 end;
-
 
 
 end.

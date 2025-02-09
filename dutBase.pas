@@ -2,7 +2,7 @@
 
 {=============================================================================================================
    Gabriel Moraru
-   2025.01
+   2021
    See Copyright.txt
 --------------------------------------------------------------------------------------------------------------
    Base class.
@@ -15,7 +15,8 @@
 INTERFACE
 
 USES
-  System.SysUtils, System.Classes, cmSearchResult;
+  System.SysUtils, System.Classes, Vcl.Forms, Vcl.ExtCtrls,
+  cmSearchResult, ccTextFile;
 
 TYPE
   TBaseAgent= class(TObject)
@@ -29,6 +30,9 @@ TYPE
     TextBody: TStringList;
    public
     Needle: string;                // Text to find. Some agents will not use this field.
+
+    // Settings
+    Preamble: TWritePreamble;      //Todo: implement this (global GUI)
     CaseSensitive: Boolean;        // Can we convert the Needle/Haystack to lowercase?
     Replace: Boolean;              // The found text should be replaced
 
@@ -40,6 +44,7 @@ TYPE
     constructor Create(BackupFile: Boolean); virtual;
     destructor Destroy; override;
 
+    procedure DockSettingsForm(Panel: TPanel); virtual;
     procedure Execute(const FileName: string); virtual;
     procedure Finalize; virtual;
     class function Description: string; virtual; abstract;
@@ -51,7 +56,7 @@ TYPE
 
 
 IMPLEMENTATION
-USES ccIO, ccTextFile;
+USES ccIO;
 
 
 {-------------------------------------------------------------------------------------------------------------
@@ -60,9 +65,9 @@ USES ccIO, ccTextFile;
 constructor TBaseAgent.Create(BackupFile: Boolean);
 begin
   inherited Create;
-  Replace:= FALSE;
-  FBackupFile:= TRUE;
-  TextBody:= TStringList.Create;
+  Replace      := FALSE;
+  FBackupFile  := TRUE;
+  TextBody     := TStringList.Create;
   TextBody.Text:= 'Nothing loaded yet!';
   SearchResults:= TSearchResults.Create(True);
 end;
@@ -143,5 +148,9 @@ begin
 end;
 
 
+procedure TBaseAgent.DockSettingsForm(Panel: TPanel);
+begin
+  //To be overwritten by child
+end;
 
 end.

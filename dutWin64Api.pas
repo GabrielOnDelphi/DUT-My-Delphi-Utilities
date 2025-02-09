@@ -2,7 +2,7 @@
 
 {=============================================================================================================
    Gabriel Moraru
-   2025.01
+   2021
    See Copyright.txt
 --------------------------------------------------------------------------------------------------------------
    WIN API ISSUES
@@ -186,7 +186,7 @@ begin
       then SearchResults.Last.AddNewPos(iLine, iColumn, sLine, 'GetWindowLong is for Win32 only!', 'Use GetWindowLongPtr instead.');
     end;
 
-  Finalize; // Increment counters
+  Finalize; // Increment counters. Save
 end;
 
 

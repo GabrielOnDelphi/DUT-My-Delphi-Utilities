@@ -5,6 +5,7 @@ uses
   Vcl.Forms,
   Vcl.Themes,
   Vcl.Styles,
+  cbAppData in '..\..\LightSaber\cbAppData.pas',
   MainForm in 'MainForm.pas' {frmMain},
   FormExclude in 'FormExclude.pas' {frmExclude},
   FormColorPicker in 'FormColorPicker.pas',
@@ -14,7 +15,6 @@ uses
   FormOptions in 'FormOptions.pas' {frmOptions},
   cmPascal in '..\..\LightSaber\cmPascal.pas',
   cmSearchResult in '..\..\LightSaber\cmSearchResult.pas',
-  cbAppData in '..\..\LightSaber\cbAppData.pas',
   dutBase in 'dutBase.pas',
   dutCodeFormat in 'dutCodeFormat.pas',
   dutUpgradeCode in 'dutUpgradeCode.pas',
@@ -29,7 +29,7 @@ uses
 {$R *.res}
 
 begin
-  AppData:= TAppData.Create('LightSaber LDU');
+  AppData:= TAppData.Create('LUD - Light Delphi Utilities');
   AppData.CreateMainForm(TfrmMain, frmMain, true);
   Application.Run;
 end.

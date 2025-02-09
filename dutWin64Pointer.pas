@@ -23,6 +23,7 @@ TYPE
     procedure Execute(const FileName: string); override;
     class function Description: string; override;
     class function CanReplace: Boolean; override;
+    class function AgentName: string; override;
   end;
 
   TAgent_PointerLongInt = class(TBaseAgent)
@@ -30,6 +31,7 @@ TYPE
     procedure Execute(const FileName: string); override;
     class function Description: string; override;
     class function CanRelax: Boolean; override;
+    class function AgentName: string; override;
   end;
 
 
@@ -187,5 +189,15 @@ begin
   Result:= TRUE;
 end;
 
+
+class function TAgent_PointerTypecast.AgentName: string;
+begin
+  Result:= 'Invalid pointer typecasts';
+end;
+
+class function TAgent_PointerLongInt.AgentName: string;
+begin
+  Result:= 'LongInt typecasts';
+end;
 
 end.

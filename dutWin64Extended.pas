@@ -20,12 +20,14 @@ TYPE
   public
     procedure Execute(const FileName: string); override;
     class function Description: string; override;
+    class function AgentName: string; override;
   end;
 
   TAgent_Extended = class(TBaseAgent)
   public
     procedure Execute(const FileName: string); override;
     class function Description: string; override;
+    class function AgentName: string; override;
   end;
 
 
@@ -135,5 +137,15 @@ end;
 
 
 
+
+class function TAgent_ExtendedPacked.AgentName: string;
+begin
+  Result:= 'Find "Extended" in packed records';
+end;
+
+class function TAgent_Extended.AgentName: string;
+begin
+  Result:= 'Replace "Extended"';
+end;
 
 end.

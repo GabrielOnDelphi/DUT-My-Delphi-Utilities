@@ -2,8 +2,8 @@ object frmSettingsFindCode: TfrmSettingsFindCode
   Left = 0
   Top = 0
   Caption = '@Settings'
-  ClientHeight = 90
-  ClientWidth = 291
+  ClientHeight = 91
+  ClientWidth = 295
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,25 +15,14 @@ object frmSettingsFindCode: TfrmSettingsFindCode
     AlignWithMargins = True
     Left = 3
     Top = 3
-    Width = 285
-    Height = 70
+    Width = 289
+    Height = 59
     Align = alTop
     TabOrder = 0
-    object Label1: TLabel
-      AlignWithMargins = True
-      Left = 4
-      Top = 4
-      Width = 398
-      Height = 15
-      Align = alTop
-      Caption = 
-        'Search all files for the specified line of code and returns the ' +
-        'collected results'
-    end
     object edtText: TLabeledEdit
       AlignWithMargins = True
       Left = 4
-      Top = 40
+      Top = 22
       Width = 281
       Height = 23
       Margins.Top = 21

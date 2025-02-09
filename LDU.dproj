@@ -80,6 +80,7 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
+        <DCCReference Include="..\..\LightSaber\cbAppData.pas"/>
         <DCCReference Include="MainForm.pas">
             <Form>frmMain</Form>
         </DCCReference>
@@ -101,7 +102,6 @@
         </DCCReference>
         <DCCReference Include="..\..\LightSaber\cmPascal.pas"/>
         <DCCReference Include="..\..\LightSaber\cmSearchResult.pas"/>
-        <DCCReference Include="..\..\LightSaber\cbAppData.pas"/>
         <DCCReference Include="dutBase.pas"/>
         <DCCReference Include="dutCodeFormat.pas"/>
         <DCCReference Include="dutUpgradeCode.pas"/>

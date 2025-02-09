@@ -23,18 +23,21 @@ TYPE
   public
     procedure Execute(const FileName: string); override;
     class function Description: string; override;
+    class function AgentName: string; override;
   end;
 
   TAgent_BOM_AnsiToUtf = class(TBaseAgent)
   public
     procedure Execute(const FileName: string); override;
     class function Description: string; override;
+    class function AgentName: string; override;
   end;
 
   TAgent_BOM_Utf2Ansi = class(TBaseAgent)
   public
     procedure Execute(const FileName: string); override;
     class function Description: string; override;
+    class function AgentName: string; override;
   end;
 
 
@@ -128,5 +131,20 @@ end;
 
 
 
+
+class function TAgent_BomExists.AgentName: string;
+begin
+  Result:= 'Has BOM?';
+end;
+
+class function TAgent_BOM_AnsiToUtf.AgentName: string;
+begin
+  Result:= 'Ansi to Utf';
+end;
+
+class function TAgent_BOM_Utf2Ansi.AgentName: string;
+begin
+  Result:= 'Utf to Ansi';
+end;
 
 end.

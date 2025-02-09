@@ -5,7 +5,7 @@ object frmMain: TfrmMain
   AlphaBlendValue = 250
   Caption = 'LDU (Light Delphi Utilities) - Gabriel Moraru 2022'
   ClientHeight = 529
-  ClientWidth = 841
+  ClientWidth = 773
   Color = clBtnFace
   DoubleBuffered = True
   Font.Charset = DEFAULT_CHARSET
@@ -19,15 +19,16 @@ object frmMain: TfrmMain
   SnapBuffer = 3
   OnDestroy = FormDestroy
   DesignSize = (
-    841
+    773
     529)
   TextHeight = 17
   object lblDescription: TLabel
     AlignWithMargins = True
-    Left = 191
-    Top = 8
-    Width = 779
-    Height = 261
+    Left = 188
+    Top = 118
+    Width = 582
+    Height = 188
+    Anchors = [akLeft, akTop, akRight]
     AutoSize = False
     Caption = 'Agent description'
     WordWrap = True
@@ -58,33 +59,31 @@ object frmMain: TfrmMain
       ParentBackground = True
       ParentColor = True
       TabOrder = 0
-      object cpMain: TCategoryPanel
+      object catTools: TCategoryPanel
         Top = 301
-        Height = 30
+        Height = 91
         Caption = 'Tools'
-        Collapsed = True
         TabOrder = 0
-        ExpandedHeight = 91
         object btnColorPick: TButton
           Tag = 5
           AlignWithMargins = True
           Left = 3
           Top = 32
-          Width = 150
+          Width = 167
           Height = 26
           Margins.Top = 2
           Margins.Bottom = 2
           Align = alTop
           Caption = 'Color picker'
-          Enabled = False
           TabOrder = 0
+          OnClick = btnColorPickClick
         end
         object Button2: TButton
           Tag = 23
           AlignWithMargins = True
           Left = 3
           Top = 2
-          Width = 150
+          Width = 167
           Height = 26
           Hint = '----------'
           Margins.Top = 2
@@ -97,7 +96,7 @@ object frmMain: TfrmMain
           OnMouseEnter = btnMouseEnter
         end
       end
-      object CategoryPanel2: TCategoryPanel
+      object catImprove: TCategoryPanel
         Top = 271
         Height = 30
         Caption = 'Improve code'
@@ -158,7 +157,7 @@ object frmMain: TfrmMain
           OnMouseEnter = btnMouseEnter
         end
       end
-      object pnl64bit: TCategoryPanel
+      object cat64bit: TCategoryPanel
         Top = 241
         Height = 30
         Caption = '32 to 64-bit upgrade'
@@ -294,7 +293,7 @@ object frmMain: TfrmMain
           OnMouseEnter = btnMouseEnter
         end
       end
-      object CategoryPanel3: TCategoryPanel
+      object catText: TCategoryPanel
         Top = 90
         Height = 151
         Caption = 'Text files'
@@ -366,7 +365,7 @@ object frmMain: TfrmMain
           OnClick = Button1Click
         end
       end
-      object CategoryPanel1: TCategoryPanel
+      object catSearch: TCategoryPanel
         Top = 0
         Height = 90
         Caption = 'Search'
@@ -410,33 +409,23 @@ object frmMain: TfrmMain
       end
     end
   end
-  object btnHelp2: TButton
-    AlignWithMargins = True
-    Left = 462
-    Top = 422
-    Width = 147
-    Height = 29
-    Caption = 'set focus Details'
-    TabOrder = 1
-    OnClick = btnHelp2Click
-  end
   object Panel1: TPanel
-    Left = 186
-    Top = 419
-    Width = 651
+    Left = 188
+    Top = 5
+    Width = 650
     Height = 107
-    Anchors = [akLeft, akRight, akBottom]
-    TabOrder = 2
+    TabOrder = 1
     object lblHomePage: TInternetLabel
       AlignWithMargins = True
       Left = 4
       Top = 88
-      Width = 643
+      Width = 642
       Height = 15
       Cursor = crHandPoint
       Align = alBottom
       Alignment = taCenter
-      Caption = 'More'
+      Anchors = [akLeft, akTop, akRight]
+      Caption = 'More tools'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlue
       Font.Height = -12
@@ -453,17 +442,23 @@ object frmMain: TfrmMain
     object btnSettings: TButton
       Tag = 3
       AlignWithMargins = True
-      Left = 315
-      Top = 41
+      Left = 139
+      Top = 26
       Width = 179
       Height = 28
       Caption = 'Global settings'
       TabOrder = 0
       OnClick = btnSettingsClick
     end
-  end
-  object AppEvents: TApplicationEvents
-    Left = 312
-    Top = 272
+    object btnHelp2: TButton
+      AlignWithMargins = True
+      Left = 334
+      Top = 25
+      Width = 147
+      Height = 29
+      Caption = 'SetFocus details'
+      TabOrder = 1
+      OnClick = btnHelp2Click
+    end
   end
 end

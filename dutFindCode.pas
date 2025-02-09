@@ -20,10 +20,9 @@ TYPE
   TfrmSettingsFindCode = class(TForm)
     Container: TPanel;
     edtText: TLabeledEdit;
-    Label1: TLabel;
-  private
   public
   end;
+
 
 TYPE
   TAgent_FindCode = class(TBaseAgent)
@@ -36,6 +35,7 @@ TYPE
     procedure Execute(const FileName: string); override;
     class function Description: string; override;
     class function CanReplace: Boolean; override;
+    class function AgentName: string; override;
     procedure DockSettingsForm(HostPanel: TPanel); override;
   end;
 
@@ -107,5 +107,10 @@ begin
   inherited;
 end;
 
+
+class function TAgent_FindCode.AgentName: string;
+begin
+  Result:= 'Find Delphi code';
+end;
 
 end.

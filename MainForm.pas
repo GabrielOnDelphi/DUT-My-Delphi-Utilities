@@ -20,7 +20,6 @@ USES
 
 TYPE
   TfrmMain = class(TLightForm)
-    AppEvents           : TApplicationEvents;
     btnAgExtended       : TButton;
     btnAgExtendedRec    : TButton;
     btnAgFindCode       : TButton;
@@ -35,28 +34,29 @@ TYPE
     btnBom_Utf2Ansi     : TButton;
     btnColorPick        : TButton;
     btnFreeAndNil3      : TButton;
-    btnHelp2            : TButton;
     btnSettings         : TButton;
     btnTryExcept4       : TButton;
     Button1             : TButton;
     Button2             : TButton;
     Categories          : TCategoryPanelGroup;
-    CategoryPanel1      : TCategoryPanel;
-    CategoryPanel2      : TCategoryPanel;
-    CategoryPanel3      : TCategoryPanel;
-    cpMain              : TCategoryPanel;
+    catSearch: TCategoryPanel;
+    catImprove: TCategoryPanel;
+    catText: TCategoryPanel;
+    catTools: TCategoryPanel;
     lblDescription      : TLabel;
     lblHomePage         : TInternetLabel;
     Panel1              : TPanel;
-    pnl64bit            : TCategoryPanel;
+    cat64bit: TCategoryPanel;
     pnlLeft             : TPanel;
     setFocus4           : TButton;
+    btnHelp2: TButton;
     procedure FormDestroy     (Sender: TObject);
     procedure StartTask       (Sender: TObject);
     procedure btnHelp2Click   (Sender: TObject);
     procedure btnSettingsClick(Sender: TObject);
     procedure btnMouseEnter   (Sender: TObject);
     procedure Button1Click    (Sender: TObject);
+    procedure btnColorPickClick(Sender: TObject);
   public
     procedure FormInitialize; override;
   end;
@@ -90,11 +90,7 @@ begin
 
   if AppData.RunningFirstTime
   then ExecuteURL('https://GabrielMoraru.com');
-  {
-  // FORM: Color picker
-  VAR frmClrPick: TfrmClrPick;
-  AppData.CreateForm(TfrmClrPick, frmClrPick, FALSE, asPosOnly);
-  frmClrPick.Container.Parent:= crdColorPicker;  }
+
   AppData.CreateFormHidden(TfrmOptions , frmOptions);
   AppData.Initializing:= FALSE;
 end;
@@ -149,5 +145,12 @@ procedure TfrmMain.Button1Click(Sender: TObject);
 begin
   ExecuteShell('FixEnters.exe')
 end;
+
+
+procedure TfrmMain.btnColorPickClick(Sender: TObject);
+begin
+  AppData.CreateFormModal(TfrmClrPick, asFull);
+end;
+
 
 end.

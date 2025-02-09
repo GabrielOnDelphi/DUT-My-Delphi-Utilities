@@ -19,6 +19,7 @@ TYPE
    public
     procedure Execute(const FileName: string); override;
     class function Description: string; override;
+    class function AgentName: string; override;
   end;
 
 
@@ -122,5 +123,10 @@ end;
 
 
 
+
+class function TAgent_CodeFormat.AgentName: string;
+begin
+  Result:= 'Format code tight';
+end;
 
 end.

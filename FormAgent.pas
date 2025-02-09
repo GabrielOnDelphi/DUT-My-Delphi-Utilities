@@ -82,6 +82,7 @@ begin
   AgentClass := IDToClassName(ID);
   frmAgResults.Agent:= TDutAgentFactory.CreateAgent(AgentClass, frmOptions.chkBackup.Checked);
   (frmAgResults.Agent as AgentClass).DockSettingsForm(frmAgResults.pnlRight);
+  frmAgResults.Caption:= frmAgResults.Agent.AgentName;
 
   // ENABLE CHECKBOXES
   frmAgResults.chkRelaxed.Enabled:= frmAgResults.Agent.CanRelax;
@@ -378,7 +379,6 @@ begin
 
   if DirectoryExists(edtPath.Path) then
    begin
-     Caption:= 'Files in '+ edtPath.Path;
      var Files:= ListFilesOf(edtPath.Path, edtFilter.Text, True, True);
      try
        lbxResults.Items.Assign(Files);

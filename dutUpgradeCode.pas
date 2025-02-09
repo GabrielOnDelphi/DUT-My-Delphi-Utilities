@@ -23,6 +23,7 @@ type
     procedure Execute(const FileName: string); override;
     class function Description: string; override;
     class function CanReplace: Boolean; override;
+    class function AgentName: string; override;
   end;
 
   TAgent_TryExcept= class(TBaseAgent)
@@ -32,6 +33,7 @@ type
     procedure Execute(const FileName: string); override;
     class function Description: string; override;
     class function CanReplace: Boolean; override;
+    class function AgentName: string; override;
   end;
 
   TAgent_FreeAndNil= class(TBaseAgent)
@@ -40,6 +42,7 @@ type
     procedure Execute(const FileName: string); override;
     class function Description: string; override;
     class function CanReplace: Boolean; override;
+    class function AgentName: string; override;
   end;
 
 
@@ -284,6 +287,21 @@ end;
 class function TAgent_SetFocus.CanReplace: Boolean;
 begin
   Result:= TRUE;
+end;
+
+class function TAgent_SetFocus.AgentName: string;
+begin
+  Result:= 'Fix .SetFocus';
+end;
+
+class function TAgent_TryExcept.AgentName: string;
+begin
+  Result:= 'Fix Try/Except';
+end;
+
+class function TAgent_FreeAndNil.AgentName: string;
+begin
+  Result:= 'Fix .Free';
 end;
 
 end.

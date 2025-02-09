@@ -1,12 +1,9 @@
 object frmClrPick: TfrmClrPick
-  AlignWithMargins = True
   Left = 0
   Top = 0
-  BorderIcons = [biMaximize]
-  BorderStyle = bsNone
   Caption = 'Delphi Color Picker'
-  ClientHeight = 337
-  ClientWidth = 613
+  ClientHeight = 299
+  ClientWidth = 601
   Color = clBtnFace
   DoubleBuffered = True
   Font.Charset = ANSI_CHARSET
@@ -15,6 +12,7 @@ object frmClrPick: TfrmClrPick
   Font.Name = 'Segoe UI'
   Font.Style = []
   Position = poDesigned
+  ScreenSnap = True
   ShowHint = True
   SnapBuffer = 3
   OnCreate = FormCreate
@@ -23,20 +21,20 @@ object frmClrPick: TfrmClrPick
     AlignWithMargins = True
     Left = 3
     Top = 3
-    Width = 607
-    Height = 331
+    Width = 595
+    Height = 293
     Align = alClient
     Caption = 'Container'
     TabOrder = 0
     object Label4: TLabel
       Left = 1
-      Top = 313
-      Width = 605
+      Top = 275
+      Width = 593
       Height = 17
       Cursor = crHandPoint
       Align = alBottom
       Alignment = taCenter
-      Caption = 'Click label to copy color to clipboard'
+      Caption = 'Home'
       OnClick = Label4Click
     end
     object lblHTML: TLabel
@@ -45,10 +43,11 @@ object frmClrPick: TfrmClrPick
       Width = 45
       Height = 17
       Cursor = crHandPoint
+      Hint = 'Click to copy to clipboard'
       Caption = 'Html clr'
       ParentShowHint = False
       ShowHint = True
-      OnClick = lblHTMLClick
+      OnClick = CopyToClipboard_Click
     end
     object lblDelphiHex: TLabel
       Left = 20
@@ -76,8 +75,8 @@ object frmClrPick: TfrmClrPick
     object Panel1: TPanel
       Left = 217
       Top = 1
-      Width = 389
-      Height = 312
+      Width = 377
+      Height = 274
       Align = alRight
       Anchors = [akLeft, akTop, akRight, akBottom]
       Caption = 'Your color'
@@ -86,7 +85,7 @@ object frmClrPick: TfrmClrPick
     end
     object edtEnterClr: TLabeledEdit
       Left = 20
-      Top = 185
+      Top = 150
       Width = 121
       Height = 25
       EditLabel.Width = 146
@@ -99,12 +98,21 @@ object frmClrPick: TfrmClrPick
     end
     object btnChooseClr: TButton
       Left = 20
-      Top = 230
+      Top = 182
       Width = 121
-      Height = 41
+      Height = 38
       Caption = 'Choose color'
       TabOrder = 2
       OnClick = btnChooseClrClick
+    end
+    object btnClipbrd: TButton
+      Left = 20
+      Top = 226
+      Width = 121
+      Height = 38
+      Caption = 'Copy color'
+      TabOrder = 3
+      OnClick = CopyToClipboard_Click
     end
   end
   object ColorDialog: TColorDialog

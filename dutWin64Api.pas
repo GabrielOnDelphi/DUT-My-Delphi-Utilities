@@ -21,18 +21,21 @@ TYPE
   public
     procedure Execute(const FileName: string); override;
     class function Description: string; override;
+    class function AgentName: string; override;
   end;
 
   TAgent_APIPerform = class(TBaseAgent)
   public
     procedure Execute(const FileName: string); override;
     class function Description: string; override;
+    class function AgentName: string; override;
   end;
 
   TAgent_APISetWindowLong = class(TBaseAgent)
   public
     procedure Execute(const FileName: string); override;
     class function Description: string; override;
+    class function AgentName: string; override;
   end;
 
 
@@ -196,5 +199,20 @@ end;
 
 
 
+
+class function TAgent_APISendMessage.AgentName: string;
+begin
+  Result:= 'Fix SendMessage/PostMessage';
+end;
+
+class function TAgent_APIPerform.AgentName: string;
+begin
+  Result:= 'Fix .Perform';
+end;
+
+class function TAgent_APISetWindowLong.AgentName: string;
+begin
+  Result:= 'Fix SetWindowLong';
+end;
 
 end.

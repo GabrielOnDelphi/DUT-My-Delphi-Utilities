@@ -41,15 +41,17 @@ TYPE
     FoundLines: Integer;
     SearchResults: TSearchResults; // A list of results where the issue (invalid code) was found
 
-    constructor Create(BackupFile: Boolean); virtual;
+    constructor Create(aBackupFile: Boolean); virtual;
     destructor Destroy; override;
 
     procedure DockSettingsForm(Panel: TPanel); virtual;
     procedure Execute(const FileName: string); virtual;
     procedure Finalize; virtual;
+
+    class function AgentName: string; virtual; abstract;
     class function Description: string; virtual; abstract;
 
-    //Capabilities
+    // Capabilities
     class function CanRelax  : Boolean; virtual;   // True if the agent can do a relaxed search
     class function CanReplace: Boolean; virtual;   // True if the agent can automatically replace the text
   end;
@@ -62,11 +64,11 @@ USES ccIO;
 {-------------------------------------------------------------------------------------------------------------
    CONSTRUCTOR
 -------------------------------------------------------------------------------------------------------------}
-constructor TBaseAgent.Create(BackupFile: Boolean);
+constructor TBaseAgent.Create(aBackupFile: Boolean);
 begin
   inherited Create;
   Replace      := FALSE;
-  FBackupFile  := TRUE;
+  FBackupFile  := aBackupFile;
   TextBody     := TStringList.Create;
   TextBody.Text:= 'Nothing loaded yet!';
   SearchResults:= TSearchResults.Create(True);

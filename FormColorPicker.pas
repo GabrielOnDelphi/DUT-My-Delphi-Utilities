@@ -9,19 +9,20 @@ USES
 
 TYPE
   TfrmClrPick = class(TLightForm)
-    Container: TPanel;
-    Label4: TLabel;
-    Panel1: TPanel;
-    lblHTML: TLabel;
-    lblDelphiHex: TLabel;
-    Label2: TLabel;
-    Label1: TLabel;
-    edtEnterClr: TLabeledEdit;
-    ColorDialog: TColorDialog;
-    btnChooseClr: TButton;
+    btnChooseClr : TButton;
+    btnClipbrd   : TButton;
+    ColorDialog  : TColorDialog;
+    Container    : TPanel;
+    edtEnterClr  : TLabeledEdit;
+    Label1       : TLabel;
+    Label2       : TLabel;
+    Label4       : TLabel;
+    lblDelphiHex : TLabel;
+    lblHTML      : TLabel;
+    Panel1       : TPanel;
     procedure FormCreate(Sender: TObject);
     procedure btnChooseClrClick(Sender: TObject);
-    procedure lblHTMLClick(Sender: TObject);
+    procedure CopyToClipboard_Click(Sender: TObject);
     procedure lblDelphiHexClick(Sender: TObject);
     procedure Label4Click(Sender: TObject);
     procedure edtEnterClrKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -73,33 +74,33 @@ end;
 
 procedure TfrmClrPick.edtEnterClrKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
- if Key= VK_RETURN
- then Panel1.Color:= StringToColor(edtEnterClr.Text);
+  if Key= VK_RETURN
+  then Panel1.Color:= StringToColor(edtEnterClr.Text);
 end;
 
 
 procedure TfrmClrPick.FormCreate(Sender: TObject);
 begin
-// Application.ProcessMessages;
- edtEnterClrChange(Sender);
+  // Application.ProcessMessages;
+  edtEnterClrChange(Sender);
 end;
 
 
 procedure TfrmClrPick.Label4Click(Sender: TObject);
 begin
- ExecuteURL('http://www.GabrielMoraru.com')
+  ExecuteURL('https://www.GabrielMoraru.com')
 end;
 
 
 procedure TfrmClrPick.lblDelphiHexClick(Sender: TObject);
 begin
- StringToClipboard(IntToHex(ColorDialog.Color, 6));
+  StringToClipboard(IntToHex(ColorDialog.Color, 6));
 end;
 
 
-procedure TfrmClrPick.lblHTMLClick(Sender: TObject);
+procedure TfrmClrPick.CopyToClipboard_Click(Sender: TObject);
 begin
- StringToClipboard(ColorToHtml(ColorDialog.Color));
+  StringToClipboard(ColorToHtml(ColorDialog.Color));
 end;
 
 

@@ -13,6 +13,10 @@
      The Unicode Standard permits the BOM in UTF-8, but does not require or recommend its use.
 =============================================================================================================}
 
+//ToDo: use function  ForceAddBOM    (CONST FileName: string): Boolean;
+//ToDo: use function  ForceRemoveBOM (CONST FileName: string): Boolean;
+
+
 INTERFACE
 
 USES
@@ -55,7 +59,8 @@ USES
 
 class function TAgent_BomExists.Description: string;
 begin
-  Result:= 'Shows if the files in the specified folder have BOM or not.';
+  Result:= 'Shows if the files in the specified folder have BOM or not.'+CRLF+
+           'ToDo: Add/remove BOM to the file(s).';
 end;
 
 
@@ -88,8 +93,7 @@ procedure TAgent_BOM_AnsiToUtf.Execute(const FileName: string);
 begin
   inherited Execute(FileName);
 
-  //todo: AddBOM: Boolean
- if NOT ccTextFile.FileHasBOM(SearchResults.Last.FileName) then
+  if NOT ccTextFile.FileHasBOM(SearchResults.Last.FileName) then
    begin
      ccTextFile.ConvertToUTF(SearchResults.Last.FileName);
      SearchResults.Last.AddNewPos('Converted to UTF8');

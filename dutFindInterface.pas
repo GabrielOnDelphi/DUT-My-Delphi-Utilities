@@ -19,13 +19,12 @@ USES
 
 
 TYPE
-  //ToDo: Remember user's input data
   TfrmSettingsIntf = class(TLightForm)
     Container: TPanel;
     edtMethod: TLabeledEdit;
     edtIntfName: TLabeledEdit;
   public
-  end;
+  end;   //ToDo: Remember user's input data
 
 
 TYPE

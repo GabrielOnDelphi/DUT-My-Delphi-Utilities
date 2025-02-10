@@ -91,7 +91,7 @@ begin
   if AppData.RunningFirstTime
   then ExecuteURL('https://GabrielMoraru.com');
 
-  AppData.CreateFormHidden(TfrmOptions , frmOptions);
+  AppData.CreateFormHidden(TfrmOptions, frmOptions, asFull);
   AppData.Initializing:= FALSE;
 end;
 

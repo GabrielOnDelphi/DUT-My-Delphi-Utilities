@@ -157,8 +157,8 @@ object frmAgentResults: TfrmAgentResults
       858
       48)
     object edtFilter: TLabeledEdit
-      Left = 694
-      Top = 17
+      Left = 692
+      Top = 19
       Width = 73
       Height = 25
       Hint = 'Multiple extensions can be provided.'#13#10'Example: *.pas;*.dpr;*.inc'
@@ -170,10 +170,10 @@ object frmAgentResults: TfrmAgentResults
       Text = '*.pas;*.inc'
     end
     object btnExclude: TButton
-      Left = 774
-      Top = 14
+      Left = 772
+      Top = 16
       Width = 75
-      Height = 29
+      Height = 30
       Anchors = [akTop, akRight]
       Caption = 'Exclude...'
       TabOrder = 1
@@ -188,6 +188,7 @@ object frmAgentResults: TfrmAgentResults
       ShowCreateBtn = False
       OnPathChanged = edtPathPathChanged
       Align = alLeft
+      Anchors = [akLeft, akTop, akRight, akBottom]
       Caption = 'Search in this folder'
       TabOrder = 2
     end

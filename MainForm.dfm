@@ -108,7 +108,7 @@ object frmMain: TfrmMain
           AlignWithMargins = True
           Left = 3
           Top = 62
-          Width = 150
+          Width = 167
           Height = 26
           Hint = 'Replaces Object.Free with FreeAndNil(Object) which is safer.'
           Margins.Top = 2
@@ -125,7 +125,7 @@ object frmMain: TfrmMain
           AlignWithMargins = True
           Left = 3
           Top = 2
-          Width = 150
+          Width = 167
           Height = 26
           Hint = 'Finds all try/except lines. See details.'
           Margins.Top = 2
@@ -142,7 +142,7 @@ object frmMain: TfrmMain
           AlignWithMargins = True
           Left = 3
           Top = 32
-          Width = 150
+          Width = 167
           Height = 26
           Hint = 
             'SetFocus is broken in Delphi. Replaces MyControl.SetFocus with a' +
@@ -169,7 +169,7 @@ object frmMain: TfrmMain
           AlignWithMargins = True
           Left = 3
           Top = 152
-          Width = 150
+          Width = 167
           Height = 26
           Hint = 'It is recommended to replace Extended with Double.'
           Margins.Top = 2
@@ -186,7 +186,7 @@ object frmMain: TfrmMain
           AlignWithMargins = True
           Left = 3
           Top = 182
-          Width = 150
+          Width = 167
           Height = 26
           Hint = 
             'Find packed records that have an '#39'Extended'#39' fields.'#13#10'The "packed' +
@@ -207,7 +207,7 @@ object frmMain: TfrmMain
           AlignWithMargins = True
           Left = 3
           Top = 92
-          Width = 150
+          Width = 167
           Height = 26
           Hint = 'Searches for "Pointer(Integer(" and similar issues.'
           Margins.Top = 2
@@ -223,7 +223,7 @@ object frmMain: TfrmMain
           AlignWithMargins = True
           Left = 3
           Top = 122
-          Width = 150
+          Width = 167
           Height = 26
           Hint = 
             'Find possible LongInt/PLongInt typecasts.'#13#10'On Windows, LongInt i' +
@@ -241,7 +241,7 @@ object frmMain: TfrmMain
           AlignWithMargins = True
           Left = 3
           Top = 2
-          Width = 150
+          Width = 167
           Height = 26
           Margins.Top = 2
           Margins.Bottom = 2
@@ -257,7 +257,7 @@ object frmMain: TfrmMain
           AlignWithMargins = True
           Left = 3
           Top = 32
-          Width = 150
+          Width = 167
           Height = 26
           Margins.Top = 2
           Margins.Bottom = 2
@@ -272,7 +272,7 @@ object frmMain: TfrmMain
           AlignWithMargins = True
           Left = 3
           Top = 62
-          Width = 150
+          Width = 167
           Height = 26
           Hint = 
             'Search SetWindowLong/GetWindowLog .'#13#10#13#10'Replace SetWindowLong/Get' +
@@ -305,11 +305,10 @@ object frmMain: TfrmMain
           Top = 2
           Width = 167
           Height = 26
-          Hint = 'Check if files have BOM. Add BOM.'
           Margins.Top = 2
           Margins.Bottom = 2
           Align = alTop
-          Caption = 'BOM'
+          Caption = 'Has BOM?'
           TabOrder = 0
           WordWrap = True
           OnClick = StartTask
@@ -338,7 +337,6 @@ object frmMain: TfrmMain
           Top = 62
           Width = 167
           Height = 26
-          Hint = '----------'
           Margins.Top = 2
           Margins.Bottom = 2
           Align = alTop
@@ -355,7 +353,6 @@ object frmMain: TfrmMain
           Top = 92
           Width = 167
           Height = 26
-          Hint = 'Fix invalid CRLF in PAS files'
           Margins.Top = 2
           Margins.Bottom = 2
           Align = alTop

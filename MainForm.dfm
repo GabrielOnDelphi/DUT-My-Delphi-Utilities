@@ -25,8 +25,8 @@ object frmMain: TfrmMain
   object lblDescription: TLabel
     AlignWithMargins = True
     Left = 188
-    Top = 118
-    Width = 582
+    Top = 135
+    Width = 580
     Height = 188
     Anchors = [akLeft, akTop, akRight]
     AutoSize = False
@@ -409,14 +409,15 @@ object frmMain: TfrmMain
   object Panel1: TPanel
     Left = 188
     Top = 5
-    Width = 650
-    Height = 107
+    Width = 580
+    Height = 123
+    Anchors = [akLeft, akTop, akRight]
     TabOrder = 1
     object lblHomePage: TInternetLabel
       AlignWithMargins = True
       Left = 4
-      Top = 88
-      Width = 642
+      Top = 104
+      Width = 572
       Height = 15
       Cursor = crHandPoint
       Align = alBottom
@@ -429,6 +430,34 @@ object frmMain: TfrmMain
       Font.Name = 'Segoe UI'
       Font.Style = []
       ParentFont = False
+      WordWrap = True
+      Link = 'https://GabrielMoraru.com'
+      LinkHint = False
+      Visited = False
+      VisitedColor = clPurple
+      NotVisitedColor = clBlue
+      OverColor = clRed
+    end
+    object lblNoteOta: TInternetLabel
+      AlignWithMargins = True
+      Left = 4
+      Top = 4
+      Width = 572
+      Height = 30
+      Cursor = crHandPoint
+      Align = alTop
+      Alignment = taCenter
+      Caption = 
+        'Note: You need to install "OTA Package\IDEFileReceiver.dpk" '#13#10'in' +
+        ' order to be able to send Pas files from this tool to the Delphi' +
+        ' IDE for editing.'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlue
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+      WordWrap = True
       Link = 'https://GabrielMoraru.com'
       LinkHint = False
       Visited = False
@@ -439,8 +468,8 @@ object frmMain: TfrmMain
     object btnSettings: TButton
       Tag = 3
       AlignWithMargins = True
-      Left = 139
-      Top = 26
+      Left = 127
+      Top = 47
       Width = 179
       Height = 28
       Caption = 'Global settings'
@@ -449,12 +478,13 @@ object frmMain: TfrmMain
     end
     object btnHelp2: TButton
       AlignWithMargins = True
-      Left = 334
-      Top = 25
+      Left = 322
+      Top = 46
       Width = 147
       Height = 29
       Caption = 'SetFocus details'
       TabOrder = 1
+      WordWrap = True
       OnClick = btnHelp2Click
     end
   end

@@ -44,9 +44,10 @@ TYPE
     constructor Create(aBackupFile: Boolean); virtual;
     destructor Destroy; override;
 
-    procedure DockSettingsForm(Panel: TPanel); virtual;
+    procedure Clear;
     procedure Execute(const FileName: string); virtual;
     procedure Finalize; virtual;
+    procedure DockSettingsForm(Panel: TPanel); virtual;
 
     class function AgentName: string; virtual; abstract;
     class function Description: string; virtual; abstract;
@@ -80,6 +81,14 @@ begin
   FreeAndNil(TextBody);
   FreeAndNil(SearchResults);
   inherited Destroy;
+end;
+
+
+procedure TBaseAgent.Clear;
+begin
+  FoundFiles:= 0;
+  FoundLines:= 0;
+  SearchResults.Clear;
 end;
 
 
@@ -118,6 +127,8 @@ begin
   SearchResults.Add(TSearchResult.Create(FileName));
   TextBody.Text:= StringFromFile(FileName);
 end;
+
+
 
 
 

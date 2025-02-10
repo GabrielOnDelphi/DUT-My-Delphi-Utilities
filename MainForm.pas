@@ -50,6 +50,7 @@ TYPE
     pnlLeft             : TPanel;
     setFocus4           : TButton;
     btnHelp2: TButton;
+    lblNoteOta: TInternetLabel;
     procedure FormDestroy     (Sender: TObject);
     procedure StartTask       (Sender: TObject);
     procedure btnHelp2Click   (Sender: TObject);

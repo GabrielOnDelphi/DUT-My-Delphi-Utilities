@@ -14,7 +14,7 @@ type
     PopupMenu   : TPopupMenu;
     mnuCopyName : TMenuItem;
     mnuOpen     : TMenuItem;
-    pnlFiles1   : TPanel;
+    pnlFiles: TPanel;
     lbxResults  : TListBox;
     pnlRight    : TPanel;
     btnSearch   : TButton;
@@ -27,6 +27,7 @@ type
     btnExclude  : TButton;
     edtPath     : TCubicPathEdit;
     btnSave     : TButton;
+    lblInpOut: TLabel;
     procedure FormDestroy        (Sender: TObject);
     procedure lbxResultsClick    (Sender: TObject);
     procedure lbxResultsDblClick (Sender: TObject);
@@ -110,6 +111,8 @@ procedure TfrmAgentResults.FormInitialize;
 begin
   inherited;
   cvINIFile.LoadForm(Self);
+  lblInpOut.Caption:= 'Input files:';
+  pnlFiles.Align:= alClient;
 end;
 
 
@@ -167,14 +170,15 @@ begin
   Reset;
   if NOT DirectoryExistMsg(edtPath.Path) then EXIT;
 
+  lblInpOut.Caption:= 'Searching:';
   Screen.Cursor:= crHourGlass;
+  Agent.Clear;
+
   FileList:= edtPath.GetFiles(edtFilter.Text, True, True, frmExclude.mmoExclude.Lines);
   TRY
     for CurFile in FileList do
        begin
-         Agent.SearchResults.Clear;
          Agent.Execute(CurFile);      // Instructs the parser that we start parsing a new file. It wil create a new TSearchResult record for it.
-
          if Agent.SearchResults.Last.Found
          then
            begin
@@ -188,12 +192,12 @@ begin
            then lbxResults.Items.Add('Not found: '+ CurFile);
        end;
 
-      Caption:= 'Done. Searched '+ IntToStr(FileList.Count)+ ' files. Found in  '+ IntToStr(Agent.FoundFiles)+ ' files.';
+      Caption:= 'Done. Searched '+ IntToStr(FileList.Count)+ ' files. Found in '+ IntToStr(Agent.FoundFiles)+ ' files.';
 
       // Show global statistics
       mmoStats.Text:= '';
-      mmoStats.Lines.Add('Searched ' + IntToStr(FileList.Count)+ ' files.');
-      mmoStats.Lines.Add('Found in ' + IntToStr(Agent.FoundFiles)+ ' files.');
+      mmoStats.Lines.Add('Searched '        + IntToStr(FileList.Count)  + ' files.');
+      mmoStats.Lines.Add('Found in '        + IntToStr(Agent.FoundFiles)+ ' files.');
       mmoStats.Lines.Add('Total positions: '+ IntToStr(Agent.FoundLines));
 
       // Load first result
@@ -204,16 +208,29 @@ begin
     Screen.Cursor:= crDefault;
     FreeAndNil(FileList);
   END;
+
+  if Agent.FoundFiles > 0
+  then
+    begin
+      lblInpOut.Caption:= 'Found files:';
+      pnlFiles.Align := alTop;
+      pnlFiles.Height:= Container.Height DIV 3;
+      splResults.Top := pnlFiles.Top+ pnlFiles.Height+1;
+      splResults.Visible:= TRUE;
+    end
+  else
+    lblInpOut.Caption:= 'No files found.';
 end;
 
 
 procedure TfrmAgentResults.Reset;
 begin
+  lblInpOut.Caption := '';
+  mmoStats.Text     := '';
+  mmoStats.Visible  := FALSE;
+  mmoStats.Text     := '';
+  Caption           := '';
   lbxResults.Clear;
-  mmoStats.Text:= '';
-  mmoStats.Visible:= False;
-  mmoStats.Text:= 'Processing...';
-  Caption:= 'Processing...';
   HideEditor;
 end;
 

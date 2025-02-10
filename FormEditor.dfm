@@ -2,8 +2,8 @@ object frmEditor: TfrmEditor
   Left = 0
   Top = 0
   Caption = 'File Editor'
-  ClientHeight = 463
-  ClientWidth = 784
+  ClientHeight = 462
+  ClientWidth = 780
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,8 +20,8 @@ object frmEditor: TfrmEditor
   object Container: TPanel
     Left = 0
     Top = 0
-    Width = 784
-    Height = 463
+    Width = 780
+    Height = 462
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
@@ -29,7 +29,7 @@ object frmEditor: TfrmEditor
       AlignWithMargins = True
       Left = 3
       Top = 3
-      Width = 62
+      Width = 774
       Height = 15
       Align = alTop
       Caption = 'Current file:'
@@ -38,7 +38,7 @@ object frmEditor: TfrmEditor
       AlignWithMargins = True
       Left = 3
       Top = 21
-      Width = 42
+      Width = 774
       Height = 17
       Align = alTop
       Caption = 'Details:'
@@ -56,8 +56,8 @@ object frmEditor: TfrmEditor
       AlignWithMargins = True
       Left = 3
       Top = 41
-      Width = 790
-      Height = 383
+      Width = 774
+      Height = 379
       Align = alClient
       Color = clBlack
       Font.Charset = ANSI_CHARSET
@@ -75,8 +75,8 @@ object frmEditor: TfrmEditor
     object pnlBtm: TPanel
       AlignWithMargins = True
       Left = 3
-      Top = 430
-      Width = 790
+      Top = 426
+      Width = 774
       Height = 33
       Align = alBottom
       BevelOuter = bvNone
@@ -103,7 +103,7 @@ object frmEditor: TfrmEditor
       end
       object btnSave: TButton
         AlignWithMargins = True
-        Left = 696
+        Left = 680
         Top = 3
         Width = 91
         Height = 27
@@ -114,7 +114,7 @@ object frmEditor: TfrmEditor
       end
       object btnOpenIDE: TButton
         AlignWithMargins = True
-        Left = 599
+        Left = 583
         Top = 3
         Width = 91
         Height = 27

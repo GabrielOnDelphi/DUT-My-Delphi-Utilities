@@ -39,7 +39,7 @@ object frmAgentResults: TfrmAgentResults
     object splResults: TSplitter
       AlignWithMargins = True
       Left = 3
-      Top = 179
+      Top = 184
       Width = 646
       Height = 6
       Cursor = crVSplit
@@ -47,21 +47,31 @@ object frmAgentResults: TfrmAgentResults
       Beveled = True
       MinSize = 10
       ResizeStyle = rsUpdate
+      Visible = False
     end
-    object pnlFiles1: TPanel
+    object pnlFiles: TPanel
       Left = 0
       Top = 0
       Width = 652
-      Height = 176
+      Height = 181
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 0
-      object lbxResults: TListBox
+      object lblInpOut: TLabel
         AlignWithMargins = True
         Left = 3
         Top = 3
         Width = 646
-        Height = 170
+        Height = 17
+        Align = alTop
+        Caption = 'Input/Output'
+      end
+      object lbxResults: TListBox
+        AlignWithMargins = True
+        Left = 3
+        Top = 23
+        Width = 646
+        Height = 155
         Hint = 
           'Click to list the content of the file.'#13#10'Double click to load fil' +
           'e in the Delphi IDE.'#13#10'Right click for more options.'

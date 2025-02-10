@@ -176,6 +176,8 @@ end;
 
 procedure TfrmEditor.scrollToPos(Pos: Integer);
 begin
+  Assert(Length(GetSelectedSearch.Positions) > 0);
+
   var CurLine:= GetSelectedSearch.Positions[Pos].LinePos;   // Covert search record position to line number
   scrollToLine(CurLine);
   showDetails;

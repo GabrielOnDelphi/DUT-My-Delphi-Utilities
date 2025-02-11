@@ -10,7 +10,7 @@ UNIT MainForm;
    Features:
      Ignores lines that start with a comment symbol:   // { (*
 -------------------------------------------------------------------------------------------------------------}
-
+//ToDo: remember which panels were collapsed
 INTERFACE
 
 USES
@@ -36,7 +36,7 @@ TYPE
     btnFreeAndNil3      : TButton;
     btnSettings         : TButton;
     btnTryExcept4       : TButton;
-    Button1             : TButton;
+    btnCrLf: TButton;
     Button2             : TButton;
     Categories          : TCategoryPanelGroup;
     catSearch: TCategoryPanel;
@@ -56,7 +56,7 @@ TYPE
     procedure btnHelp2Click   (Sender: TObject);
     procedure btnSettingsClick(Sender: TObject);
     procedure btnMouseEnter   (Sender: TObject);
-    procedure Button1Click    (Sender: TObject);
+    procedure btnCrLfClick    (Sender: TObject);
     procedure btnColorPickClick(Sender: TObject);
   public
     procedure FormInitialize; override;
@@ -120,7 +120,8 @@ procedure TfrmMain.btnMouseEnter(Sender: TObject);
 begin
   VAR Tag:= (Sender as TButton).Tag;
   if Tag > 0
-  then lblDescription.Caption:= TDutAgentFactory.GetAgentDescription(Tag);
+  then lblDescription.Caption:= TDutAgentFactory.GetAgentDescription(Tag)
+  else lblDescription.Caption:= '';
 end;
 
 
@@ -142,7 +143,7 @@ end;
 
 
 
-procedure TfrmMain.Button1Click(Sender: TObject);
+procedure TfrmMain.btnCrLfClick(Sender: TObject);
 begin
   ExecuteShell('FixEnters.exe')
 end;

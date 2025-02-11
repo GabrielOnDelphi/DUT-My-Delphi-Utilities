@@ -76,7 +76,6 @@ procedure TAgent_TryExcept.Execute;
 var
    Front: string;
    sPrev, sCurrLine, NextLine, sWarnings: string;
-   Found: Boolean;
    iLine: Integer;
    Counter: Integer;          { Incremented each time a Try/Except is found. }
 
@@ -92,7 +91,7 @@ var
 
 begin
   Front := '';
-  Found:= FALSE;
+  FFound:= FALSE;
   inherited Execute(FileName);
 
   sWarnings:= SearchResults.Last.FileName+ CRLF+ 'Warnings' + CRLF+ CRLF;
@@ -105,12 +104,12 @@ begin
 
       if LineIsAComment(sCurrLine) then Continue;     // Ignore comments
 
-      Found:= IsKeyword(sCurrLine, 'except');
+      FFound:= IsKeyword(sCurrLine, 'except');
 
-      if Found
-      then Found:= RelaxedSearch(NextLine, 'end;');
+      if FFound
+      then FFound:= RelaxedSearch(NextLine, 'end;');
 
-      if Found then
+      if FFound then
        begin
          SearchResults.Last.AddNewPos(iLine, 1, sCurrLine);       // Log the line(s) where the text was found
 
@@ -151,7 +150,7 @@ begin
        end;
     end;
 
-  if Found and Replace
+  if FFound and Replace
   then AddUnitToUses(TextBody, LogUnit);
 
   Finalize; // Increment counters. Save
@@ -175,13 +174,12 @@ procedure TAgent_SetFocus.Execute;
 var
    Front: string;
    sLine: string;
-   Found: Boolean;
    iPos, i: Integer;
 CONST
    ImplementingUnit = 'uUtilsFocus';
 begin
   Front := '';
-  Found:= FALSE;
+  FFound:= FALSE;
   inherited Execute(FileName);
 
   for i:= 0 to TextBody.Count-1 do
@@ -204,12 +202,12 @@ begin
 
             // SetFocus() can be found in cmVclUtils.pas
             TextBody[i]:= Front+ ImplementingUnit+'.SetFocus('+ ExtractObjectName(sLine)+ ');';  // We write something like SetFocus(Edit2);
-            Found:= TRUE;
+            FFound:= TRUE;
           end;
        end;
     end;
 
-  if Found and Replace
+  if FFound and Replace
   then AddUnitToUses(TextBody, ImplementingUnit);
 
   Finalize; // Increment counters. Save
@@ -228,10 +226,9 @@ procedure TAgent_FreeAndNil.Execute;
 var
   iPos, i: Integer;
   sLine: string;
-  Found: Boolean;
   ObjName: string;
 begin
-  Found := FALSE;
+  FFound := FALSE;
   inherited Execute(FileName);
 
   for i := 0 to TextBody.Count - 1 do
@@ -257,12 +254,12 @@ begin
         sLine := StringReplace(sLine, ObjName + '.Free', 'FreeAndNil(' + ObjName + ')', [rfReplaceAll]);
 
         TextBody[i] := sLine;
-        Found := TRUE;
+        FFound := TRUE;
       end;
     end;
   end;
 
-  if Found AND Replace
+  if FFound AND Replace
   then AddUnitToUses(TextBody, 'System.SysUtils'); // Ensure FreeAndNil is available
 
   Finalize; // Increment counters. Save

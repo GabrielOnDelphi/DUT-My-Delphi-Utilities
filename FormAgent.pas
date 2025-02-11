@@ -46,6 +46,7 @@ type
     procedure SaveStatistics;
     procedure LoadCurFile;
     procedure StartTask;
+    procedure SetCaption(const Msg: string);
   public
     Agent: TBaseAgent;
     procedure Reset;
@@ -86,8 +87,8 @@ begin
   frmAgResults.Caption:= frmAgResults.Agent.AgentName;
 
   // ENABLE CHECKBOXES
-  frmAgResults.chkRelaxed.Enabled:= frmAgResults.Agent.CanRelax;
-  frmAgResults.btnReplace.Enabled:= frmAgResults.Agent.CanReplace;
+  frmAgResults.chkRelaxed.Visible:= frmAgResults.Agent.CanRelax;
+  frmAgResults.btnReplace.Visible:= frmAgResults.Agent.CanReplace;
 
   // EXPLORER & FILTER
   frmAgResults.Refresh;                         // Refresh the main form so the frmExplorer is shown in the correct position
@@ -156,6 +157,11 @@ begin
 end;
 
 
+procedure TfrmAgentResults.SetCaption(CONST Msg: string);
+begin
+  Caption:= Agent.AgentName+ ' - '+ Msg;
+end;
+
 procedure TfrmAgentResults.btnReplaceClick(Sender: TObject);
 begin
   Agent.Replace:= TRUE;
@@ -170,9 +176,11 @@ begin
   Reset;
   if NOT DirectoryExistMsg(edtPath.Path) then EXIT;
 
-  lblInpOut.Caption:= 'Searching:';
-  Screen.Cursor:= crHourGlass;
   Agent.Clear;
+  lblInpOut.Caption:= 'Searching:';
+  SetCaption('Searching:');
+  btnSave.Enabled:= TRUE;
+  Screen.Cursor:= crHourGlass;
 
   FileList:= edtPath.GetFiles(edtFilter.Text, True, True, frmExclude.mmoExclude.Lines);
   TRY
@@ -192,8 +200,6 @@ begin
            then lbxResults.Items.Add('Not found: '+ CurFile);
        end;
 
-      Caption:= 'Done. Searched '+ IntToStr(FileList.Count)+ ' files. Found in '+ IntToStr(Agent.FoundFiles)+ ' files.';
-
       // Show global statistics
       mmoStats.Text:= '';
       mmoStats.Lines.Add('Searched '        + IntToStr(FileList.Count)  + ' files.');
@@ -203,7 +209,7 @@ begin
       // Load first result
       LoadFirstResult;
 
-      Caption:= 'Done. Searched '+ IntToStr(FileList.Count)+ ' files. Found in  '+ IntToStr(Agent.FoundFiles)+ ' files.';
+      SetCaption('Done. Searched '+ IntToStr(FileList.Count)+ ' files. Found in  '+ IntToStr(Agent.FoundFiles)+ ' files.');
   FINALLY
     Screen.Cursor:= crDefault;
     FreeAndNil(FileList);
@@ -225,11 +231,11 @@ end;
 
 procedure TfrmAgentResults.Reset;
 begin
-  lblInpOut.Caption := '';
-  mmoStats.Text     := '';
-  mmoStats.Visible  := FALSE;
-  mmoStats.Text     := '';
-  Caption           := '';
+  lblInpOut.Caption:= '';
+  mmoStats.Text    := '';
+  mmoStats.Visible := FALSE;
+  mmoStats.Text    := '';
+  Caption          := '';
   lbxResults.Clear;
   HideEditor;
 end;
@@ -265,7 +271,7 @@ begin
       SaveStatistics;
     end
   else
-     Caption:= 'No issues found.';
+     SetCaption('No issues found.');
 end;
 
 
@@ -287,7 +293,7 @@ begin
       begin
         ShowEditor;    // Make the PAS Editor visible. Must be above frmEditor.LoadSearchRes
         frmEditor.LoadSearchRes(GetSelectedSearch);
-        Caption:= GetSelectedSearch.FileName;
+        //SetCaption(GetSelectedSearch.FileName);
       end
   else
     if  (lbxResults.Items.Count > 0)
@@ -296,7 +302,7 @@ begin
       begin
         ShowEditor;    // Make the PAS Editor visible. Must be above frmEditor.LoadFile
         frmEditor.LoadFileRaw(lbxResults.Items[lbxResults.ItemIndex]);
-        Caption:= lbxResults.Items[lbxResults.ItemIndex];
+        //del SetCaption(); lbxResults.Items[lbxResults.ItemIndex];
       end
 end;
 

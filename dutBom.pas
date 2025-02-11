@@ -96,7 +96,7 @@ begin
   if NOT ccTextFile.FileHasBOM(SearchResults.Last.FileName) then
    begin
      ccTextFile.ConvertToUTF(SearchResults.Last.FileName);
-     SearchResults.Last.AddNewPos('Converted to UTF8');
+     SearchResults.Last.AddNewPos('Converted to UTF8 (with BOM).');
    end;
 
   Finalize; // Increment counters

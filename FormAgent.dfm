@@ -96,10 +96,12 @@ object frmAgentResults: TfrmAgentResults
     object btnSearch: TButton
       Tag = 9
       AlignWithMargins = True
-      Left = 3
-      Top = 301
-      Width = 191
-      Height = 44
+      Left = 11
+      Top = 318
+      Width = 175
+      Height = 42
+      Margins.Left = 11
+      Margins.Right = 11
       Align = alBottom
       Caption = 'Search'
       TabOrder = 0
@@ -108,10 +110,12 @@ object frmAgentResults: TfrmAgentResults
     object btnReplace: TButton
       Tag = 9
       AlignWithMargins = True
-      Left = 3
-      Top = 351
-      Width = 191
-      Height = 44
+      Left = 11
+      Top = 366
+      Width = 175
+      Height = 42
+      Margins.Left = 11
+      Margins.Right = 11
       Align = alBottom
       Caption = 'Replace'
       TabOrder = 1
@@ -122,7 +126,7 @@ object frmAgentResults: TfrmAgentResults
       Left = 3
       Top = 3
       Width = 191
-      Height = 170
+      Height = 110
       Align = alTop
       TabOrder = 2
       Visible = False
@@ -130,7 +134,7 @@ object frmAgentResults: TfrmAgentResults
     object chkRelaxed: TCheckBox
       AlignWithMargins = True
       Left = 3
-      Top = 278
+      Top = 295
       Width = 191
       Height = 17
       Hint = 
@@ -143,13 +147,16 @@ object frmAgentResults: TfrmAgentResults
     object btnSave: TButton
       Tag = 9
       AlignWithMargins = True
-      Left = 3
-      Top = 401
-      Width = 191
-      Height = 44
-      Hint = 'Save all lines of code where the input text was found'
+      Left = 11
+      Top = 414
+      Width = 175
+      Height = 31
+      Hint = 'Save all lines of code where the searched string was found'
+      Margins.Left = 11
+      Margins.Right = 11
       Align = alBottom
-      Caption = 'Save lines'
+      Caption = 'Save results'
+      Enabled = False
       TabOrder = 4
       OnClick = btnSaveClick
     end

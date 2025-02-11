@@ -26,7 +26,7 @@ object frmMain: TfrmMain
     AlignWithMargins = True
     Left = 188
     Top = 135
-    Width = 580
+    Width = 576
     Height = 188
     Anchors = [akLeft, akTop, akRight]
     AutoSize = False
@@ -60,10 +60,12 @@ object frmMain: TfrmMain
       ParentColor = True
       TabOrder = 0
       object catTools: TCategoryPanel
-        Top = 301
-        Height = 91
+        Top = 210
+        Height = 30
         Caption = 'Tools'
+        Collapsed = True
         TabOrder = 0
+        ExpandedHeight = 91
         object btnColorPick: TButton
           Tag = 5
           AlignWithMargins = True
@@ -97,12 +99,10 @@ object frmMain: TfrmMain
         end
       end
       object catImprove: TCategoryPanel
-        Top = 271
-        Height = 30
+        Top = 90
+        Height = 120
         Caption = 'Improve code'
-        Collapsed = True
         TabOrder = 1
-        ExpandedHeight = 120
         object btnFreeAndNil3: TButton
           Tag = 3
           AlignWithMargins = True
@@ -158,7 +158,7 @@ object frmMain: TfrmMain
         end
       end
       object cat64bit: TCategoryPanel
-        Top = 241
+        Top = 60
         Height = 30
         Caption = '32 to 64-bit upgrade'
         Collapsed = True
@@ -294,10 +294,12 @@ object frmMain: TfrmMain
         end
       end
       object catText: TCategoryPanel
-        Top = 90
-        Height = 151
+        Top = 30
+        Height = 30
         Caption = 'Text files'
+        Collapsed = True
         TabOrder = 3
+        ExpandedHeight = 151
         object btnBOM: TButton
           Tag = 22
           AlignWithMargins = True
@@ -346,27 +348,33 @@ object frmMain: TfrmMain
           OnClick = StartTask
           OnMouseEnter = btnMouseEnter
         end
-        object Button1: TButton
+        object btnCrLf: TButton
           Tag = -1
           AlignWithMargins = True
           Left = 3
           Top = 92
           Width = 167
           Height = 26
+          Hint = 
+            'Fixes invalid Enter characters, to match the Windows standard (C' +
+            'R + LF)'
           Margins.Top = 2
           Margins.Bottom = 2
           Align = alTop
           Caption = 'Fix CRLF'
           TabOrder = 3
           WordWrap = True
-          OnClick = Button1Click
+          OnClick = btnCrLfClick
+          OnMouseEnter = btnMouseEnter
         end
       end
       object catSearch: TCategoryPanel
         Top = 0
-        Height = 90
+        Height = 30
         Caption = 'Search'
+        Collapsed = True
         TabOrder = 4
+        ExpandedHeight = 90
         object btnAgIntfImpl: TButton
           Tag = 10
           AlignWithMargins = True
@@ -409,7 +417,7 @@ object frmMain: TfrmMain
   object Panel1: TPanel
     Left = 188
     Top = 5
-    Width = 580
+    Width = 576
     Height = 123
     Anchors = [akLeft, akTop, akRight]
     TabOrder = 1
@@ -417,7 +425,7 @@ object frmMain: TfrmMain
       AlignWithMargins = True
       Left = 4
       Top = 104
-      Width = 572
+      Width = 568
       Height = 15
       Cursor = crHandPoint
       Align = alBottom
@@ -442,7 +450,7 @@ object frmMain: TfrmMain
       AlignWithMargins = True
       Left = 4
       Top = 4
-      Width = 572
+      Width = 568
       Height = 30
       Cursor = crHandPoint
       Align = alTop

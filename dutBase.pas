@@ -108,7 +108,7 @@ end;
 { Computes statistics and saves results to disk }
 procedure TBaseAgent.Finalize;
 begin
-  if FFound then DoSave;
+  DoSave;
 
   if SearchResults.Last.Found then
     begin
@@ -137,7 +137,7 @@ end;
 -------------------------------------------------------------------------------------------------------------}
 procedure TBaseAgent.DoSave;
 begin
-  if Replace then
+  if FFound AND Replace then
     begin
       // Do backup
       if FBackupFile

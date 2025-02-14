@@ -3,7 +3,8 @@
 {=============================================================================================================
    Gabriel Moraru
    2020
-   See Copyright.txt
+   www.GabrielMoraru.com
+   See Copyright file
 --------------------------------------------------------------------------------------------------------------
    Upgrade code to higher standards:
     * Find abusive usage of Try/Except (places where we swallow exceptions)

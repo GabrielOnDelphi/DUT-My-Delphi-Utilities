@@ -30,6 +30,6 @@ uses
 
 begin
   AppData:= TAppData.Create('LUD - Light Delphi Utilities');
-  AppData.CreateMainForm(TfrmMain, frmMain, true);
-  Application.Run;
+  AppData.CreateMainForm(TfrmMain, frmMain, True);
+  AppData.Run;
 end.

@@ -425,7 +425,7 @@ object frmMain: TfrmMain
       AlignWithMargins = True
       Left = 4
       Top = 104
-      Width = 568
+      Width = 57
       Height = 15
       Cursor = crHandPoint
       Align = alBottom
@@ -450,7 +450,7 @@ object frmMain: TfrmMain
       AlignWithMargins = True
       Left = 4
       Top = 4
-      Width = 568
+      Width = 410
       Height = 30
       Cursor = crHandPoint
       Align = alTop

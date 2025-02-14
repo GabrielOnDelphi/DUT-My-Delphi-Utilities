@@ -3,7 +3,8 @@ UNIT dutFindInterface;
 {=============================================================================================================
    Gabriel Moraru
    2025.01
-   See Copyright.txt
+   www.GabrielMoraru.com
+   See Copyright file
 --------------------------------------------------------------------------------------------------------------
    FIND INTERFACE IMPLEMENTATION
 

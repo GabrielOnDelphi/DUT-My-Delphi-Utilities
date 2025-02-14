@@ -3,7 +3,8 @@ UNIT MainForm;
 {=============================================================================================================
    Gabriel Moraru
    2021
-   See Copyright.txt
+   www.GabrielMoraru.com
+   See Copyright file
 --------------------------------------------------------------------------------------------------------------
    Description here: https://github.com/GabrielOnDelphi/DUT-My-Delphi-Utilities
 

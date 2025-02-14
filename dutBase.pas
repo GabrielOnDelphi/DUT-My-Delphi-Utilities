@@ -3,7 +3,8 @@
 {=============================================================================================================
    Gabriel Moraru
    2021
-   See Copyright.txt
+   www.GabrielMoraru.com
+   See Copyright file
 --------------------------------------------------------------------------------------------------------------
    Base class.
    Provides support for checking PAS files for specific lines of code.

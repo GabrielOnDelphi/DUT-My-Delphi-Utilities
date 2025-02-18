@@ -201,7 +201,7 @@ begin
             if First > -1
             then Front:= System.StringOfChar(' ', First-1);
 
-            // SetFocus() can be found in cmVclUtils.pas
+            // SetFocus() can be found in cbVclUtils.pas
             TextBody[i]:= Front+ ImplementingUnit+'.SetFocus('+ ExtractObjectName(sLine)+ ');';  // We write something like SetFocus(Edit2);
             FFound:= TRUE;
           end;

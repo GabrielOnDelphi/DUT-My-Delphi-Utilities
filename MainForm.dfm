@@ -4,8 +4,8 @@ object frmMain: TfrmMain
   AlphaBlend = True
   AlphaBlendValue = 250
   Caption = 'LDU (Light Delphi Utilities) - Gabriel Moraru 2022'
-  ClientHeight = 529
-  ClientWidth = 773
+  ClientHeight = 528
+  ClientWidth = 769
   Color = clBtnFace
   DoubleBuffered = True
   Font.Charset = DEFAULT_CHARSET
@@ -17,16 +17,15 @@ object frmMain: TfrmMain
   ScreenSnap = True
   ShowHint = True
   SnapBuffer = 3
-  OnDestroy = FormDestroy
   DesignSize = (
-    773
-    529)
+    769
+    528)
   TextHeight = 17
   object lblDescription: TLabel
     AlignWithMargins = True
-    Left = 188
+    Left = 196
     Top = 135
-    Width = 576
+    Width = 568
     Height = 188
     Anchors = [akLeft, akTop, akRight]
     AutoSize = False
@@ -36,8 +35,8 @@ object frmMain: TfrmMain
   object pnlLeft: TPanel
     Left = 0
     Top = 0
-    Width = 185
-    Height = 529
+    Width = 193
+    Height = 528
     Align = alLeft
     BevelOuter = bvNone
     TabOrder = 0
@@ -45,8 +44,8 @@ object frmMain: TfrmMain
       AlignWithMargins = True
       Left = 3
       Top = 3
-      Width = 179
-      Height = 523
+      Width = 187
+      Height = 476
       VertScrollBar.Tracking = True
       Align = alClient
       BevelInner = bvNone
@@ -60,7 +59,7 @@ object frmMain: TfrmMain
       ParentColor = True
       TabOrder = 0
       object catTools: TCategoryPanel
-        Top = 210
+        Top = 180
         Height = 30
         Caption = 'Tools'
         Collapsed = True
@@ -71,7 +70,7 @@ object frmMain: TfrmMain
           AlignWithMargins = True
           Left = 3
           Top = 32
-          Width = 167
+          Width = 175
           Height = 26
           Margins.Top = 2
           Margins.Bottom = 2
@@ -85,7 +84,7 @@ object frmMain: TfrmMain
           AlignWithMargins = True
           Left = 3
           Top = 2
-          Width = 167
+          Width = 175
           Height = 26
           Hint = '----------'
           Margins.Top = 2
@@ -99,16 +98,18 @@ object frmMain: TfrmMain
         end
       end
       object catImprove: TCategoryPanel
-        Top = 90
-        Height = 120
+        Top = 150
+        Height = 30
         Caption = 'Improve code'
+        Collapsed = True
         TabOrder = 1
+        ExpandedHeight = 120
         object btnFreeAndNil3: TButton
           Tag = 3
           AlignWithMargins = True
           Left = 3
           Top = 62
-          Width = 167
+          Width = 175
           Height = 26
           Hint = 'Replaces Object.Free with FreeAndNil(Object) which is safer.'
           Margins.Top = 2
@@ -125,7 +126,7 @@ object frmMain: TfrmMain
           AlignWithMargins = True
           Left = 3
           Top = 2
-          Width = 167
+          Width = 175
           Height = 26
           Hint = 'Finds all try/except lines. See details.'
           Margins.Top = 2
@@ -142,7 +143,7 @@ object frmMain: TfrmMain
           AlignWithMargins = True
           Left = 3
           Top = 32
-          Width = 167
+          Width = 175
           Height = 26
           Hint = 
             'SetFocus is broken in Delphi. Replaces MyControl.SetFocus with a' +
@@ -158,7 +159,7 @@ object frmMain: TfrmMain
         end
       end
       object cat64bit: TCategoryPanel
-        Top = 60
+        Top = 120
         Height = 30
         Caption = '32 to 64-bit upgrade'
         Collapsed = True
@@ -169,7 +170,7 @@ object frmMain: TfrmMain
           AlignWithMargins = True
           Left = 3
           Top = 152
-          Width = 167
+          Width = 175
           Height = 26
           Hint = 'It is recommended to replace Extended with Double.'
           Margins.Top = 2
@@ -186,7 +187,7 @@ object frmMain: TfrmMain
           AlignWithMargins = True
           Left = 3
           Top = 182
-          Width = 167
+          Width = 175
           Height = 26
           Hint = 
             'Find packed records that have an '#39'Extended'#39' fields.'#13#10'The "packed' +
@@ -207,7 +208,7 @@ object frmMain: TfrmMain
           AlignWithMargins = True
           Left = 3
           Top = 92
-          Width = 167
+          Width = 175
           Height = 26
           Hint = 'Searches for "Pointer(Integer(" and similar issues.'
           Margins.Top = 2
@@ -223,7 +224,7 @@ object frmMain: TfrmMain
           AlignWithMargins = True
           Left = 3
           Top = 122
-          Width = 167
+          Width = 175
           Height = 26
           Hint = 
             'Find possible LongInt/PLongInt typecasts.'#13#10'On Windows, LongInt i' +
@@ -241,7 +242,7 @@ object frmMain: TfrmMain
           AlignWithMargins = True
           Left = 3
           Top = 2
-          Width = 167
+          Width = 175
           Height = 26
           Margins.Top = 2
           Margins.Bottom = 2
@@ -257,7 +258,7 @@ object frmMain: TfrmMain
           AlignWithMargins = True
           Left = 3
           Top = 32
-          Width = 167
+          Width = 175
           Height = 26
           Margins.Top = 2
           Margins.Bottom = 2
@@ -272,7 +273,7 @@ object frmMain: TfrmMain
           AlignWithMargins = True
           Left = 3
           Top = 62
-          Width = 167
+          Width = 175
           Height = 26
           Hint = 
             'Search SetWindowLong/GetWindowLog .'#13#10#13#10'Replace SetWindowLong/Get' +
@@ -294,7 +295,7 @@ object frmMain: TfrmMain
         end
       end
       object catText: TCategoryPanel
-        Top = 30
+        Top = 90
         Height = 30
         Caption = 'Text files'
         Collapsed = True
@@ -305,7 +306,7 @@ object frmMain: TfrmMain
           AlignWithMargins = True
           Left = 3
           Top = 2
-          Width = 167
+          Width = 175
           Height = 26
           Margins.Top = 2
           Margins.Bottom = 2
@@ -321,7 +322,7 @@ object frmMain: TfrmMain
           AlignWithMargins = True
           Left = 3
           Top = 32
-          Width = 167
+          Width = 175
           Height = 26
           Margins.Top = 2
           Margins.Bottom = 2
@@ -337,7 +338,7 @@ object frmMain: TfrmMain
           AlignWithMargins = True
           Left = 3
           Top = 62
-          Width = 167
+          Width = 175
           Height = 26
           Margins.Top = 2
           Margins.Bottom = 2
@@ -353,7 +354,7 @@ object frmMain: TfrmMain
           AlignWithMargins = True
           Left = 3
           Top = 92
-          Width = 167
+          Width = 175
           Height = 26
           Hint = 
             'Fixes invalid Enter characters, to match the Windows standard (C' +
@@ -370,17 +371,15 @@ object frmMain: TfrmMain
       end
       object catSearch: TCategoryPanel
         Top = 0
-        Height = 30
+        Height = 90
         Caption = 'Search'
-        Collapsed = True
         TabOrder = 4
-        ExpandedHeight = 90
         object btnAgIntfImpl: TButton
           Tag = 10
           AlignWithMargins = True
           Left = 3
           Top = 2
-          Width = 167
+          Width = 175
           Height = 26
           Hint = 
             'Search in all files for the class that implements the specified ' +
@@ -399,7 +398,7 @@ object frmMain: TfrmMain
           AlignWithMargins = True
           Left = 3
           Top = 32
-          Width = 167
+          Width = 175
           Height = 26
           Hint = 'List all lines of code that contains the specified item'
           Margins.Top = 2
@@ -413,11 +412,37 @@ object frmMain: TfrmMain
         end
       end
     end
+    object chkReopenLast: TCubicCheckBox
+      AlignWithMargins = True
+      Left = 3
+      Top = 508
+      Width = 187
+      Height = 17
+      Hint = 'When the program starts, reopen the last used agent'
+      Align = alBottom
+      Caption = 'Reopen last agent'
+      Checked = True
+      State = cbChecked
+      TabOrder = 1
+      AutoSize = True
+    end
+    object chkHideMainForm: TCubicCheckBox
+      AlignWithMargins = True
+      Left = 3
+      Top = 485
+      Width = 187
+      Height = 17
+      Hint = 'Hide this form when an agent is open'
+      Align = alBottom
+      Caption = 'Hide main form after agent'
+      TabOrder = 2
+      AutoSize = True
+    end
   end
   object Panel1: TPanel
-    Left = 188
+    Left = 196
     Top = 5
-    Width = 576
+    Width = 568
     Height = 123
     Anchors = [akLeft, akTop, akRight]
     TabOrder = 1
@@ -425,7 +450,7 @@ object frmMain: TfrmMain
       AlignWithMargins = True
       Left = 4
       Top = 104
-      Width = 57
+      Width = 560
       Height = 15
       Cursor = crHandPoint
       Align = alBottom
@@ -450,7 +475,7 @@ object frmMain: TfrmMain
       AlignWithMargins = True
       Left = 4
       Top = 4
-      Width = 410
+      Width = 560
       Height = 30
       Cursor = crHandPoint
       Align = alTop

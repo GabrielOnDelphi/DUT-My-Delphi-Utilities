@@ -5,7 +5,6 @@ uses
   Vcl.Forms,
   Vcl.Themes,
   Vcl.Styles,
-  cbAppData in '..\..\LightSaber\cbAppData.pas',
   MainForm in 'MainForm.pas' {frmMain},
   FormExclude in 'FormExclude.pas' {frmExclude},
   FormColorPicker in 'FormColorPicker.pas',
@@ -24,12 +23,18 @@ uses
   dutWin64Pointer in 'dutWin64Pointer.pas',
   dutFindCode in 'dutFindCode.pas' {frmSettingsFindCode},
   dutFindInterface in 'dutFindInterface.pas' {frmSettingsIntf},
-  dutBom in 'dutBom.pas';
+  dutBom in 'dutBom.pas',
+  ccAppData in '..\..\LightSaber\ccAppData.pas',
+  cbAppDataForm in '..\..\LightSaber\FrameVCL\cbAppDataForm.pas',
+  cbAppDataVCL in '..\..\LightSaber\FrameVCL\cbAppDataVCL.pas',
+  cbIniFile in '..\..\LightSaber\FrameVCL\cbIniFile.pas',
+  ccINIFile in '..\..\LightSaber\ccINIFile.pas';
 
 {$R *.res}
 
 begin
   AppData:= TAppData.Create('LUD - Light Delphi Utilities');
-  AppData.CreateMainForm(TfrmMain, frmMain, True);
+  AppData.ProductWelcome:= 'https://GabrielMoraru.com';
+  AppData.CreateMainForm(TfrmMain, frmMain, TRUE, TRUE, asFull);
   AppData.Run;
 end.

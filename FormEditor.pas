@@ -70,7 +70,7 @@ end;
 
 procedure TfrmEditor.FormDestroy(Sender: TObject);
 begin
-  //SaveForm(Self);
+  ////SaveForm(Self); called by AppData
 end;
 
 

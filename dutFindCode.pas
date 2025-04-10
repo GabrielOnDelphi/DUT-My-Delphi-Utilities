@@ -14,14 +14,20 @@ INTERFACE
 USES
   System.SysUtils, System.Classes, System.Math,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls,
-  cmSearchResult, dutUpgradeCode, dutBase;
+  cbAppDataVCL, cmSearchResult, dutUpgradeCode, dutBase, cbIniFile, ccINIFile, cbAppDataForm, cvMemo;
 
 
 TYPE
-  TfrmSettingsFindCode = class(TForm)
+  TfrmSettingsFindCode = class(TLightForm)
     Container: TPanel;
     edtText: TLabeledEdit;
+    mmoExclude: TCubicMemo;
+    lblExcludedWords: TLabel;
+  private
+    function ExcludedFile: string;
   public
+    procedure FormPostInitialize; override;
+    procedure FormPreRelease; override;
   end;
 
 
@@ -51,7 +57,7 @@ USES
 constructor TAgent_FindCode.Create(BackupFile: Boolean);
 begin
   inherited;
-  FormSettings:= TfrmSettingsFindCode.Create(NIL); //Freed by: HostPanel
+  AppData.CreateForm(TfrmSettingsFindCode, FormSettings, FALSE, asFull);   //Freed by: TAgent_FindCode.Destroy
 end;
 
 
@@ -59,7 +65,9 @@ end;
 procedure TAgent_FindCode.Execute(const FileName: string);
 var
    sLine: string;
+   Word: string;
    iLine: Integer;
+   ExcludedWordFound: Boolean;
 begin
   inherited Execute(FileName);
 
@@ -72,8 +80,21 @@ begin
     begin
       sLine:= LowerCase(TextBody[iLine]);
       var iColumn:= Pos(Needle, sLine);
-      if iColumn > 0
-      then SearchResults.Last.AddNewPos(iLine, iColumn, sLine);
+      if iColumn > 0 then
+        begin
+         // Exclude words in mmoExclude
+         ExcludedWordFound:= FALSE;
+         for Word in FormSettings.mmoExclude.Lines DO
+           begin
+             if Pos(LowerCase(Word), sLine) > 0 then
+               begin
+                 ExcludedWordFound:= TRUE;
+                 Break;
+               end;
+           end;
+          if NOT ExcludedWordFound
+          then SearchResults.Last.AddNewPos(iLine, iColumn, sLine);
+        end;
     end;
 
   Finalize; // Increment counters
@@ -113,5 +134,29 @@ class function TAgent_FindCode.AgentName: string;
 begin
   Result:= 'Find Delphi code';
 end;
+
+
+
+{ TfrmSettingsFindCode }
+function TfrmSettingsFindCode.ExcludedFile: string;
+begin
+  Result:= AppData.AppDataFolder+ 'FindCode - Excluded words.txt';
+end;
+
+
+procedure TfrmSettingsFindCode.FormPostInitialize;
+begin
+  inherited;
+  if FileExists(ExcludedFile)
+  then mmoExclude.Lines.LoadFromFile(ExcludedFile);
+end;
+
+
+procedure TfrmSettingsFindCode.FormPreRelease;
+begin
+  mmoExclude.Lines.SaveToFile(ExcludedFile);
+  inherited;
+end;
+
 
 end.

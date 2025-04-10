@@ -22,7 +22,8 @@ var
 implementation {$R *.dfm}
 
 uses
-   cbAppData, cvINIFile;
+   ccAppData, cbAppDataVCL
+, cvINIFile;
 
 
 procedure TfrmOptions.FormCreate(Sender: TObject);
@@ -33,7 +34,7 @@ end;
 
 procedure TfrmOptions.FormDestroy(Sender: TObject);
 begin
-  //SaveForm(Self);
+  ////SaveForm(Self); called by AppData
 end;
 
 end.

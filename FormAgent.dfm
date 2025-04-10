@@ -69,9 +69,9 @@ object frmAgentResults: TfrmAgentResults
       object lbxResults: TListBox
         AlignWithMargins = True
         Left = 3
-        Top = 23
+        Top = 26
         Width = 646
-        Height = 155
+        Height = 152
         Hint = 
           'Click to list the content of the file.'#13#10'Double click to load fil' +
           'e in the Delphi IDE.'#13#10'Right click for more options.'

@@ -2,7 +2,7 @@ object frmSettingsFindCode: TfrmSettingsFindCode
   Left = 0
   Top = 0
   Caption = '@Settings'
-  ClientHeight = 91
+  ClientHeight = 217
   ClientWidth = 295
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -10,15 +10,27 @@ object frmSettingsFindCode: TfrmSettingsFindCode
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Position = poDesigned
+  ShowHint = True
   TextHeight = 15
   object Container: TPanel
     AlignWithMargins = True
     Left = 3
     Top = 3
     Width = 289
-    Height = 59
+    Height = 214
     Align = alTop
     TabOrder = 0
+    object lblExcludedWords: TLabel
+      AlignWithMargins = True
+      Left = 4
+      Top = 51
+      Width = 281
+      Height = 15
+      Hint = 'This is case insensitive.'
+      Align = alTop
+      Caption = 'Exclude these words:'
+    end
     object edtText: TLabeledEdit
       AlignWithMargins = True
       Left = 4
@@ -32,6 +44,18 @@ object frmSettingsFindCode: TfrmSettingsFindCode
       EditLabel.Caption = 'Search for'
       TabOrder = 0
       Text = ''
+    end
+    object mmoExclude: TCubicMemo
+      AlignWithMargins = True
+      Left = 4
+      Top = 69
+      Width = 281
+      Height = 141
+      Align = alClient
+      HideSelection = False
+      ScrollBars = ssVertical
+      TabOrder = 1
+      TypeMode = tmInsert
     end
   end
 end

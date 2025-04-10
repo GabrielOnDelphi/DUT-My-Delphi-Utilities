@@ -80,25 +80,30 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="..\..\LightSaber\cbAppData.pas"/>
         <DCCReference Include="MainForm.pas">
             <Form>frmMain</Form>
+            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="FormExclude.pas">
             <Form>frmExclude</Form>
+            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="FormColorPicker.pas"/>
         <DCCReference Include="FormAgent.pas">
             <Form>frmAgentResults</Form>
+            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="FormOTA.pas">
             <Form>frmOTA</Form>
+            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="FormEditor.pas">
             <Form>frmEditor</Form>
+            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="FormOptions.pas">
             <Form>frmOptions</Form>
+            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\LightSaber\cmPascal.pas"/>
         <DCCReference Include="..\..\LightSaber\cmSearchResult.pas"/>
@@ -115,8 +120,14 @@
         </DCCReference>
         <DCCReference Include="dutFindInterface.pas">
             <Form>frmSettingsIntf</Form>
+            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="dutBom.pas"/>
+        <DCCReference Include="..\..\LightSaber\ccAppData.pas"/>
+        <DCCReference Include="..\..\LightSaber\FrameVCL\cbAppDataForm.pas"/>
+        <DCCReference Include="..\..\LightSaber\FrameVCL\cbAppDataVCL.pas"/>
+        <DCCReference Include="..\..\LightSaber\FrameVCL\cbIniFile.pas"/>
+        <DCCReference Include="..\..\LightSaber\ccINIFile.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -137,10 +148,7 @@
                 <Source>
                     <Source Name="MainSource">LDU.dpr</Source>
                 </Source>
-                <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k280.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp280.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
-                </Excluded_Packages>
+                <Excluded_Packages/>
             </Delphi.Personality>
             <Platforms>
                 <Platform value="Android">False</Platform>

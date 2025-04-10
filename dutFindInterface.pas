@@ -49,7 +49,8 @@ TYPE
 
 IMPLEMENTATION {$R *.dfm}
 USES
-   cbAppData, ccINIFile, ccTextFile, ccIO, cmPascal, ccCore;
+   ccAppData, cbAppDataVCL
+, ccINIFile, ccTextFile, ccIO, cmPascal, ccCore;
 
 
 class function TAgent_FindInterface.AgentName: string;

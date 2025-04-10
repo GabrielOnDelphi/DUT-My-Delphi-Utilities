@@ -22,7 +22,8 @@ var
 implementation {$R *.dfm}
 
 uses
-   cbAppData, cvINIFile;
+   ccAppData, cbAppDataVCL
+, cvINIFile;
 
 
 function TfrmExclude.excludedFiles: string;
@@ -40,7 +41,7 @@ end;
 
 procedure TfrmExclude.FormDestroy(Sender: TObject);
 begin
-  //SaveForm(Self);
+  ////SaveForm(Self); called by AppData
   mmoExclude.Lines.SaveToFile(excludedFiles);
 end;
 

@@ -47,6 +47,7 @@ type
     procedure LoadCurFile;
     procedure StartTask;
     procedure SetCaption(const Msg: string);
+    procedure SetAgent(ID: integer);
   public
     Agent: TBaseAgent;
     procedure Reset;
@@ -54,72 +55,80 @@ type
     function  GetSelectedSearch: TSearchResult;
     procedure HideEditor;
 
-    procedure FormInitialize; override;
-    procedure FormRelease;    override;
+    procedure FormPostInitialize; override;
+    procedure FormPreRelease;    override;
   end;
 
 procedure CreateAgentForm(ID: integer);
 
+
 IMPLEMENTATION {$R *.dfm}
 
 USES
-   cbDialogs, cmIO, ccCore, ccIO, ccTextFile, cbAppData, cvINIFile, csSystem, csExecuteShell, ccIniFile,
+   cbDialogs, cmIO, ccCore, ccIO, ccTextFile, ccAppData, cbAppDataVCL, cvINIFile, csSystem, csExecuteShell, ccIniFile, cbINIFileQuick,
    FormOTA, FormEditor, FormOptions, MainForm, FormExclude,
    dutAgentFactory;
 
 
 
 {-------------------------------------------------------------------------------------------------------------
-   CONSTRUCTOR/DESTRUCTOR
+   PRE-CONSTRUCTOR
 -------------------------------------------------------------------------------------------------------------}
 procedure CreateAgentForm(ID: integer);
 VAR
-  AgentClass: TAgentClass;
   frmAgResults: TfrmAgentResults;
 begin
-  // CREATE SELF FORM
   AppData.CreateForm(TfrmAgentResults, frmAgResults, TRUE, asFull);
+  frmAgResults.SetAgent(ID); // SET AGENT
+end;
 
-  // GET AGENT
+
+procedure TfrmAgentResults.SetAgent(ID: integer);
+VAR
+  AgentClass: TAgentClass;
+begin
+  // Convert agent ID to agent class
   AgentClass := IDToClassName(ID);
-  frmAgResults.Agent:= TDutAgentFactory.CreateAgent(AgentClass, frmOptions.chkBackup.Checked);
-  (frmAgResults.Agent as AgentClass).DockSettingsForm(frmAgResults.pnlRight);
-  frmAgResults.Caption:= frmAgResults.Agent.AgentName;
+
+  // Set agent
+  Agent:= TDutAgentFactory.CreateAgent(AgentClass, frmOptions.chkBackup.Checked);
+
+  Caption:= Agent.AgentName;
+
+  // DOCKING
+  (Agent as AgentClass).DockSettingsForm(pnlRight);
 
   // ENABLE CHECKBOXES
-  frmAgResults.chkRelaxed.Visible:= frmAgResults.Agent.CanRelax;
-  frmAgResults.btnReplace.Visible:= frmAgResults.Agent.CanReplace;
+  chkRelaxed.Visible:= Agent.CanRelax;
+  btnReplace.Visible:= Agent.CanReplace;
 
   // EXPLORER & FILTER
-  frmAgResults.Refresh;                         // Refresh the main form so the frmExplorer is shown in the correct position
-  frmAgResults.edtPathPathChanged(NIL);         // Read files in folder. This could take a while for large folders
+  Refresh;                         // Refresh the main form so the frmExplorer is shown in the correct position
+  edtPathPathChanged(NIL);         // Read files in folder. This could take a while for large folders
   AppData.CreateFormHidden(TfrmExclude, frmExclude);
 
   // EDITOR
   AppData.CreateFormHidden(TfrmEditor, frmEditor);
-  frmEditor.frmResults:= frmAgResults;
-  frmAgResults.HideEditor;
+  frmEditor.frmResults:= Self;
+  HideEditor;
 end;
 
 
 
-
-
-
-
-
-procedure TfrmAgentResults.FormInitialize;
+{-------------------------------------------------------------------------------------------------------------
+   CONSTRUCTOR/DESTRUCTOR
+-------------------------------------------------------------------------------------------------------------}
+procedure TfrmAgentResults.FormPostInitialize;
 begin
-  inherited;
+  inherited FormPostInitialize;
   cvINIFile.LoadForm(Self);
   lblInpOut.Caption:= 'Input files:';
   pnlFiles.Align:= alClient;
 end;
 
 
-procedure TfrmAgentResults.FormRelease;
+procedure TfrmAgentResults.FormPreRelease;
 begin
-  cvINIFile.SaveForm(Self);
 end;
 
 

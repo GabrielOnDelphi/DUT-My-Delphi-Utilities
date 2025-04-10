@@ -12,12 +12,15 @@ UNIT MainForm;
      Ignores lines that start with a comment symbol:   // { (*
 -------------------------------------------------------------------------------------------------------------}
 //ToDo: remember which panels were collapsed
+//ToDo: freezes when typing in "path"Apply button in LDU, in Path
+//ToDo: button to allow user so save gui
+
 INTERFACE
 
 USES
   System.SysUtils, System.Classes,
   Vcl.Controls, Vcl.Forms, Vcl.ComCtrls, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Menus, Vcl.Mask, Vcl.AppEvnts,
-  ccCore, cbAppData, Vcl.WinXPanels, Vcl.CategoryButtons, InternetLabel, cbAppDataForm;
+  ccCore, ccAppData, Vcl.WinXPanels, Vcl.CategoryButtons, InternetLabel, cbAppDataForm, cvCheckBox;
 
 TYPE
   TfrmMain = class(TLightForm)
@@ -37,30 +40,34 @@ TYPE
     btnFreeAndNil3      : TButton;
     btnSettings         : TButton;
     btnTryExcept4       : TButton;
-    btnCrLf: TButton;
+    btnCrLf             : TButton;
     Button2             : TButton;
     Categories          : TCategoryPanelGroup;
-    catSearch: TCategoryPanel;
-    catImprove: TCategoryPanel;
-    catText: TCategoryPanel;
-    catTools: TCategoryPanel;
+    catSearch           : TCategoryPanel;
+    catImprove          : TCategoryPanel;
+    catText             : TCategoryPanel;
+    catTools            : TCategoryPanel;
     lblDescription      : TLabel;
     lblHomePage         : TInternetLabel;
     Panel1              : TPanel;
-    cat64bit: TCategoryPanel;
+    cat64bit            : TCategoryPanel;
     pnlLeft             : TPanel;
     setFocus4           : TButton;
-    btnHelp2: TButton;
-    lblNoteOta: TInternetLabel;
-    procedure FormDestroy     (Sender: TObject);
+    btnHelp2            : TButton;
+    lblNoteOta          : TInternetLabel;
+    chkReopenLast       : TCubicCheckBox;
+    chkHideMainForm     : TCubicCheckBox;
     procedure StartTask       (Sender: TObject);
     procedure btnHelp2Click   (Sender: TObject);
     procedure btnSettingsClick(Sender: TObject);
     procedure btnMouseEnter   (Sender: TObject);
     procedure btnCrLfClick    (Sender: TObject);
     procedure btnColorPickClick(Sender: TObject);
+  private
+    LastAgent: Integer;   // Used to restore the last agent
   public
-    procedure FormInitialize; override;
+    procedure FormPostInitialize; override;
+    procedure FormPreRelease;     override;
   end;
 
 VAR
@@ -70,37 +77,47 @@ IMPLEMENTATION {$R *.dfm}
 
 USES
    cmIO,
+   cbAppDataVCL,
    csExecuteShell,
    ccINIFile,
    cvINIFile,
    dutCodeFormat,
    dutAgentFactory,
    cbDialogs,
+   cbINIFileQuick,
    FormColorPicker,
    FormOptions,
    FormExclude,
    FormAgent,
    FormEditor;
 
+
 {-------------------------------------------------------------------------------------------------------------
    CONSTRUCTOR
 -------------------------------------------------------------------------------------------------------------}
 
-procedure TfrmMain.FormInitialize;
+procedure TfrmMain.FormPostInitialize;
 begin
-  inherited FormInitialize;
+  inherited FormPostInitialize;
 
   if AppData.RunningFirstTime
-  then ExecuteURL('https://GabrielMoraru.com');
+  then ExecuteURL(AppData.ProductWelcome);
 
   AppData.CreateFormHidden(TfrmOptions, frmOptions, asFull);
   AppData.Initializing:= FALSE;
+
+  // Reopen the last agent
+  LastAgent:= ReadInteger('LastAgent', -1);
+  if chkReopenLast.Checked AND (LastAgent > 0)
+  then CreateAgentForm(LastAgent);
+
+  if chkHideMainForm.Checked then Hide;
 end;
 
 
-procedure TfrmMain.FormDestroy(Sender: TObject);
+procedure TfrmMain.FormPreRelease;
 begin
-  //SaveForm(Self);
+  WriteInteger('LastAgent', LastAgent);
 end;
 
 
@@ -112,8 +129,9 @@ end;
 procedure TfrmMain.StartTask(Sender: TObject);
 begin
   Assert((Sender as TButton).Tag > 0, 'Unknown tag!');
-  CreateAgentForm((Sender as TButton).Tag);
-  //Hide;
+
+  LastAgent:= (Sender as TButton).Tag;
+  CreateAgentForm(LastAgent);
 end;
 
 

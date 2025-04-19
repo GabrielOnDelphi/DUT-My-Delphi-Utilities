@@ -80,13 +80,13 @@ begin
   { Send }
   Receiver := WinApi.Windows.FindWindow(PWideChar('TfrmOTAReceiver'), nil);
   if Receiver = 0
-  then MesajError('IDE Receiver NOT found! Please install the IDEFileReceiver.DPK first! If it doesn''t work, uninstall and reinstall the package.')
+  then MessageError('IDE Receiver NOT found! Please install the IDEFileReceiver.DPK first! If it doesn''t work, uninstall and reinstall the package.')
   else
     begin
       Res := SendMessage(Receiver, WM_COPYDATA, Wparam({Handle - here was the MainForm} nil), LParam(@DataToSend));
       if Res > 0
       then //Caption := 'Succesfully sent '+IntToStr(Res)+' characters'
-      else MesajError('SendMessage failed!');
+      else MessageError('SendMessage failed!');
 
       //Winapi.Windows.ShowWindow(Receiver, SW_SHOWNORMAL);
       //Winapi.Windows.SetForegroundWindow(Receiver);

@@ -22,7 +22,7 @@ A set of tools that help you work with PAS files or other IDE-related functional
   
 All tools can be applied at batch to all files in the specified folder (and subfolders).
   
-
+---
 
 **Freeware and open source**
 

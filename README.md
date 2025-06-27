@@ -1,19 +1,22 @@
 # LDU - LightSaber Delphi Utilities  
 
-A set of tools that help you with your Delphi code:  
+A set of tools that help you improve or update your old Delphi code base:
 * Upgrade code from 32 to 64 bit (invalid pointer casts, etc).  
-* Format your code.  
-* Detect English spelling issues in DFM files.  
-* Fix the CanFocus/SetFocus at batch.   
-* Fix swallowed exceptions.  
+* Fix the CanFocus/SetFocus.
+* Fix swallowed exceptions.
+* Format your code.
+IDE integration
+This is an external tool. However, all the above tools have IDE integration. For example: when something wrong (invalid typecast) is detected in a PAS file, it will present you the issue on the screen showing the whole code, the problem, and how to fix it. You can fix the error right on stop or you can click a button and the tool will send that file to the IDE. Now you can edit the file in the IDE.
+
+A set of tools that help you work with PAS files or other IDE-related functionality:
 * Find all classes that implement an interface.  
+* Fix the broken CRLF.
 * Color picker.  
-* Fix the broken CRLF.  
-* Convert PAS files from ANSI to UTF8 and back.  
+* Convert PAS files from ANSI to UTF8 and back.
+* Detect English spelling issues in DFM files (work in progress) 
 * etc  
   
 All tools can be applied at batch to all files in the specified folder (and subfolders).
-When something wrong (invalid typecast, for example) is detected in a PAS file, you can double-click that file, and the tool will send that file to the IDE.
   
 Full project description [here](https://gabrielmoraru.com/)  
 

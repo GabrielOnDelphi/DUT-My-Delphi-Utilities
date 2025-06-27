@@ -17,7 +17,13 @@ A set of tools that help you work with PAS files or other IDE-related functional
 * etc  
   
 All tools can be applied at batch to all files in the specified folder (and subfolders).
-  
-Full project description [here](https://gabrielmoraru.com/)  
+
+**Freeware and open source**
+
+Get the source code, IDE plugin and precompiled EXE file from GitHub.
+
+Other programmers ask for donations or sponsorships. I only ask you to star the project to encourage further development. High stared projects get priority.
+
+Similar projects [here](https://gabrielmoraru.com/)  
 
 ![image](https://github.com/GabrielOnDelphi/DUT-My-Delphi-Utilities/assets/31410401/641afc97-9794-4562-8401-23094b0e9475)

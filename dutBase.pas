@@ -17,7 +17,7 @@ INTERFACE
 
 USES
   System.SysUtils, System.Classes, Vcl.Forms, Vcl.ExtCtrls,
-  cmSearchResult, ccTextFile;
+  cmSearchResult, LightCore.TextFile;
 
 TYPE
   TBaseAgent= class(TObject)
@@ -60,7 +60,7 @@ TYPE
 
 
 IMPLEMENTATION
-USES ccIO;
+USES LightCore.IO;
 
 
 {-------------------------------------------------------------------------------------------------------------

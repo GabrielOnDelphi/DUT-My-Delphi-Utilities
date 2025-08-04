@@ -3,7 +3,7 @@
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes, Vcl.Controls, Vcl.Forms, cbAppDataForm,Vcl.StdCtrls,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes, Vcl.Controls, Vcl.Forms, LightVcl.Common.AppDataForm,Vcl.StdCtrls,
   cmSearchResult;
 
 type
@@ -24,7 +24,7 @@ procedure OpenFileInIDE(SearchRes: TSearchResult; CurPos: Integer);  overload;
 implementation {$R *.dfm}
 
 USES
-   cmIO, ccCore, cbDialogs;
+   LightVcl.Common.IO, LightCore, LightVcl.Common.Dialogs;
 
 
 {-------------------------------------------------------------------------------------------------------------

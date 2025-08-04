@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes,
-  Vcl.Controls, Vcl.Forms, cbAppDataForm,Vcl.StdCtrls, Vcl.ExtCtrls, System.Actions, Vcl.ActnList,
+  Vcl.Controls, Vcl.Forms, LightVcl.Common.AppDataForm,Vcl.StdCtrls, Vcl.ExtCtrls, System.Actions, Vcl.ActnList,
   cmSearchResult, FormAgent;
 
 type
@@ -58,7 +58,7 @@ var
 implementation {$R *.dfm}
 
 USES
-   cvINIFile, ccIO, FormOTA, cmPascal;
+   LightVcl.Visual.INIFile, LightCore.IO, FormOTA, cmPascal;
 
 
 
@@ -266,7 +266,7 @@ procedure TfrmEditor.actSaveExecute(Sender: TObject);
 begin
   Assert(GetSelectedSearch <> nil, 'No SearchResult assigned');
 
-  ccIO.BackupFileIncrement(GetSelectedSearch.FileName, '', '.bak');
+  LightCore.IO.BackupFileIncrement(GetSelectedSearch.FileName, '', '.bak');
   mmoView.Lines.SaveToFile(GetSelectedSearch.FileName);
 end;
 

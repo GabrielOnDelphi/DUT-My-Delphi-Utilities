@@ -35,7 +35,7 @@ TYPE
 IMPLEMENTATION
 
 USES
-   cmPascal, ccCore;
+   cmPascal, LightCore;
 
 
 { Extended in packed records }

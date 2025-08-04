@@ -26,7 +26,7 @@ TYPE
 
 IMPLEMENTATION
 USES
-   ccTextFile, ccIO, cmPascal, ccCore;
+   LightCore.TextFile, LightCore.IO, cmPascal, LightCore;
 
 
 class function TAgent_CodeFormat.Description: string;

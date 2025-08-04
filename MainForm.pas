@@ -20,7 +20,7 @@ INTERFACE
 USES
   System.SysUtils, System.Classes,
   Vcl.Controls, Vcl.Forms, Vcl.ComCtrls, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Menus, Vcl.Mask, Vcl.AppEvnts,
-  ccCore, ccAppData, Vcl.WinXPanels, Vcl.CategoryButtons, InternetLabel, cbAppDataForm, cvCheckBox;
+  LightCore, LightCore.AppData, LightVcl.Common.AppData, Vcl.WinXPanels, Vcl.CategoryButtons, InternetLabel, LightVcl.Common.AppDataForm, LightVcl.Visual.CheckBox;
 
 TYPE
   TfrmMain = class(TLightForm)
@@ -76,15 +76,15 @@ VAR
 IMPLEMENTATION {$R *.dfm}
 
 USES
-   cmIO,
-   cbAppDataVCL,
-   csExecuteShell,
-   ccINIFile,
-   cvINIFile,
+   LightVcl.Common.IO,
+   LightVcl.Common.AppData,
+   LightVcl.Common.ExecuteShell,
+   LightCore.INIFile,
+   LightVcl.Visual.INIFile,
    dutCodeFormat,
    dutAgentFactory,
-   cbDialogs,
-   cbINIFileQuick,
+   LightVcl.Common.Dialogs,
+   LightVcl.Common.IniFileQuick,
    FormColorPicker,
    FormOptions,
    FormExclude,

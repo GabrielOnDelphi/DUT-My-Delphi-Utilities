@@ -21,3 +21,6 @@ Group.groupproj
 Files for testing.zip
 SignExeLocal.cmd
 descript.ion
+/OTA Package/__history
+*.json
+*.dsv

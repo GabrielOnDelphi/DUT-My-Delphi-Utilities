@@ -4,8 +4,8 @@
 INTERFACE
 
 USES
-  Windows, SysUtils, Classes, Graphics, Controls, Vcl.Forms, cbAppDataForm, Dialogs,
-  StdCtrls, ccCore, cGraphUtil, ExtCtrls, Vcl.Mask;
+  Windows, SysUtils, Classes, Graphics, Controls, Vcl.Forms, LightVcl.Common.AppDataForm, Dialogs,
+  StdCtrls, LightCore, LightVcl.Graph.Util, ExtCtrls, Vcl.Mask;
 
 TYPE
   TfrmClrPick = class(TLightForm)
@@ -34,7 +34,7 @@ TYPE
 
 
 IMPLEMENTATION {$R *.dfm}
-uses csSystem, csExecuteShell;
+uses LightVcl.Common.SystemTime, LightVcl.Common.Clipboard, LightVcl.Common.ExecuteShell;
 
 
 

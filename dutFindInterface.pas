@@ -16,7 +16,7 @@ INTERFACE
 USES
   System.SysUtils, System.Classes, System.Math,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls,
-  cbAppDataForm, cmSearchResult, dutUpgradeCode, dutBase;
+  LightVcl.Common.AppDataForm, cmSearchResult, dutUpgradeCode, dutBase;
 
 
 TYPE
@@ -49,8 +49,8 @@ TYPE
 
 IMPLEMENTATION {$R *.dfm}
 USES
-   ccAppData, cbAppDataVCL
-, ccINIFile, ccTextFile, ccIO, cmPascal, ccCore;
+   LightCore.AppData, LightVcl.Common.AppData
+, LightCore.INIFile, LightCore.TextFile, LightCore.IO, cmPascal, LightCore;
 
 
 class function TAgent_FindInterface.AgentName: string;
@@ -120,7 +120,7 @@ begin
   MethodToFind  := FormSettings.edtMethod.Text;
   InterfaceName := FormSettings.edtIntfName.Text;
 
-  if FileExists(appdata.CurFolder+ 'taifun')
+  if FileExists(AppData.ExeFolder+ 'taifun')
   then ClassNamePrefix:= 'C'
   else ClassNamePrefix:= 'T';
 

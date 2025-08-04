@@ -123,11 +123,11 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="dutBom.pas"/>
-        <DCCReference Include="..\..\LightSaber\ccAppData.pas"/>
-        <DCCReference Include="..\..\LightSaber\FrameVCL\cbAppDataForm.pas"/>
-        <DCCReference Include="..\..\LightSaber\FrameVCL\cbAppDataVCL.pas"/>
-        <DCCReference Include="..\..\LightSaber\FrameVCL\cbIniFile.pas"/>
-        <DCCReference Include="..\..\LightSaber\ccINIFile.pas"/>
+        <DCCReference Include="..\..\LightSaber\LightCore.AppData.pas"/>
+        <DCCReference Include="..\..\LightSaber\FrameVCL\LightCom.AppDataForm.pas"/>
+        <DCCReference Include="..\..\LightSaber\FrameVCL\LightCom.AppData.pas"/>
+        <DCCReference Include="..\..\LightSaber\FrameVCL\LightCom.IniFile.pas"/>
+        <DCCReference Include="..\..\LightSaber\LightCore.INIFile.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

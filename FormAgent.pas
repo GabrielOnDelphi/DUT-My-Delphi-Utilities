@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, System.SysUtils, System.Classes,
   Vcl.Controls, Vcl.Forms, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Menus, Vcl.Mask,
-  cmSearchResult, dutCodeFormat, dutBase, cvPathEdit, cbAppDataForm;
+  cmSearchResult, dutCodeFormat, dutBase, LightVcl.Visual.PathEdit, LightVcl.Common.AppDataForm;
 
 type
   TfrmAgentResults = class(TLightForm)
@@ -65,7 +65,7 @@ procedure CreateAgentForm(ID: integer);
 IMPLEMENTATION {$R *.dfm}
 
 USES
-   cbDialogs, cmIO, ccCore, ccIO, ccTextFile, ccAppData, cbAppDataVCL, cvINIFile, csSystem, csExecuteShell, ccIniFile, cbINIFileQuick,
+   LightVcl.Common.Dialogs, LightVcl.Common.IO, LightCore, LightCore.IO, LightCore.TextFile, LightCore.AppData, LightVcl.Common.AppData, LightVcl.Visual.INIFile, LightVcl.Common.SystemTime, LightVcl.Common.Clipboard, LightVcl.Common.ExecuteShell, LightCore.INIFile, LightVcl.Common.IniFileQuick,
    FormOTA, FormEditor, FormOptions, MainForm, FormExclude,
    dutAgentFactory;
 
@@ -121,7 +121,7 @@ end;
 procedure TfrmAgentResults.FormPostInitialize;
 begin
   inherited FormPostInitialize;
-  cvINIFile.LoadForm(Self);
+  LightVcl.Visual.INIFile.LoadForm(Self);
   lblInpOut.Caption:= 'Input files:';
   pnlFiles.Align:= alClient;
 end;

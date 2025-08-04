@@ -3,7 +3,7 @@
 interface
 
 uses
-  System.SysUtils, System.Classes, Vcl.Controls, Vcl.Forms, cbAppDataForm, Vcl.StdCtrls;
+  System.SysUtils, System.Classes, Vcl.Controls, Vcl.Forms, LightVcl.Common.AppDataForm, Vcl.StdCtrls;
 
 type
   TfrmOptions = class(TLightForm)
@@ -22,8 +22,8 @@ var
 implementation {$R *.dfm}
 
 uses
-   ccAppData, cbAppDataVCL
-, cvINIFile;
+   LightCore.AppData, LightVcl.Common.AppData
+, LightVcl.Visual.INIFile;
 
 
 procedure TfrmOptions.FormCreate(Sender: TObject);

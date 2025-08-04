@@ -25,14 +25,17 @@
 {$IMAGEBASE $400000}
 {$DEFINE DEBUG}
 {$ENDIF IMPLICITBUILDING}
+{$LIBSUFFIX AUTO}
 {$DESIGNONLY}
 {$IMPLICITBUILD ON}
 
 requires
   rtl,
-  designide;
+  designide,
+  VclSmp;
 
 contains
   FormOTAReceiver in 'FormOTAReceiver.pas' {frmOTAReceiver};
 
 end.
+

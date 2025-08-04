@@ -51,7 +51,7 @@ type
 IMPLEMENTATION
 
 USES
-   cmPascal, ccCore, ccIO, ccTextFile;
+   cmPascal, LightCore, LightCore.IO, LightCore.TextFile;
 
 
 
@@ -201,7 +201,7 @@ begin
             if First > -1
             then Front:= System.StringOfChar(' ', First-1);
 
-            // SetFocus() can be found in cbVclUtils.pas
+            // SetFocus() can be found in LightVcl.Common.VclUtils.pas
             TextBody[i]:= Front+ ImplementingUnit+'.SetFocus('+ ExtractObjectName(sLine)+ ');';  // We write something like SetFocus(Edit2);
             FFound:= TRUE;
           end;

@@ -50,7 +50,7 @@ TYPE
 IMPLEMENTATION
 
 USES
-   cmPascal, ccCore, ccTextFile;
+   cmPascal, LightCore, LightCore.TextFile;
 
 
 
@@ -69,7 +69,7 @@ procedure TAgent_BomExists.Execute(const FileName: string);
 begin
   inherited Execute(FileName);
 
-  if NOT ccTextFile.FileHasBOM(SearchResults.Last.FileName)
+  if NOT LightCore.TextFile.FileHasBOM(SearchResults.Last.FileName)
   then SearchResults.Last.AddNewPos('File without BOM.');         // We indicate that this file was found without BOM
 
   Finalize;
@@ -94,9 +94,9 @@ procedure TAgent_BOM_AnsiToUtf.Execute(const FileName: string);
 begin
   inherited Execute(FileName);
 
-  if NOT ccTextFile.FileHasBOM(SearchResults.Last.FileName) then
+  if NOT LightCore.TextFile.FileHasBOM(SearchResults.Last.FileName) then
    begin
-     ccTextFile.ConvertToUTF(SearchResults.Last.FileName);
+     LightCore.TextFile.ConvertToUTF(SearchResults.Last.FileName);
      SearchResults.Last.AddNewPos('Converted to UTF8 (with BOM).');
    end;
 
@@ -123,7 +123,7 @@ procedure TAgent_BOM_Utf2Ansi.Execute(const FileName: string);
 begin
   inherited Execute(FileName);
 
-  if ccTextFile.ConvertToAnsi(SearchResults.Last.FileName)
+  if LightCore.TextFile.ConvertToAnsi(SearchResults.Last.FileName)
   then SearchResults.Last.AddNewPos('Converted to ANSI');
 
   Finalize; // Increment counters

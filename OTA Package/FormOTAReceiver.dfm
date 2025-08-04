@@ -1,7 +1,7 @@
 object frmOTAReceiver: TfrmOTAReceiver
   Left = 1348
   Top = 952
-  Caption = 'IDE File Receiver (Gabriel Moraru 2022)'
+  Caption = 'IDE File Receiver 2025.06 (www.GabrielMoraru.com)'
   ClientHeight = 99
   ClientWidth = 457
   Color = clBtnFace

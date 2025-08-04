@@ -24,11 +24,11 @@ uses
   dutFindCode in 'dutFindCode.pas' {frmSettingsFindCode},
   dutFindInterface in 'dutFindInterface.pas' {frmSettingsIntf},
   dutBom in 'dutBom.pas',
-  ccAppData in '..\..\LightSaber\ccAppData.pas',
-  cbAppDataForm in '..\..\LightSaber\FrameVCL\cbAppDataForm.pas',
-  cbAppDataVCL in '..\..\LightSaber\FrameVCL\cbAppDataVCL.pas',
-  cbIniFile in '..\..\LightSaber\FrameVCL\cbIniFile.pas',
-  ccINIFile in '..\..\LightSaber\ccINIFile.pas';
+  LightCore.AppData in '..\..\LightSaber\LightCore.AppData.pas',
+  LightVcl.Common.AppDataForm in '..\..\LightSaber\FrameVCL\LightCom.AppDataForm.pas',
+  LightVcl.Common.AppData in '..\..\LightSaber\FrameVCL\LightCom.AppData.pas',
+  LightVcl.Common.IniFile in '..\..\LightSaber\FrameVCL\LightCom.IniFile.pas',
+  LightCore.INIFile in '..\..\LightSaber\LightCore.INIFile.pas';
 
 {$R *.res}
 

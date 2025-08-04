@@ -14,7 +14,7 @@ INTERFACE
 USES
   System.SysUtils, System.Classes, System.Math,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls,
-  cbAppDataVCL, cmSearchResult, dutUpgradeCode, dutBase, cbIniFile, ccINIFile, cbAppDataForm, cvMemo;
+  LightVcl.Common.AppData, cmSearchResult, dutUpgradeCode, dutBase, LightVcl.Common.IniFile, LightCore.INIFile, LightVcl.Common.AppDataForm, LightVcl.Visual.Memo;
 
 
 TYPE
@@ -50,7 +50,7 @@ TYPE
 
 IMPLEMENTATION {$R *.dfm}
 USES
-   ccTextFile, ccIO, cmPascal, ccCore;
+   LightCore.TextFile, LightCore.IO, cmPascal, LightCore;
 
 
 

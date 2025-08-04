@@ -39,7 +39,7 @@ TYPE
 IMPLEMENTATION
 
 USES
-   cmPascal, ccCore;
+   cmPascal, LightCore;
 
 
 

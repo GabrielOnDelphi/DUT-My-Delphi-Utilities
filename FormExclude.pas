@@ -1,48 +1,69 @@
 ﻿unit FormExclude;
 
-interface
+INTERFACE
 
-uses
-  System.SysUtils, System.Classes, Vcl.Controls, Vcl.Forms, LightVcl.Common.AppDataForm,Vcl.StdCtrls;
+USES
+  System.SysUtils, System.Classes,
+  Vcl.Controls, Vcl.Forms, Vcl.StdCtrls, Vcl.ExtCtrls,
+  LightVcl.Common.AppDataForm;
 
-type
+TYPE
   TfrmExclude = class(TLightForm)
     mmoExclude: TMemo;
-    Label1: TLabel;
-    procedure FormCreate(Sender: TObject);
-    procedure FormDestroy(Sender: TObject);
+    Label1    : TLabel;
+    pnlBottom : TPanel;
+    btnSave   : TButton;
+    procedure FormCreate  (Sender: TObject);
+    procedure FormDestroy (Sender: TObject);
+    procedure btnSaveClick(Sender: TObject);
   private
-    function excludedFiles: String;
   end;
 
-var
+function ExcludedFiles: String;
+function GetExcludedFiles: TStringList;
+
+VAR
    frmExclude: TfrmExclude;
 
 
-implementation {$R *.dfm}
+IMPLEMENTATION {$R *.dfm}
 
-uses
-   LightCore.AppData, LightVcl.Common.AppData
-, LightVcl.Visual.INIFile;
+USES
+   LightCore.AppData, LightCore.TextFile, LightVcl.Common.AppData;
 
 
-function TfrmExclude.excludedFiles: string;
-begin
-  Result:= AppData.AppDataFolder(True)+ 'ExcludedFiles.txt'
-end;
 
 procedure TfrmExclude.FormCreate(Sender: TObject);
 begin
-  //LoadForm(Self);
-  if FileExists(excludedFiles)
-  then mmoExclude.Lines.LoadFromFile(excludedFiles);;
+  if FileExists(ExcludedFiles)
+  then mmoExclude.Lines.LoadFromFile(ExcludedFiles);;
 end;
 
 
 procedure TfrmExclude.FormDestroy(Sender: TObject);
 begin
-  ////SaveForm(Self); called by AppData
-  mmoExclude.Lines.SaveToFile(excludedFiles);
+  btnSaveClick(Sender);
+end;
+
+
+procedure TfrmExclude.btnSaveClick(Sender: TObject);
+begin
+  mmoExclude.Lines.SaveToFile(ExcludedFiles);
+end;
+
+
+
+
+
+
+function ExcludedFiles: string;
+begin
+  Result:= AppData.AppDataFolder(True)+ 'ExcludedFiles.txt'
+end;
+
+function GetExcludedFiles: TStringList;
+begin
+  Result:= StringFromFileTSL(ExcludedFiles);
 end;
 
 

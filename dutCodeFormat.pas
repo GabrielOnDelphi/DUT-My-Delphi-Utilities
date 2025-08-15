@@ -12,8 +12,8 @@
 INTERFACE
 
 USES
-  System.SysUtils, System.Classes, System.Math, Vcl.ExtCtrls,
-  cmSearchResult, dutUpgradeCode, dutBase;
+  System.SysUtils, System.Classes,
+  LightCore.SearchResult, dutBase;
 
 TYPE
   TAgent_CodeFormat= class(TBaseAgent)
@@ -26,7 +26,7 @@ TYPE
 
 IMPLEMENTATION
 USES
-   LightCore.TextFile, LightCore.IO, cmPascal, LightCore;
+   LightCore.TextFile, LightCore.IO, LightCore.Pascal, LightCore;
 
 
 class function TAgent_CodeFormat.Description: string;

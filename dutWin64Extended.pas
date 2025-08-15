@@ -1,4 +1,4 @@
-﻿UNIT dutWin64Extended;
+UNIT dutWin64Extended;
 
 {=============================================================================================================
    Gabriel Moraru
@@ -13,7 +13,7 @@
 INTERFACE
 
 USES
-  System.SysUtils, System.Classes, cmSearchResult, dutBase;
+  System.SysUtils, System.Classes, LightCore.SearchResult, dutBase;
 
 TYPE
   // Extended
@@ -35,7 +35,7 @@ TYPE
 IMPLEMENTATION
 
 USES
-   cmPascal, LightCore;
+   LightCore.Pascal, LightCore;
 
 
 { Extended in packed records }

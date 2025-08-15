@@ -4,8 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes,
-  Vcl.Controls, Vcl.Forms, LightVcl.Common.AppDataForm,Vcl.StdCtrls, Vcl.ExtCtrls, System.Actions, Vcl.ActnList,
-  cmSearchResult, FormAgent;
+  Vcl.Controls, Vcl.Forms, LightVcl.Common.AppDataForm,Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ActnList,
+  LightCore.SearchResult, FormAgent, System.Actions;
 
 type
   TfrmEditor = class(TLightForm)
@@ -58,7 +58,7 @@ var
 implementation {$R *.dfm}
 
 USES
-   LightVcl.Visual.INIFile, LightCore.IO, FormOTA, cmPascal;
+   LightCore.IO, FormOTA, LightCore.Pascal;
 
 
 

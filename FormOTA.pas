@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes, Vcl.Controls, Vcl.Forms, LightVcl.Common.AppDataForm,Vcl.StdCtrls,
-  cmSearchResult;
+  LightCore.SearchResult;
 
 type
   TfrmOTA = class(TLightForm)

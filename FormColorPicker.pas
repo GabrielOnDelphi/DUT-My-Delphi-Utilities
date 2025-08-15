@@ -34,7 +34,7 @@ TYPE
 
 
 IMPLEMENTATION {$R *.dfm}
-uses LightVcl.Common.SystemTime, LightVcl.Common.Clipboard, LightVcl.Common.ExecuteShell;
+uses LightVcl.Common.Clipboard, LightVcl.Common.ExecuteShell;
 
 
 

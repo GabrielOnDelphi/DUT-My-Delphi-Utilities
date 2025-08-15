@@ -12,9 +12,9 @@ UNIT dutFindCode;
 INTERFACE
 
 USES
-  System.SysUtils, System.Classes, System.Math,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls,
-  LightVcl.Common.AppData, cmSearchResult, dutUpgradeCode, dutBase, LightVcl.Common.IniFile, LightCore.INIFile, LightVcl.Common.AppDataForm, LightVcl.Visual.Memo;
+  System.SysUtils, System.Classes,
+  Vcl.Controls, Vcl.Forms, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls,
+  LightVcl.Common.AppData, LightCore.SearchResult, dutBase, LightVcl.Common.AppDataForm, LightVcl.Visual.Memo;
 
 
 TYPE
@@ -50,7 +50,7 @@ TYPE
 
 IMPLEMENTATION {$R *.dfm}
 USES
-   LightCore.TextFile, LightCore.IO, cmPascal, LightCore;
+   LightCore.Pascal, LightCore.AppData, LightCore;
 
 
 

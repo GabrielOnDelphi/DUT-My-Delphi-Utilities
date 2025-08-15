@@ -15,7 +15,7 @@
 INTERFACE
 
 USES
-  System.SysUtils, System.Classes, cmSearchResult, dutBase;
+  System.SysUtils, System.Classes, LightCore.SearchResult, dutBase;
 
 type
   TAgent_SetFocus= class(TBaseAgent)
@@ -51,7 +51,7 @@ type
 IMPLEMENTATION
 
 USES
-   cmPascal, LightCore, LightCore.IO, LightCore.TextFile;
+   LightCore.Pascal, LightCore;
 
 
 

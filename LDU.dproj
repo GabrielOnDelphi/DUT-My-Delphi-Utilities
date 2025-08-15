@@ -7,7 +7,8 @@
         <MainSource>LDU.dpr</MainSource>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <ProjectGuid>{C794F3BD-61DB-43F6-8C1F-8F7AEB531E4C}</ProjectGuid>
-        <ProjectVersion>19.5</ProjectVersion>
+        <ProjectName Condition="'$(ProjectName)'==''">LDU</ProjectName>
+        <ProjectVersion>20.3</ProjectVersion>
         <TargetedPlatforms>1</TargetedPlatforms>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
@@ -44,9 +45,11 @@
         <SanitizedProjectName>LDU</SanitizedProjectName>
         <DCC_Alignment>2</DCC_Alignment>
         <DCC_DcuOutput>$(Platform)_$(Config)</DCC_DcuOutput>
+        <DCC_ExeOutput>.\</DCC_ExeOutput>
         <DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
         <DCC_Namespace>Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;System;Xml;Data;Datasnap;Web;Soap;DUnitX.MemoryLeakMonitor;$(DCC_Namespace)</DCC_Namespace>
         <DCC_Optimize>false</DCC_Optimize>
+        <DCC_UnitSearchPath>c:\Projects\LightSaber\FrameVCL\;c:\Projects\LightSaber;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=3.0.0.0;InternalName=;LegalCopyright=Gabriel Moraru;LegalTrademarks=Gabriel Moraru;OriginalFilename=;ProductName=Light Delphi Utilities;ProductVersion=3.0.0.0;Comments=;CFBundleName=</VerInfo_Keys>
         <VerInfo_Locale>1031</VerInfo_Locale>
@@ -105,8 +108,6 @@
             <Form>frmOptions</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\..\LightSaber\cmPascal.pas"/>
-        <DCCReference Include="..\..\LightSaber\cmSearchResult.pas"/>
         <DCCReference Include="dutBase.pas"/>
         <DCCReference Include="dutCodeFormat.pas"/>
         <DCCReference Include="dutUpgradeCode.pas"/>
@@ -123,11 +124,8 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="dutBom.pas"/>
+        <DCCReference Include="..\..\LightSaber\FrameVCL\LightVcl.Common.AppData.pas"/>
         <DCCReference Include="..\..\LightSaber\LightCore.AppData.pas"/>
-        <DCCReference Include="..\..\LightSaber\FrameVCL\LightCom.AppDataForm.pas"/>
-        <DCCReference Include="..\..\LightSaber\FrameVCL\LightCom.AppData.pas"/>
-        <DCCReference Include="..\..\LightSaber\FrameVCL\LightCom.IniFile.pas"/>
-        <DCCReference Include="..\..\LightSaber\LightCore.INIFile.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -150,6 +148,69 @@
                 </Source>
                 <Excluded_Packages/>
             </Delphi.Personality>
+            <Deployment Version="5">
+                <DeployFile LocalName="LDU.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>LDU.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployClass Name="AdditionalDebugSymbols">
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="DebugSymbols">
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="DependencyFramework">
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="DependencyModule">
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                        <Extensions>.dll;.bpl</Extensions>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Required="true" Name="DependencyPackage">
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                        <Extensions>.bpl</Extensions>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="File">
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Required="true" Name="ProjectOutput">
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectUWPManifest">
+                    <Platform Name="Win32">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="UWP_DelphiLogo150">
+                    <Platform Name="Win32">
+                        <RemoteDir>Assets</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="UWP_DelphiLogo44">
+                    <Platform Name="Win32">
+                        <RemoteDir>Assets</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
+            </Deployment>
             <Platforms>
                 <Platform value="Android">False</Platform>
                 <Platform value="Android64">False</Platform>

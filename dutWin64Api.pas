@@ -1,4 +1,4 @@
-﻿UNIT dutWin64Api;
+UNIT dutWin64Api;
 
 {=============================================================================================================
    Gabriel Moraru
@@ -15,7 +15,7 @@
 INTERFACE
 
 USES
-  System.SysUtils, System.Classes, cmSearchResult, dutBase;
+  System.SysUtils, System.Classes, LightCore.SearchResult, dutBase;
 
 TYPE
   TAgent_APISendMessage = class(TBaseAgent)
@@ -43,7 +43,7 @@ TYPE
 IMPLEMENTATION
 
 USES
-   cmPascal, LightCore;
+   LightCore.Pascal, LightCore;
 
 
 

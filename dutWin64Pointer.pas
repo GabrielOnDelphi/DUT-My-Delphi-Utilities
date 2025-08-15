@@ -1,4 +1,4 @@
-﻿UNIT dutWin64Pointer;
+UNIT dutWin64Pointer;
 
 {=============================================================================================================
    Gabriel Moraru
@@ -15,7 +15,7 @@
 INTERFACE
 
 USES
-  System.SysUtils, System.Classes, cmSearchResult, dutBase;
+  System.SysUtils, System.Classes, LightCore.SearchResult, dutBase;
 
 TYPE
   // Pointer casts
@@ -39,7 +39,7 @@ TYPE
 IMPLEMENTATION
 
 USES
-   cmPascal, LightCore;
+   LightCore.Pascal, LightCore;
 
 
 

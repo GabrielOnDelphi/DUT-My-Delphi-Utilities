@@ -16,8 +16,8 @@
 INTERFACE
 
 USES
-  System.SysUtils, System.Classes, Vcl.Forms, Vcl.ExtCtrls,
-  cmSearchResult, LightCore.TextFile;
+  System.SysUtils, System.Classes, Vcl.ExtCtrls,
+  LightCore.SearchResult, LightCore.TextFile;
 
 TYPE
   TBaseAgent= class(TObject)

@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, System.SysUtils, System.Classes,
   Vcl.Controls, Vcl.Forms, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Menus, Vcl.Mask,
-  cmSearchResult, dutCodeFormat, dutBase, LightVcl.Visual.PathEdit, LightVcl.Common.AppDataForm;
+  LightCore.SearchResult, dutBase, LightVcl.Visual.PathEdit, LightVcl.Common.AppDataForm;
 
 type
   TfrmAgentResults = class(TLightForm)
@@ -28,6 +28,7 @@ type
     edtPath     : TCubicPathEdit;
     btnSave     : TButton;
     lblInpOut: TLabel;
+    DelaySearchFiles: TTimer;
     procedure FormDestroy        (Sender: TObject);
     procedure lbxResultsClick    (Sender: TObject);
     procedure lbxResultsDblClick (Sender: TObject);
@@ -40,6 +41,7 @@ type
     procedure edtPathPathChanged (Sender: TObject);
     procedure btnExcludeClick    (Sender: TObject);
     procedure btnSaveClick       (Sender: TObject);
+    procedure DelaySearchFilesTimer(Sender: TObject);
   private
     Searched: Boolean;
     procedure ShowEditor;
@@ -48,6 +50,7 @@ type
     procedure StartTask;
     procedure SetCaption(const Msg: string);
     procedure SetAgent(ID: integer);
+    procedure DoSearch;
   public
     Agent: TBaseAgent;
     procedure Reset;
@@ -65,8 +68,8 @@ procedure CreateAgentForm(ID: integer);
 IMPLEMENTATION {$R *.dfm}
 
 USES
-   LightVcl.Common.Dialogs, LightVcl.Common.IO, LightCore, LightCore.IO, LightCore.TextFile, LightCore.AppData, LightVcl.Common.AppData, LightVcl.Visual.INIFile, LightVcl.Common.SystemTime, LightVcl.Common.Clipboard, LightVcl.Common.ExecuteShell, LightCore.INIFile, LightVcl.Common.IniFileQuick,
-   FormOTA, FormEditor, FormOptions, MainForm, FormExclude,
+   LightVcl.Common.IO, LightCore, LightCore.IO, LightCore.TextFile, LightCore.AppData, LightVcl.Common.AppData, LightVcl.Visual.INIFile, LightVcl.Common.Clipboard, LightVcl.Common.ExecuteShell,
+   FormOTA, FormEditor, FormOptions, FormExclude,
    dutAgentFactory;
 
 
@@ -105,7 +108,10 @@ begin
   // EXPLORER & FILTER
   Refresh;                         // Refresh the main form so the frmExplorer is shown in the correct position
   edtPathPathChanged(NIL);         // Read files in folder. This could take a while for large folders
-  AppData.CreateFormHidden(TfrmExclude, frmExclude);
+
+  if frmExclude = NIL
+  then AppData.CreateFormHidden(TfrmExclude, frmExclude)
+  else frmExclude.Show;
 
   // EDITOR
   AppData.CreateFormHidden(TfrmEditor, frmEditor);
@@ -407,17 +413,45 @@ end;
 
 procedure TfrmAgentResults.edtPathPathChanged(Sender: TObject);
 begin
-  if AppData.Initializing then Exit;
+  if AppData.Initializing then EXIT;
+
+  // If the user type C:\ then the program will try to list all files in C:\.
+  // This is incredibly slow. So we restart the timer each time the user types something.
+  // We perform the search only if the user stopped typing.
+  DelaySearchFiles.Enabled:= FALSE;
+  DelaySearchFiles.Enabled:= TRUE;
+end;
+
+
+procedure TfrmAgentResults.DoSearch;
+var Files, ExcludedFiles: TStringList;
+begin
+  Files:= NIL;
+  ExcludedFiles:= NIL;
+  if AppData.Initializing then EXIT;
+
+  // Stop timer
+  if DelaySearchFiles.Enabled then EXIT;
 
   if DirectoryExists(edtPath.Path) then
    begin
-     var Files:= ListFilesOf(edtPath.Path, edtFilter.Text, True, True);
      try
+       ExcludedFiles:= GetExcludedFiles;
+       Files:= ListFilesOf(edtPath.Path, edtFilter.Text, True, TRUE, NIL);
+       lblInpOut.caption:= 'Input files: ';
        lbxResults.Items.Assign(Files);
      finally
        FreeAndNil(Files);
+       FreeAndNil(ExcludedFiles);
      end;
    end;
+end;
+
+
+procedure TfrmAgentResults.DelaySearchFilesTimer(Sender: TObject);
+begin
+  DelaySearchFiles.Enabled:= FALSE;
+  DoSearch;
 end;
 
 

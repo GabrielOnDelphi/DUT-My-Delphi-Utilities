@@ -12,8 +12,6 @@ uses
   FormOTA in 'FormOTA.pas' {frmOTA},
   FormEditor in 'FormEditor.pas' {frmEditor},
   FormOptions in 'FormOptions.pas' {frmOptions},
-  cmPascal in '..\..\LightSaber\cmPascal.pas',
-  cmSearchResult in '..\..\LightSaber\cmSearchResult.pas',
   dutBase in 'dutBase.pas',
   dutCodeFormat in 'dutCodeFormat.pas',
   dutUpgradeCode in 'dutUpgradeCode.pas',
@@ -24,11 +22,8 @@ uses
   dutFindCode in 'dutFindCode.pas' {frmSettingsFindCode},
   dutFindInterface in 'dutFindInterface.pas' {frmSettingsIntf},
   dutBom in 'dutBom.pas',
-  LightCore.AppData in '..\..\LightSaber\LightCore.AppData.pas',
-  LightVcl.Common.AppDataForm in '..\..\LightSaber\FrameVCL\LightCom.AppDataForm.pas',
-  LightVcl.Common.AppData in '..\..\LightSaber\FrameVCL\LightCom.AppData.pas',
-  LightVcl.Common.IniFile in '..\..\LightSaber\FrameVCL\LightCom.IniFile.pas',
-  LightCore.INIFile in '..\..\LightSaber\LightCore.INIFile.pas';
+  LightVcl.Common.AppData in '..\..\LightSaber\FrameVCL\LightVcl.Common.AppData.pas',
+  LightCore.AppData in '..\..\LightSaber\LightCore.AppData.pas';
 
 {$R *.res}
 

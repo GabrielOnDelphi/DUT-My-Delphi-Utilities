@@ -2,8 +2,8 @@ object frmExclude: TfrmExclude
   Left = 0
   Top = 0
   Caption = 'Exclude folders'
-  ClientHeight = 246
-  ClientWidth = 584
+  ClientHeight = 229
+  ClientWidth = 377
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,7 +21,7 @@ object frmExclude: TfrmExclude
     AlignWithMargins = True
     Left = 3
     Top = 3
-    Width = 578
+    Width = 371
     Height = 17
     Hint = 
       'Exclude the following folders from the search.'#13#10'One folder per l' +
@@ -32,9 +32,9 @@ object frmExclude: TfrmExclude
   object mmoExclude: TMemo
     AlignWithMargins = True
     Left = 3
-    Top = 26
-    Width = 578
-    Height = 217
+    Top = 23
+    Width = 371
+    Height = 162
     Hint = 
       'Exclude the following folders from the search.'#13#10'One folder per l' +
       'ine.'
@@ -42,5 +42,25 @@ object frmExclude: TfrmExclude
     Lines.Strings = (
       'c:\MySourceCode\3rd party libs\')
     TabOrder = 0
+  end
+  object pnlBottom: TPanel
+    Left = 0
+    Top = 188
+    Width = 377
+    Height = 41
+    Align = alBottom
+    BevelOuter = bvNone
+    TabOrder = 1
+    object btnSave: TButton
+      AlignWithMargins = True
+      Left = 272
+      Top = 3
+      Width = 102
+      Height = 35
+      Align = alRight
+      Caption = 'Save'
+      TabOrder = 0
+      OnClick = btnSaveClick
+    end
   end
 end

@@ -1,4 +1,4 @@
-﻿UNIT dutBom;
+UNIT dutBom;
 
 {=============================================================================================================
    Gabriel Moraru
@@ -21,7 +21,7 @@
 INTERFACE
 
 USES
-  System.SysUtils, System.Classes, cmSearchResult, dutBase;
+  System.SysUtils, LightCore.SearchResult, dutBase;
 
 TYPE
   TAgent_BomExists = class(TBaseAgent)
@@ -50,7 +50,7 @@ TYPE
 IMPLEMENTATION
 
 USES
-   cmPascal, LightCore, LightCore.TextFile;
+   LightCore.Pascal, LightCore, LightCore.TextFile;
 
 
 
